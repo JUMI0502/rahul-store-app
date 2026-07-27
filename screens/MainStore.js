@@ -724,8 +724,8 @@ export default function MainStore({ staff, onLogout }) {
       `*New Rahul Auto Spares*\n` +
       `Telugu Peta, Nandyal\n\n` +
       `${bulkMessage}\n\n` +
-      `📞 08514-244944\n` +
-      `💬 wa.me/916300281504`;
+      `08514-244944\n` +
+      `wa.me/916300281504`;
     Linking.openURL(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`);
     setBulkMessage('');
     setShowBulkMessage(false);
@@ -1052,7 +1052,7 @@ export default function MainStore({ staff, onLogout }) {
 ` +
                   `Thank you for shopping with us!
 ` +
-                  `📞 08514-244944`;
+                  `08514-244944`;
                 Linking.openURL(`https://wa.me/91${orderData.customer_phone}?text=${encodeURIComponent(invoiceMsg)}`);
               }
             },
@@ -1333,11 +1333,11 @@ export default function MainStore({ staff, onLogout }) {
       const topParts = d.bestsellers?.slice(0, 3)
         .map((b, i) => `${i+1}. ${b.name} (${b.qty} sold)`).join('\n') || 'No data';
       const msg =
-        `📊 *Daily Sales Summary*\n📅 ${new Date().toLocaleDateString('en-IN')}\n\n` +
-        `💰 Revenue: ₹${d.total_revenue?.toFixed(0)}\n` +
-        `📦 Orders: ${d.total_orders}\n⏳ Pending: ${d.pending_orders}\n` +
-        `💵 Cash: ₹${d.cash?.toFixed(0)}\n📱 UPI: ₹${d.upi?.toFixed(0)}\n\n` +
-        `🏆 *Top Selling:*\n${topParts}\n\n🏪 New Rahul Auto Spares · Nandyal`;
+        `*Daily Sales Summary*\n${new Date().toLocaleDateString('en-IN')}\n\n` +
+        `Revenue: ₹${d.total_revenue?.toFixed(0)}\n` +
+        `Orders: ${d.total_orders}\nPending: ${d.pending_orders}\n` +
+        `Cash: ₹${d.cash?.toFixed(0)}\nUPI: ₹${d.upi?.toFixed(0)}\n\n` +
+        `*Top Selling:*\n${topParts}\n\nNew Rahul Auto Spares · Nandyal`;
       Linking.openURL(`https://wa.me/916300281504?text=${encodeURIComponent(msg)}`);
     } catch { Alert.alert('Error', 'Could not fetch daily summary'); }
   };
@@ -2715,8 +2715,8 @@ export default function MainStore({ staff, onLogout }) {
                         item.stock_qty === 0 ? { color: '#EF4444' }
                           : item.stock_qty <= 5 ? { color: '#F59E0B' } : { color: G }]}>
                         {item.stock_qty === 0 ? 'Out of stock'
-                          : item.stock_qty <= 5 ? `⚠️ Low: ${item.stock_qty}`
-                          : `✅ ${item.stock_qty} in stock`}
+                          : item.stock_qty <= 5 ? `Low: ${item.stock_qty}`
+                          : `${item.stock_qty} in stock`}
                       </Text>
                       <Text style={{ fontSize: 11, color: 'rgba(255,255,255,0.25)' }}>
                         · ₹{item.selling_price}
@@ -3561,10 +3561,10 @@ export default function MainStore({ staff, onLogout }) {
                 <TouchableOpacity style={s.waBtn}
                   onPress={() => {
                     const msg =
-                      `Hi ${selectedOrder.customer_name}! 🙏\n` +
+                      `Hi ${selectedOrder.customer_name}!\n` +
                       `Order ${selectedOrder.custom_id||`RAS-${selectedOrder.id}`} ` +
                       `is ${selectedOrder.status==='ready' ? 'READY for pickup!' : 'being processed.'}\n` +
-                      `📍 New Rahul Auto Spares, Nandyal`;
+                      `New Rahul Auto Spares, Nandyal`;
                     Linking.openURL(`https://wa.me/91${selectedOrder.customer_phone}?text=${encodeURIComponent(msg)}`);
                   }}>
                   <Text style={s.waBtnText}>WhatsApp Customer</Text>
