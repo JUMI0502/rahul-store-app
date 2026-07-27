@@ -554,6 +554,10 @@ export default function MainStore({ staff, onLogout }) {
   const [rewards, setRewards] = useState([]);
   const [showRewardManager, setShowRewardManager] = useState(false);
   const [showStaffManager, setShowStaffManager] = useState(false);
+  const [showMechanicApprovals, setShowMechanicApprovals] = useState(false);
+  const [mechanics, setMechanics] = useState([]);
+  const [mechanicsPendingCount, setMechanicsPendingCount] = useState(0);
+  const [loadingMechanics, setLoadingMechanics] = useState(false);
   const [newStaffName, setNewStaffName] = useState('');
   const [newStaffPhone, setNewStaffPhone] = useState('');
   const [newStaffRole, setNewStaffRole] = useState('staff');
@@ -705,6 +709,32 @@ export default function MainStore({ staff, onLogout }) {
       const d = await r.json();
       setAllStaff(d.staff || []);
     } catch {}
+  };
+
+  const fetchMechanics = async () => {
+    setLoadingMechanics(true);
+    try {
+      const r = await fetch(`${API_URL}/mechanics`);
+      const d = await r.json();
+      setMechanics(d.mechanics || []);
+      setMechanicsPendingCount(d.pending || 0);
+    } catch { setMechanics([]); }
+    setLoadingMechanics(false);
+  };
+
+  const respondToMechanic = async (id, status) => {
+    try {
+      const r = await fetch(`${API_URL}/mechanics/${id}/approve`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status, approved_by: staff?.name })
+      });
+      if (!r.ok) throw new Error('failed');
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      fetchMechanics();
+    } catch {
+      Alert.alert('Error', 'Could not update mechanic status');
+    }
   };
 
   const addNewStaff = async () => {
@@ -1541,13 +1571,6 @@ export default function MainStore({ staff, onLogout }) {
                 </TouchableOpacity>
               )}
             </View>
-            <View style={s.statsRow}>
-              <StatCard icon="receipt-outline" label="New" value={orders.filter(o=>o.status==='new').length} color="#4F6EF7" />
-              <StatCard icon="cube-outline" label="Packing" value={orders.filter(o=>o.status==='packing').length} color="#F59E0B" />
-              <StatCard icon="checkmark-circle-outline" label="Ready" value={orders.filter(o=>o.status==='ready').length} color={G} />
-              <StatCard icon="flag-outline" label="Done" value={orders.filter(o=>o.status==='collected').length} color="rgba(255,255,255,0.4)" />
-            </View>
-
             <ScrollView horizontal showsHorizontalScrollIndicator={false}
               style={s.filterScroll} contentContainerStyle={s.filterRow}>
               {[
@@ -2000,6 +2023,71 @@ export default function MainStore({ staff, onLogout }) {
       </Modal>
 
       {/* ══ STAFF MANAGER MODAL ══ */}
+      <Modal visible={showMechanicApprovals} animationType="slide"
+        onRequestClose={() => setShowMechanicApprovals(false)}>
+        <SafeAreaView style={[s.container]}>
+          <StatusBar barStyle="light-content" />
+          <View style={s.rewardsHeader}>
+            <TouchableOpacity onPress={() => setShowMechanicApprovals(false)}>
+              <Ionicons name="arrow-back" size={22} color="#fff" />
+            </TouchableOpacity>
+            <Text style={s.rewardsHeaderTitle}>Mechanic Approvals</Text>
+          </View>
+          <ScrollView contentContainerStyle={{ padding: 16 }}>
+            {loadingMechanics ? (
+              <Text style={{ color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginTop: 30 }}>Loading...</Text>
+            ) : mechanics.length === 0 ? (
+              <Text style={{ color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginTop: 30 }}>No mechanic requests yet.</Text>
+            ) : (
+              mechanics.map(m => (
+                <View key={m.id} style={s.detailCard}>
+                  <View style={s.detailRow}>
+                    <Text style={s.detailLabel}>Name</Text>
+                    <Text style={s.detailValue}>{m.name}</Text>
+                  </View>
+                  <View style={s.detailRow}>
+                    <Text style={s.detailLabel}>Phone</Text>
+                    <Text style={s.detailValue}>{m.phone}</Text>
+                  </View>
+                  {m.shop_name ? (
+                    <View style={s.detailRow}>
+                      <Text style={s.detailLabel}>Shop</Text>
+                      <Text style={s.detailValue}>{m.shop_name}</Text>
+                    </View>
+                  ) : null}
+                  {m.area ? (
+                    <View style={s.detailRow}>
+                      <Text style={s.detailLabel}>Area</Text>
+                      <Text style={s.detailValue}>{m.area}</Text>
+                    </View>
+                  ) : null}
+                  <View style={[s.detailRow, { borderBottomWidth: 0 }]}>
+                    <Text style={s.detailLabel}>Status</Text>
+                    <Text style={[s.detailValue, {
+                      color: m.status === 'approved' ? G : m.status === 'rejected' ? '#EF4444' : '#F59E0B'
+                    }]}>{m.status.toUpperCase()}</Text>
+                  </View>
+                  {m.status === 'pending' && (
+                    <View style={{ flexDirection: 'row', gap: 10, marginTop: 12 }}>
+                      <TouchableOpacity
+                        style={{ flex: 1, backgroundColor: G, borderRadius: 10, padding: 12, alignItems: 'center' }}
+                        onPress={() => respondToMechanic(m.id, 'approved')}>
+                        <Text style={{ color: '#060E06', fontWeight: '700' }}>Approve</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        style={{ flex: 1, backgroundColor: 'rgba(239,68,68,0.15)', borderRadius: 10, padding: 12, alignItems: 'center', borderWidth: 1, borderColor: '#EF4444' }}
+                        onPress={() => respondToMechanic(m.id, 'rejected')}>
+                        <Text style={{ color: '#EF4444', fontWeight: '700' }}>Reject</Text>
+                      </TouchableOpacity>
+                    </View>
+                  )}
+                </View>
+              ))
+            )}
+          </ScrollView>
+        </SafeAreaView>
+      </Modal>
+
       <Modal visible={showStaffManager} animationType="slide"
         onRequestClose={() => setShowStaffManager(false)}>
         <SafeAreaView style={{ flex: 1, backgroundColor: '#060E06' }}>
@@ -2851,6 +2939,23 @@ export default function MainStore({ staff, onLogout }) {
               </TouchableOpacity>
             )}
 
+            {/* MECHANIC APPROVALS */}
+            {(isOwner || isSenior) && (
+              <TouchableOpacity style={s.customerHistoryBtn}
+                onPress={() => { fetchMechanics(); setShowMechanicApprovals(true); }}>
+                <View style={s.customerHistoryBtnLeft}>
+                  <Ionicons name="construct" size={22} color="#F59E0B" />
+                  <View>
+                    <Text style={s.customerHistoryBtnTitle}>Mechanic Approvals</Text>
+                    <Text style={s.customerHistoryBtnSub}>
+                      {mechanicsPendingCount > 0 ? `${mechanicsPendingCount} pending request(s)` : 'Review mechanic access requests'}
+                    </Text>
+                  </View>
+                </View>
+                <Ionicons name="chevron-forward" size={18} color="rgba(255,255,255,0.3)" />
+              </TouchableOpacity>
+            )}
+
             {/* ACTIVITY LOG */}
             {isOwner && (
               <TouchableOpacity style={s.customerHistoryBtn}
@@ -3060,11 +3165,6 @@ export default function MainStore({ staff, onLogout }) {
               </View>
             </View>
 
-            <View style={s.statsRow}>
-              <StatCard icon="cash-outline" label="Cash" value={`₹${(summary?.payment_breakdown?.cash||0).toFixed(0)}`} color={G} />
-              <StatCard icon="phone-portrait-outline" label="UPI" value={`₹${(summary?.payment_breakdown?.upi||0).toFixed(0)}`} color="#4F6EF7" />
-              <StatCard icon="time-outline" label="Pending" value={`₹${(summary?.payment_breakdown?.pending||0).toFixed(0)}`} color="#F59E0B" />
-            </View>
 
             {/* DAILY TARGET PROGRESS */}
             <View style={s.zohoTargetCard}>
@@ -4122,9 +4222,9 @@ const s = StyleSheet.create({
   historyPickup: { fontSize: 11, color: 'rgba(255,255,255,0.3)', marginTop: 6 },
 
   statsRow: { flexDirection: 'row', padding: 12, gap: 8, borderBottomWidth: 1, borderBottomColor: 'rgba(34,197,94,0.08)' },
-  filterScroll: { maxHeight: 48, borderBottomWidth: 1, borderBottomColor: 'rgba(34,197,94,0.08)' },
+  filterScroll: { height: 56, flexGrow: 0, flexShrink: 0, borderBottomWidth: 1, borderBottomColor: 'rgba(34,197,94,0.15)' },
   filterRow: { paddingHorizontal: 12, paddingVertical: 8, gap: 8 },
-  filterChip: { paddingHorizontal: 14, paddingVertical: 6, borderRadius: 20, borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)', backgroundColor: 'rgba(34,197,94,0.05)' },
+  filterChip: { paddingHorizontal: 16, paddingVertical: 10, borderRadius: 20, borderWidth: 1, borderColor: 'rgba(34,197,94,0.3)', backgroundColor: 'rgba(34,197,94,0.08)', justifyContent: 'center' },
   filterChipActive: { backgroundColor: G, borderColor: G },
   filterChipText: { fontSize: 12, color: 'rgba(255,255,255,0.4)', fontWeight: '700' },
   filterChipTextActive: { color: '#fff' },
