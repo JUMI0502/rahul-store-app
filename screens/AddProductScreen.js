@@ -72,6 +72,7 @@ export default function AddProductScreen({ onBack, onProductAdded }) {
   const [mrp, setMrp]                 = useState('');
   const [sellingPrice, setSellingPrice] = useState('');
   const [stockQty, setStockQty]       = useState('');
+  const [isOem, setIsOem]             = useState(false);
   const [imageUri, setImageUri]       = useState(null);
   const [imageBase64, setImageBase64] = useState(null);
   const [saving, setSaving]           = useState(false);
@@ -171,6 +172,7 @@ export default function AddProductScreen({ onBack, onProductAdded }) {
         mrp:           parseFloat(mrp),
         selling_price: parseFloat(sellingPrice),
         stock_qty:     parseInt(stockQty) || 0,
+        is_oem:        isOem,
       };
 
       const r = await fetch(`${API_URL}/products`, {
@@ -395,6 +397,20 @@ export default function AddProductScreen({ onBack, onProductAdded }) {
             placeholder="0"
             placeholderTextColor="rgba(255,255,255,0.25)"
             keyboardType="numeric" />
+
+          <Text style={s.label}>Part Type</Text>
+          <View style={{ flexDirection: 'row', gap: 10 }}>
+            <TouchableOpacity
+              style={[s.oemToggleBtn, isOem && s.oemToggleBtnActive]}
+              onPress={() => setIsOem(true)}>
+              <Text style={[s.oemToggleText, isOem && s.oemToggleTextActive]}>Original OEM</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[s.oemToggleBtn, !isOem && s.oemToggleBtnActive]}
+              onPress={() => setIsOem(false)}>
+              <Text style={[s.oemToggleText, !isOem && s.oemToggleTextActive]}>Generic / Compatible</Text>
+            </TouchableOpacity>
+          </View>
         </View>
 
         {/* ── PRICING ── */}
@@ -478,6 +494,15 @@ const s = StyleSheet.create({
     paddingHorizontal: 16, paddingVertical: 10,
   },
   saveBtnText: { color: '#fff', fontWeight: 'bold', fontSize: 14 },
+  oemToggleBtn: {
+    flex: 1, paddingVertical: 12, borderRadius: 10,
+    alignItems: 'center', borderWidth: 1,
+    borderColor: 'rgba(34,197,94,0.2)',
+    backgroundColor: 'rgba(34,197,94,0.05)',
+  },
+  oemToggleBtnActive: { backgroundColor: G, borderColor: G },
+  oemToggleText: { fontSize: 12, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)' },
+  oemToggleTextActive: { color: '#fff' },
   card: {
     backgroundColor: '#0E1A0E', borderRadius: 16, padding: 16,
     marginBottom: 14, borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)',
