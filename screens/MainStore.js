@@ -1586,61 +1586,147 @@ export default function MainStore({ staff, onLogout }) {
                 refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor={G} />}
                 renderItem={({ item }) => (
                   <TouchableOpacity
-                    style={[s.orderCard, item.status==='new' && s.orderCardNew]}
-                    onPress={() => openOrder(item)}>
-                    <View style={s.orderTop}>
-                      <View style={s.orderIdRow}>
-                        <Text style={s.orderId}>{item.custom_id || `RAS-${item.id}`}</Text>
-                        {item.status === 'new' && (
-                          <View style={s.newPill}>
-                            <Text style={s.newPillText}>NEW</Text>
-                          </View>
-                        )}
-                      </View>
-                      <Text style={s.orderAmt}>₹{item.total_amount}</Text>
-                    </View>
-                    <View style={s.orderCustomerRow}>
-                      <Text style={s.orderCustomer}>{item.customer_name || 'Customer'}</Text>
-                      {item.customer_phone && (
-                        <TouchableOpacity style={s.orderCallBtn}
-                          onPress={() => Linking.openURL(`tel:${item.customer_phone}`)}>
-                          <Ionicons name="call" size={12} color={G} />
-                          <Text style={s.orderPhone}>{item.customer_phone}</Text>
-                        </TouchableOpacity>
-                      )}
-                    </View>
-                    {item.pickup_time && (
-                      <Text style={s.orderPickup}>Pickup: {item.pickup_time}</Text>
-                    )}
-                    <View style={s.orderBottom}>
-                      <View style={[s.statusPill, {
-                        backgroundColor: (STATUS_COLORS[item.status]||G)+'15',
-                        borderColor: (STATUS_COLORS[item.status]||G)+'40'
-                      }]}>
-                        <Text style={[s.statusPillText, { color: STATUS_COLORS[item.status]||G }]}>
-                          {STATUS_LABELS[item.status]||item.status}
+                    style={s.zohoOrderCard}
+                    onPress={() => openOrder(item)}
+                    activeOpacity={0.85}>
+
+                    {/* COLOR BAR - Status indicator */}
+                    <View style={[s.zohoStatusBar, {
+                      backgroundColor: STATUS_COLORS[item.status] || G
+                    }]} />
+
+                    <View style={s.zohoCardContent}>
+                      {/* TOP ROW - Order ID + Amount */}
+                      <View style={s.zohoCardTop}>
+                        <View style={s.zohoCardTopLeft}>
+                          <Text style={s.zohoOrderId}>
+                            {item.custom_id || `RAS-${item.id}`}
+                          </Text>
+                          {item.status === 'new' && (
+                            <View style={s.zohoNewBadge}>
+                              <Text style={s.zohoNewBadgeText}>NEW</Text>
+                            </View>
+                          )}
+                        </View>
+                        <Text style={s.zohoOrderAmt}>
+                          ₹{Number(item.total_amount).toLocaleString('en-IN')}
                         </Text>
                       </View>
+
+                      {/* DIVIDER */}
+                      <View style={s.zohoDivider} />
+
+                      {/* CUSTOMER ROW */}
+                      <View style={s.zohoCustomerRow}>
+                        <View style={s.zohoCustomerLeft}>
+                          <View style={s.zohoAvatar}>
+                            <Text style={s.zohoAvatarText}>
+                              {(item.customer_name || 'C')[0].toUpperCase()}
+                            </Text>
+                          </View>
+                          <View>
+                            <Text style={s.zohoCustomerName}>
+                              {item.customer_name || 'Walk-in Customer'}
+                            </Text>
+                            {item.customer_phone && (
+                              <Text style={s.zohoCustomerPhone}>
+                                +91 {item.customer_phone}
+                              </Text>
+                            )}
+                          </View>
+                        </View>
+                        {item.customer_phone && (
+                          <TouchableOpacity style={s.zohoCallBtn}
+                            onPress={(e) => {
+                              e.stopPropagation();
+                              Linking.openURL(`tel:${item.customer_phone}`);
+                            }}>
+                            <Ionicons name="call" size={14} color={G} />
+                          </TouchableOpacity>
+                        )}
+                      </View>
+
+                      {/* DETAILS ROW */}
+                      <View style={s.zohoDetailsRow}>
+                        <View style={s.zohoDetailItem}>
+                          <Ionicons name="cube-outline" size={12} color="rgba(255,255,255,0.3)" />
+                          <Text style={s.zohoDetailText}>
+                            {item.item_count || '?'} items
+                          </Text>
+                        </View>
+                        {item.pickup_time && (
+                          <View style={s.zohoDetailItem}>
+                            <Ionicons name="time-outline" size={12} color="rgba(255,255,255,0.3)" />
+                            <Text style={s.zohoDetailText}>{item.pickup_time}</Text>
+                          </View>
+                        )}
+                        <View style={s.zohoDetailItem}>
+                          <Ionicons name="calendar-outline" size={12} color="rgba(255,255,255,0.3)" />
+                          <Text style={s.zohoDetailText}>
+                            {new Date(item.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}
+                          </Text>
+                        </View>
+                      </View>
+
+                      {/* DIVIDER */}
+                      <View style={s.zohoDivider} />
+
+                      {/* STATUS + ACTION ROW */}
+                      <View style={s.zohoActionRow}>
+                        <View style={[s.zohoStatusChip, {
+                          backgroundColor: (STATUS_COLORS[item.status]||G)+'15',
+                          borderColor: (STATUS_COLORS[item.status]||G)+'30',
+                        }]}>
+                          <View style={[s.zohoStatusDot, {
+                            backgroundColor: STATUS_COLORS[item.status]||G
+                          }]} />
+                          <Text style={[s.zohoStatusText, {
+                            color: STATUS_COLORS[item.status]||G
+                          }]}>
+                            {STATUS_LABELS[item.status]||item.status}
+                          </Text>
+                        </View>
+
+                        {/* ACTION BUTTON */}
+                        {item.status === 'new' && (
+                          <TouchableOpacity style={[s.zohoActionBtn, { backgroundColor: 'rgba(79,110,247,0.15)', borderColor: 'rgba(79,110,247,0.4)' }]}
+                            onPress={(e) => { e.stopPropagation(); updateStatus(item.id, 'packing', item); }}>
+                            <Text style={[s.zohoActionBtnText, { color: '#4F6EF7' }]}>Start Packing</Text>
+                            <Ionicons name="arrow-forward" size={12} color="#4F6EF7" />
+                          </TouchableOpacity>
+                        )}
+                        {item.status === 'packing' && (
+                          <TouchableOpacity style={[s.zohoActionBtn, { backgroundColor: 'rgba(34,197,94,0.15)', borderColor: 'rgba(34,197,94,0.4)' }]}
+                            onPress={(e) => { e.stopPropagation(); updateStatus(item.id, 'ready', item); }}>
+                            <Text style={[s.zohoActionBtnText, { color: '#22C55E' }]}>Mark Ready</Text>
+                            <Ionicons name="checkmark" size={12} color="#22C55E" />
+                          </TouchableOpacity>
+                        )}
+                        {item.status === 'ready' && (
+                          <TouchableOpacity style={[s.zohoActionBtn, { backgroundColor: 'rgba(16,185,129,0.15)', borderColor: 'rgba(16,185,129,0.4)' }]}
+                            onPress={(e) => { e.stopPropagation(); updateStatus(item.id, 'collected', item); }}>
+                            <Text style={[s.zohoActionBtnText, { color: '#10B981' }]}>Collected</Text>
+                            <Ionicons name="checkmark-circle" size={12} color="#10B981" />
+                          </TouchableOpacity>
+                        )}
+                        {item.status === 'collected' && (
+                          <TouchableOpacity style={[s.zohoActionBtn, { backgroundColor: 'rgba(255,255,255,0.05)', borderColor: 'rgba(255,255,255,0.1)' }]}
+                            onPress={(e) => {
+                              e.stopPropagation();
+                              const msg =
+                                `*RECEIPT*\nOrder: ${item.custom_id}\n` +
+                                `Customer: ${item.customer_name}\n` +
+                                `Amount: ₹${item.total_amount}\n` +
+                                `Date: ${new Date(item.created_at).toLocaleDateString('en-IN')}\n\n` +
+                                `New Rahul Auto Spares, Nandyal\n08514-244944`;
+                              Linking.openURL(`https://wa.me/91${item.customer_phone}?text=${encodeURIComponent(msg)}`);
+                            }}>
+                            <Text style={[s.zohoActionBtnText, { color: 'rgba(255,255,255,0.4)' }]}>Receipt</Text>
+                            <Ionicons name="share-outline" size={12} color="rgba(255,255,255,0.4)" />
+                          </TouchableOpacity>
+                        )}
+                      </View>
                     </View>
-                    {/* QUICK ACTION BUTTONS */}
-                    {item.status === 'new' && (
-                      <TouchableOpacity style={s.quickStatusBtn}
-                        onPress={(e) => { e.stopPropagation(); updateStatus(item.id, 'packing'); }}>
-                        <Text style={s.quickStatusBtnText}>Mark as Packing</Text>
-                      </TouchableOpacity>
-                    )}
-                    {item.status === 'packing' && (
-                      <TouchableOpacity style={[s.quickStatusBtn, { backgroundColor: 'rgba(34,197,94,0.15)', borderColor: 'rgba(34,197,94,0.4)' }]}
-                        onPress={(e) => { e.stopPropagation(); updateStatus(item.id, 'ready'); }}>
-                        <Text style={[s.quickStatusBtnText, { color: '#22C55E' }]}>Mark as Ready</Text>
-                      </TouchableOpacity>
-                    )}
-                    {item.status === 'ready' && (
-                      <TouchableOpacity style={[s.quickStatusBtn, { backgroundColor: 'rgba(107,114,128,0.15)', borderColor: 'rgba(107,114,128,0.4)' }]}
-                        onPress={(e) => { e.stopPropagation(); updateStatus(item.id, 'collected', item); }}>
-                        <Text style={[s.quickStatusBtnText, { color: '#9CA3AF' }]}>Mark as Collected</Text>
-                      </TouchableOpacity>
-                    )}
                   </TouchableOpacity>
                 )}
               />
@@ -2899,23 +2985,107 @@ export default function MainStore({ staff, onLogout }) {
               ))}
             </View>
 
-            <View style={s.heroCard}>
-              <Text style={s.heroLabel}>TOTAL REVENUE</Text>
-              <Text style={s.heroValue}>
-                ₹{(summary?.total_revenue||0).toLocaleString('en-IN')}
-              </Text>
-              <Text style={s.heroPeriod}>
-                {period==='daily'?'Today':period==='weekly'?'This Week':'This Month'}
-              </Text>
+            {/* ZOHO STYLE REVENUE HEADER */}
+            <View style={s.zohoDashHeader}>
+              <View>
+                <Text style={s.zohoDashLabel}>TOTAL REVENUE</Text>
+                <Text style={s.zohoDashValue}>
+                  ₹{(summary?.total_revenue||0).toLocaleString('en-IN')}
+                </Text>
+                <Text style={s.zohoDashPeriod}>
+                  {period==='daily'?'Today':period==='weekly'?'This Week':'This Month'}
+                </Text>
+              </View>
+              <View style={s.zohoDashRight}>
+                <View style={s.zohoDashStatBox}>
+                  <Text style={s.zohoDashStatValue}>{summary?.total_orders||0}</Text>
+                  <Text style={s.zohoDashStatLabel}>Orders</Text>
+                </View>
+                <View style={s.zohoDashStatBox}>
+                  <Text style={[s.zohoDashStatValue, { color: '#F59E0B' }]}>
+                    {orders.filter(o => o.status !== 'collected').length}
+                  </Text>
+                  <Text style={s.zohoDashStatLabel}>Pending</Text>
+                </View>
+              </View>
+            </View>
+
+            {/* REVENUE BAR CHART */}
+            <View style={s.zohoChartCard}>
+              <Text style={s.zohoChartTitle}>Revenue Breakdown</Text>
+              <View style={s.zohoChartBars}>
+                {[
+                  { label: 'Cash', value: summary?.payment_breakdown?.cash||0, color: '#22C55E' },
+                  { label: 'UPI', value: summary?.payment_breakdown?.upi||0, color: '#4F6EF7' },
+                  { label: 'Pending', value: summary?.payment_breakdown?.pending||0, color: '#F59E0B' },
+                ].map((bar, i) => {
+                  const total = (summary?.total_revenue||1);
+                  const pct = Math.min((bar.value / total) * 100, 100);
+                  return (
+                    <View key={i} style={s.zohoBarRow}>
+                      <Text style={s.zohoBarLabel}>{bar.label}</Text>
+                      <View style={s.zohoBarTrack}>
+                        <View style={[s.zohoBarFill, {
+                          width: `${pct}%`,
+                          backgroundColor: bar.color,
+                        }]} />
+                      </View>
+                      <Text style={[s.zohoBarValue, { color: bar.color }]}>
+                        ₹{bar.value.toFixed(0)}
+                      </Text>
+                    </View>
+                  );
+                })}
+              </View>
+            </View>
+
+            {/* ORDER STATUS BREAKDOWN */}
+            <View style={s.zohoStatusCard}>
+              <Text style={s.zohoChartTitle}>Order Status</Text>
+              <View style={s.zohoStatusGrid}>
+                {[
+                  { label: 'New', key: 'new', color: '#4F6EF7', icon: 'receipt-outline' },
+                  { label: 'Packing', key: 'packing', color: '#F59E0B', icon: 'cube-outline' },
+                  { label: 'Ready', key: 'ready', color: '#22C55E', icon: 'checkmark-circle-outline' },
+                  { label: 'Done', key: 'collected', color: '#6B7280', icon: 'flag-outline' },
+                ].map((st, i) => (
+                  <View key={i} style={[s.zohoStatusStatBox, { borderColor: st.color + '30' }]}>
+                    <Ionicons name={st.icon} size={20} color={st.color} style={{ marginBottom: 6 }} />
+                    <Text style={[s.zohoStatusStatValue, { color: st.color }]}>
+                      {summary?.order_status_breakdown?.[st.key]||0}
+                    </Text>
+                    <Text style={s.zohoStatusStatLabel}>{st.label}</Text>
+                  </View>
+                ))}
+              </View>
             </View>
 
             <View style={s.statsRow}>
-              <StatCard icon="receipt-outline" label="Orders" value={summary?.total_orders||0} color="#4F6EF7" />
               <StatCard icon="cash-outline" label="Cash" value={`₹${(summary?.payment_breakdown?.cash||0).toFixed(0)}`} color={G} />
-              <StatCard icon="analytics-outline" label="Pending" value={`₹${(summary?.payment_breakdown?.pending||0).toFixed(0)}`} color="#F59E0B" />
+              <StatCard icon="phone-portrait-outline" label="UPI" value={`₹${(summary?.payment_breakdown?.upi||0).toFixed(0)}`} color="#4F6EF7" />
+              <StatCard icon="time-outline" label="Pending" value={`₹${(summary?.payment_breakdown?.pending||0).toFixed(0)}`} color="#F59E0B" />
             </View>
 
-            <GoalRing current={summary?.total_revenue||0} target={10000} />
+            {/* DAILY TARGET PROGRESS */}
+            <View style={s.zohoTargetCard}>
+              <View style={s.zohoTargetHeader}>
+                <Text style={s.zohoChartTitle}>Daily Target</Text>
+                <Text style={s.zohoTargetPct}>
+                  {Math.min(Math.round(((summary?.total_revenue||0)/10000)*100), 100)}%
+                </Text>
+              </View>
+              <View style={s.zohoTargetTrack}>
+                <View style={[s.zohoTargetFill, {
+                  width: `${Math.min(((summary?.total_revenue||0)/10000)*100, 100)}%`
+                }]} />
+              </View>
+              <View style={s.zohoTargetFooter}>
+                <Text style={s.zohoTargetSub}>₹{(summary?.total_revenue||0).toFixed(0)} of ₹10,000</Text>
+                <Text style={s.zohoTargetSub}>
+                  {(summary?.total_revenue||0) >= 10000 ? '🎯 Target achieved!' : `₹${(10000-(summary?.total_revenue||0)).toFixed(0)} remaining`}
+                </Text>
+              </View>
+            </View>
             <StaffLeaderboard orders={orders} />
 
             {/* ACTION CARDS */}
@@ -3961,6 +4131,110 @@ const s = StyleSheet.create({
   centerBox: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 40, gap: 12 },
   loadingText: { color: 'rgba(255,255,255,0.4)', fontSize: 14 },
   emptyText: { color: 'rgba(255,255,255,0.4)', fontSize: 16, textAlign: 'center' },
+  // ZOHO ORDER CARD
+  zohoOrderCard: {
+    backgroundColor: '#0D1A0D', borderRadius: 14,
+    marginBottom: 10, borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.07)',
+    flexDirection: 'row', overflow: 'hidden',
+    shadowColor: '#000', shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15, shadowRadius: 6, elevation: 3,
+  },
+  zohoStatusBar: { width: 4, borderTopLeftRadius: 14, borderBottomLeftRadius: 14 },
+  zohoCardContent: { flex: 1, padding: 14 },
+  zohoCardTop: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 },
+  zohoCardTopLeft: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  zohoOrderId: { fontSize: 13, fontWeight: '800', color: '#22C55E', letterSpacing: 1 },
+  zohoNewBadge: { backgroundColor: '#4F6EF7', borderRadius: 4, paddingHorizontal: 6, paddingVertical: 2 },
+  zohoNewBadgeText: { fontSize: 9, fontWeight: '800', color: '#fff', letterSpacing: 1 },
+  zohoOrderAmt: { fontSize: 18, fontWeight: '900', color: '#fff' },
+  zohoDivider: { height: 1, backgroundColor: 'rgba(255,255,255,0.05)', marginVertical: 8 },
+  zohoCustomerRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 },
+  zohoCustomerLeft: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  zohoAvatar: {
+    width: 36, height: 36, borderRadius: 18,
+    backgroundColor: 'rgba(34,197,94,0.12)',
+    alignItems: 'center', justifyContent: 'center',
+    borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)',
+  },
+  zohoAvatarText: { fontSize: 15, fontWeight: '800', color: '#22C55E' },
+  zohoCustomerName: { fontSize: 14, fontWeight: '700', color: '#fff', marginBottom: 1 },
+  zohoCustomerPhone: { fontSize: 11, color: 'rgba(255,255,255,0.4)' },
+  zohoCallBtn: {
+    width: 32, height: 32, borderRadius: 8,
+    backgroundColor: 'rgba(34,197,94,0.1)',
+    alignItems: 'center', justifyContent: 'center',
+    borderWidth: 1, borderColor: 'rgba(34,197,94,0.25)',
+  },
+  zohoDetailsRow: { flexDirection: 'row', gap: 14, marginBottom: 4 },
+  zohoDetailItem: { flexDirection: 'row', alignItems: 'center', gap: 4 },
+  zohoDetailText: { fontSize: 11, color: 'rgba(255,255,255,0.35)' },
+  zohoActionRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  zohoStatusChip: {
+    flexDirection: 'row', alignItems: 'center', gap: 6,
+    borderRadius: 6, paddingHorizontal: 10, paddingVertical: 5, borderWidth: 1,
+  },
+  zohoStatusDot: { width: 6, height: 6, borderRadius: 3 },
+  zohoStatusText: { fontSize: 11, fontWeight: '700', letterSpacing: 0.5 },
+  zohoActionBtn: {
+    flexDirection: 'row', alignItems: 'center', gap: 5,
+    borderRadius: 8, paddingHorizontal: 12, paddingVertical: 7, borderWidth: 1,
+  },
+  zohoActionBtnText: { fontSize: 12, fontWeight: '700' },
+
+  // ZOHO DASHBOARD
+  zohoDashHeader: {
+    backgroundColor: '#0D1A0D', borderRadius: 16, padding: 20,
+    flexDirection: 'row', justifyContent: 'space-between',
+    alignItems: 'flex-start', marginBottom: 12,
+    borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)',
+  },
+  zohoDashLabel: { fontSize: 10, color: 'rgba(255,255,255,0.4)', letterSpacing: 3, fontWeight: '700', marginBottom: 6 },
+  zohoDashValue: { fontSize: 32, fontWeight: '900', color: '#fff', marginBottom: 4 },
+  zohoDashPeriod: { fontSize: 12, color: '#22C55E', fontWeight: '600' },
+  zohoDashRight: { gap: 12 },
+  zohoDashStatBox: { alignItems: 'flex-end' },
+  zohoDashStatValue: { fontSize: 22, fontWeight: '900', color: '#22C55E' },
+  zohoDashStatLabel: { fontSize: 10, color: 'rgba(255,255,255,0.4)', fontWeight: '600' },
+
+  // CHART CARD
+  zohoChartCard: {
+    backgroundColor: '#0D1A0D', borderRadius: 16, padding: 16,
+    marginBottom: 12, borderWidth: 1, borderColor: 'rgba(255,255,255,0.07)',
+  },
+  zohoChartTitle: { fontSize: 13, fontWeight: '700', color: '#fff', marginBottom: 14 },
+  zohoChartBars: { gap: 12 },
+  zohoBarRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  zohoBarLabel: { fontSize: 12, color: 'rgba(255,255,255,0.5)', width: 50, fontWeight: '600' },
+  zohoBarTrack: { flex: 1, height: 8, backgroundColor: 'rgba(255,255,255,0.06)', borderRadius: 4, overflow: 'hidden' },
+  zohoBarFill: { height: '100%', borderRadius: 4 },
+  zohoBarValue: { fontSize: 12, fontWeight: '700', width: 70, textAlign: 'right' },
+
+  // STATUS CARD
+  zohoStatusCard: {
+    backgroundColor: '#0D1A0D', borderRadius: 16, padding: 16,
+    marginBottom: 12, borderWidth: 1, borderColor: 'rgba(255,255,255,0.07)',
+  },
+  zohoStatusGrid: { flexDirection: 'row', gap: 8 },
+  zohoStatusStatBox: {
+    flex: 1, alignItems: 'center', backgroundColor: 'rgba(255,255,255,0.03)',
+    borderRadius: 12, padding: 12, borderWidth: 1,
+  },
+  zohoStatusStatValue: { fontSize: 22, fontWeight: '900', marginBottom: 2 },
+  zohoStatusStatLabel: { fontSize: 10, color: 'rgba(255,255,255,0.4)', fontWeight: '600' },
+
+  // TARGET CARD
+  zohoTargetCard: {
+    backgroundColor: '#0D1A0D', borderRadius: 16, padding: 16,
+    marginBottom: 12, borderWidth: 1, borderColor: 'rgba(255,255,255,0.07)',
+  },
+  zohoTargetHeader: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 },
+  zohoTargetPct: { fontSize: 18, fontWeight: '900', color: '#22C55E' },
+  zohoTargetTrack: { height: 10, backgroundColor: 'rgba(255,255,255,0.06)', borderRadius: 5, overflow: 'hidden', marginBottom: 8 },
+  zohoTargetFill: { height: '100%', backgroundColor: '#22C55E', borderRadius: 5 },
+  zohoTargetFooter: { flexDirection: 'row', justifyContent: 'space-between' },
+  zohoTargetSub: { fontSize: 11, color: 'rgba(255,255,255,0.4)' },
+
   orderCard: { backgroundColor: '#0D1A0D', borderRadius: 14, padding: 14, marginBottom: 10, borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)' },
   orderCardNew: { borderColor: 'rgba(79,110,247,0.4)' },
   orderTop: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 },
