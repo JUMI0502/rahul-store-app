@@ -12,6 +12,7 @@ import * as ImagePicker from 'expo-image-picker';
 import QRScannerScreen from './QRScannerScreen';
 import BroadcastScreen from './BroadcastScreen';
 import ServiceRemindersScreen from './ServiceRemindersScreen';
+import WarrantyReturnsScreen from './WarrantyReturnsScreen';
 import CustomerAnalyticsScreen from './CustomerAnalyticsScreen';
 import AddProductScreen from './AddProductScreen';
 import CustomerManagementScreen from './CustomerManagementScreen';
@@ -404,6 +405,7 @@ export default function MainStore({ staff, onLogout }) {
   const [showScanner, setShowScanner] = useState(false);
   const [showBroadcast, setShowBroadcast] = useState(false);
   const [showServiceReminders, setShowServiceReminders] = useState(false);
+  const [showWarrantyReturns, setShowWarrantyReturns] = useState(false);
   const [showAnalytics, setShowAnalytics] = useState(false);
   const [showCustomers, setShowCustomers] = useState(false);
   const [showPurchaseOrders, setShowPurchaseOrders] = useState(false);
@@ -1384,6 +1386,9 @@ export default function MainStore({ staff, onLogout }) {
   // ── SPECIAL SCREENS ──
   if (showScanner) return (
     <QRScannerScreen onScanned={handleQRScanned} onClose={() => setShowScanner(false)} />
+  );
+  if (showWarrantyReturns) return (
+    <WarrantyReturnsScreen onBack={() => setShowWarrantyReturns(false)} staff={staff} />
   );
   if (showServiceReminders) return (
     <ServiceRemindersScreen onBack={() => setShowServiceReminders(false)} />
@@ -2922,6 +2927,21 @@ export default function MainStore({ staff, onLogout }) {
                   <View>
                     <Text style={s.customerHistoryBtnTitle}>Staff Manager</Text>
                     <Text style={s.customerHistoryBtnSub}>Add, view and manage staff profiles</Text>
+                  </View>
+                </View>
+                <Ionicons name="chevron-forward" size={18} color="rgba(255,255,255,0.3)" />
+              </TouchableOpacity>
+            )}
+
+            {/* WARRANTY & RETURNS */}
+            {(isOwner || isSenior) && (
+              <TouchableOpacity style={s.customerHistoryBtn}
+                onPress={() => setShowWarrantyReturns(true)}>
+                <View style={s.customerHistoryBtnLeft}>
+                  <Ionicons name="shield-checkmark" size={22} color="#F59E0B" />
+                  <View>
+                    <Text style={s.customerHistoryBtnTitle}>Warranty & Returns</Text>
+                    <Text style={s.customerHistoryBtnSub}>Track defect claims and resolutions</Text>
                   </View>
                 </View>
                 <Ionicons name="chevron-forward" size={18} color="rgba(255,255,255,0.3)" />
