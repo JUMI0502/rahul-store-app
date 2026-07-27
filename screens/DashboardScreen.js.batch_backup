@@ -575,7 +575,7 @@ export default function MainStore({ staff, onLogout }) {
         {newCount > 0 && (
           <View style={s.newOrderBadge}>
             <Text style={s.newOrderBadgeText}>
-              {newCount} NEW
+              🔔 {newCount} NEW
             </Text>
           </View>
         )}
@@ -626,9 +626,9 @@ export default function MainStore({ staff, onLogout }) {
               {[
                 { id: 'all', label: `All (${orders.length})` },
                 { id: 'new', label: `🆕 New (${orders.filter(o=>o.status==='new').length})` },
-                { id: 'packing', label: `Packing` },
-                { id: 'ready', label: `Ready` },
-                { id: 'collected', label: `Done` },
+                { id: 'packing', label: `📦 Packing` },
+                { id: 'ready', label: `✅ Ready` },
+                { id: 'collected', label: `🏁 Done` },
               ].map(f => (
                 <TouchableOpacity
                   key={f.id}
@@ -695,7 +695,7 @@ export default function MainStore({ staff, onLogout }) {
                       </Text>
                     </View>
                     <Text style={s.orderCustomer}>
-                      {item.customer_name || 'Customer'}
+                      👤 {item.customer_name || 'Customer'}
                     </Text>
                     {item.customer_phone && (
                       <TouchableOpacity
@@ -704,13 +704,13 @@ export default function MainStore({ staff, onLogout }) {
                         )}
                       >
                         <Text style={s.orderPhone}>
-                          {item.customer_phone}
+                          📞 {item.customer_phone}
                         </Text>
                       </TouchableOpacity>
                     )}
                     {item.pickup_time && (
                       <Text style={s.orderPickup}>
-                        {item.pickup_time}
+                        📅 {item.pickup_time}
                       </Text>
                     )}
                     <View style={s.orderBottom}>
@@ -762,7 +762,7 @@ export default function MainStore({ staff, onLogout }) {
               onPress={() => setShowScanner(true)}
             >
               <Text style={s.scanBtnText}>
-                Open QR Scanner
+                📷 Open QR Scanner
               </Text>
             </TouchableOpacity>
             <Text style={s.scanHint}>
@@ -839,8 +839,8 @@ export default function MainStore({ staff, onLogout }) {
                       {item.stock_qty === 0
                         ? 'Out of stock'
                         : item.stock_qty <= 5
-                        ? `Low: ${item.stock_qty} left`
-                        : `${item.stock_qty} in stock`}
+                        ? `⚠️ Low: ${item.stock_qty} left`
+                        : `✅ ${item.stock_qty} in stock`}
                     </Text>
                   </View>
                   <View style={s.stockActions}>
@@ -1001,7 +1001,7 @@ export default function MainStore({ staff, onLogout }) {
                 {/* MECHANICS */}
                 <View style={s.reportCard}>
                   <Text style={s.reportCardTitle}>
-                    Mechanics
+                    🔧 Mechanics
                   </Text>
                   {mechanics.length === 0 ? (
                     <Text style={s.emptyText}>
@@ -1043,7 +1043,7 @@ export default function MainStore({ staff, onLogout }) {
                 <View style={s.reportCard}>
                   <View style={s.offerHeader}>
                     <Text style={s.reportCardTitle}>
-                      Active Offers
+                      🎁 Active Offers
                     </Text>
                     <TouchableOpacity
                       onPress={() => setShowOfferForm(true)}
@@ -1237,7 +1237,7 @@ export default function MainStore({ staff, onLogout }) {
                   >
                     <Text style={s.detailLabel}>Phone</Text>
                     <Text style={[s.detailValue, { color: G }]}>
-                      {selectedOrder.customer_phone}
+                      📞 {selectedOrder.customer_phone}
                     </Text>
                   </TouchableOpacity>
                 )}
@@ -1286,7 +1286,7 @@ export default function MainStore({ staff, onLogout }) {
               {/* UPDATE STATUS */}
               <View style={s.detailCard}>
                 <Text style={s.detailCardTitle}>
-                  Update Status
+                  🔄 Update Status
                 </Text>
                 <View style={s.statusGrid}>
                   {[
@@ -1325,7 +1325,7 @@ export default function MainStore({ staff, onLogout }) {
               {/* PAYMENT */}
               <View style={s.detailCard}>
                 <Text style={s.detailCardTitle}>
-                  Payment
+                  💳 Payment
                 </Text>
                 <View style={s.paymentRow}>
                   {[
@@ -1359,13 +1359,13 @@ export default function MainStore({ staff, onLogout }) {
                   style={s.waBtn}
                   onPress={() => {
                     const msg =
-                      `Hi ${selectedOrder.customer_name}!\n` +
+                      `Hi ${selectedOrder.customer_name}! 🙏\n` +
                       `Order ${selectedOrder.custom_id ||
                         `RAS-${selectedOrder.id}`} ` +
                       `is ${selectedOrder.status === 'ready'
                         ? 'READY for pickup!'
                         : 'being processed.'}\n` +
-                      `New Rahul Auto Spares, Nandyal`;
+                      `📍 New Rahul Auto Spares, Nandyal`;
                     Linking.openURL(
                       `https://wa.me/91${selectedOrder.customer_phone}` +
                       `?text=${encodeURIComponent(msg)}`
@@ -1373,7 +1373,7 @@ export default function MainStore({ staff, onLogout }) {
                   }}
                 >
                   <Text style={s.waBtnText}>
-                    WhatsApp Customer
+                    💬 WhatsApp Customer
                   </Text>
                 </TouchableOpacity>
               )}

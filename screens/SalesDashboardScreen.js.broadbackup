@@ -201,7 +201,7 @@ export default function SalesDashboardScreen({ onBack }) {
           <Text style={s.backBtnText}>← Back</Text>
         </TouchableOpacity>
         <View style={{ flex: 1 }}>
-          <Text style={s.headerTitle}>Sales Dashboard</Text>
+          <Text style={s.headerTitle}>📊 Sales Dashboard</Text>
           <Text style={s.headerSub}>
             {liveTime.toLocaleTimeString('en', { hour: '2-digit', minute: '2-digit' })} · Live
           </Text>
@@ -231,7 +231,7 @@ export default function SalesDashboardScreen({ onBack }) {
 
       {loading ? (
         <View style={s.centerBox}>
-          <Text style={{ fontSize: 36, marginBottom: 10 }}></Text>
+          <Text style={{ fontSize: 36, marginBottom: 10 }}>📊</Text>
           <Text style={s.loadingText}>Loading dashboard...</Text>
         </View>
       ) : (
@@ -282,15 +282,15 @@ export default function SalesDashboardScreen({ onBack }) {
                 delay={200} horizontal />
             </View>
             {todayRevenue >= 10000 && (
-              <Text style={s.goalMet}>Daily Goal Achieved!</Text>
+              <Text style={s.goalMet}>🎉 Daily Goal Achieved!</Text>
             )}
           </View>
 
           {/* STAT CARDS */}
           <View style={s.cardsRow}>
-            <RevenueCard icon="" label="Cash" color={G}
+            <RevenueCard icon="💵" label="Cash" color={G}
               value={`₹${(cashRevenue/1000).toFixed(1)}k`} />
-            <RevenueCard icon="" label="UPI" color="#4F6EF7"
+            <RevenueCard icon="📱" label="UPI" color="#4F6EF7"
               value={`₹${(upiRevenue/1000).toFixed(1)}k`} />
           </View>
           <View style={s.cardsRow}>
@@ -303,12 +303,12 @@ export default function SalesDashboardScreen({ onBack }) {
 
           {/* ORDER STATUS */}
           <View style={s.statusCard}>
-            <Text style={s.cardTitle}>Order Status Live</Text>
+            <Text style={s.cardTitle}>📋 Order Status Live</Text>
             {[
               { key: 'new',       label: '🆕 New',       color: '#4F6EF7' },
-              { key: 'packing',   label: 'Packing',   color: '#F59E0B' },
-              { key: 'ready',     label: 'Ready',      color: G },
-              { key: 'collected', label: 'Collected', color: '#6B7280' },
+              { key: 'packing',   label: '📦 Packing',   color: '#F59E0B' },
+              { key: 'ready',     label: '✅ Ready',      color: G },
+              { key: 'collected', label: '🏁 Collected', color: '#6B7280' },
             ].map((st, i) => {
               const count = statusCounts[st.key];
               const total = Math.max(Object.values(statusCounts).reduce((s, v) => s + v, 0), 1);
@@ -330,7 +330,7 @@ export default function SalesDashboardScreen({ onBack }) {
             <Text style={s.cardTitle}>⏰ Orders by Hour (Today)</Text>
             {peakHour.count > 0 && (
               <Text style={s.chartSubtitle}>
-                Peak: {peakHour.hour}:00 with {peakHour.count} orders
+                🔥 Peak: {peakHour.hour}:00 with {peakHour.count} orders
               </Text>
             )}
             {todayOrders.length === 0 ? (
@@ -364,7 +364,7 @@ export default function SalesDashboardScreen({ onBack }) {
 
           {/* 7-DAY TREND */}
           <View style={s.chartCard}>
-            <Text style={s.cardTitle}>Revenue — Last 7 Days</Text>
+            <Text style={s.cardTitle}>📈 Revenue — Last 7 Days</Text>
             {last7Days.every(d => d.revenue === 0) ? (
               <View style={s.chartEmpty}>
                 <Text style={s.chartEmptyText}>No completed orders in the last 7 days</Text>
@@ -395,14 +395,14 @@ export default function SalesDashboardScreen({ onBack }) {
           {/* TOP SELLING */}
           {bestsellers.length > 0 && (
             <View style={s.topCard}>
-              <Text style={s.cardTitle}>Top Selling Parts</Text>
+              <Text style={s.cardTitle}>🏆 Top Selling Parts</Text>
               {bestsellers.slice(0, 5).map((item, i) => {
                 const maxQty  = bestsellers[0]?.total_qty || 1;
                 const colors  = ['#FFC107','#4F6EF7',G,'#A78BFA','#FF4757'];
                 return (
                   <View key={i} style={s.topRow}>
                     <Text style={[s.topRank, { color: colors[i] }]}>
-                      {i===0?'':i===1?'':i===2?'':`#${i+1}`}
+                      {i===0?'🥇':i===1?'🥈':i===2?'🥉':`#${i+1}`}
                     </Text>
                     <View style={{ flex: 1 }}>
                       <View style={s.topNameRow}>
@@ -426,11 +426,11 @@ export default function SalesDashboardScreen({ onBack }) {
 
           {/* PAYMENT BREAKDOWN */}
           <View style={s.payCard}>
-            <Text style={s.cardTitle}>Payment Breakdown</Text>
+            <Text style={s.cardTitle}>💳 Payment Breakdown</Text>
             <View style={s.payRow}>
               {[
-                { label: 'Cash',    value: cashRevenue,    color: G },
-                { label: 'UPI',     value: upiRevenue,     color: '#4F6EF7' },
+                { label: '💵 Cash',    value: cashRevenue,    color: G },
+                { label: '📱 UPI',     value: upiRevenue,     color: '#4F6EF7' },
                 { label: '⏳ Pending', value: pendingRevenue, color: '#F59E0B' },
               ].map((p, i) => {
                 const total = Math.max(cashRevenue + upiRevenue + pendingRevenue, 1);

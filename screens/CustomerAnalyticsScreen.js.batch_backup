@@ -191,7 +191,7 @@ export default function CustomerAnalyticsScreen({ onBack }) {
               >
                 <Text style={[styles.toggleBtnText,
                   activeList==='spender' && { color: '#FFC107' }]}>
-                  Spenders
+                  💰 Spenders
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -201,7 +201,7 @@ export default function CustomerAnalyticsScreen({ onBack }) {
               >
                 <Text style={[styles.toggleBtnText,
                   activeList==='orderer' && { color: G }]}>
-                  Orders
+                  📦 Orders
                 </Text>
               </TouchableOpacity>
             </View>

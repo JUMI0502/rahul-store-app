@@ -166,7 +166,7 @@ export default function BroadcastScreen({ onBack, staff }) {
         <Text style={s.headerTitle}>Broadcast</Text>
         <View style={s.customerCount}>
           <Text style={s.customerCountText}>
-            {customers.length}
+            👥 {customers.length}
           </Text>
         </View>
       </View>
@@ -256,8 +256,8 @@ export default function BroadcastScreen({ onBack, staff }) {
           >
             <Text style={s.waBtnText}>
               {sending
-                ? `Sending ${sentCount}/${customers.length}...`
-                : `WhatsApp Broadcast (${customers.length} customers)`}
+                ? `💬 Sending ${sentCount}/${customers.length}...`
+                : `💬 WhatsApp Broadcast (${customers.length} customers)`}
             </Text>
           </TouchableOpacity>
 
@@ -268,13 +268,13 @@ export default function BroadcastScreen({ onBack, staff }) {
             disabled={!message.trim()}
           >
             <Text style={s.pushBtnText}>
-              Send Push Notification
+              🔔 Send Push Notification
             </Text>
           </TouchableOpacity>
 
           <View style={s.noteBox}>
             <Text style={s.noteText}>
-              WhatsApp opens one by one for each customer.
+              💡 WhatsApp opens one by one for each customer.
               For quick sending, use Push Notification instead!
             </Text>
           </View>

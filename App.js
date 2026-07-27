@@ -162,8 +162,11 @@ export default Sentry.wrap(function App() {
 
   return (
     <>
-      <StatusBar barStyle="light-content"
-        backgroundColor="#060E06" />
+      <StatusBar 
+        barStyle="light-content"
+        backgroundColor="#060E06"
+        translucent={false}
+      />
       {!staff ? (
         <LoginScreen onLogin={handleLogin} />
       ) : (

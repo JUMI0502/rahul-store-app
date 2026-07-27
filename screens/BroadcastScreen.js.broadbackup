@@ -11,29 +11,29 @@ const G = '#22C55E';
 
 const TEMPLATES = [
   {
-    icon: '',
+    icon: '🎉',
     title: 'New Offer',
-    msg: 'Special Offer at New Rahul Auto Spares!\n\nGet EXTRA DISCOUNT on all engine oils this week!\n\n📍 Telugu Peta, Nandyal\n📞 08514-244944'
+    msg: '🎉 Special Offer at New Rahul Auto Spares!\n\nGet EXTRA DISCOUNT on all engine oils this week!\n\n📍 Telugu Peta, Nandyal\n📞 08514-244944'
   },
   {
-    icon: '️',
+    icon: '🏍️',
     title: 'Service Reminder',
-    msg: '️ Hi! Time for your bike service?\n\nVisit New Rahul Auto Spares for genuine OEM parts at best prices!\n\n📍 Telugu Peta, Nandyal\n📞 08514-244944'
+    msg: '🏍️ Hi! Time for your bike service?\n\nVisit New Rahul Auto Spares for genuine OEM parts at best prices!\n\n📍 Telugu Peta, Nandyal\n📞 08514-244944'
   },
   {
-    icon: '',
+    icon: '⚡',
     title: 'Flash Sale',
-    msg: 'FLASH SALE - Today Only!\n\nAll spare parts at special prices!\nFirst come first served!\n\n🕐 10AM - 9PM\n📍 New Rahul Auto Spares, Nandyal'
+    msg: '⚡ FLASH SALE - Today Only!\n\nAll spare parts at special prices!\nFirst come first served!\n\n🕐 10AM - 9PM\n📍 New Rahul Auto Spares, Nandyal'
   },
   {
-    icon: '',
+    icon: '🎊',
     title: 'Festival Offer',
-    msg: 'Festival Special Offer!\n\nThis festive season get amazing deals on all two-wheeler parts!\n\nVisit us: New Rahul Auto Spares\n📍 Telugu Peta, Nandyal\n📞 08514-244944'
+    msg: '🎊 Festival Special Offer!\n\nThis festive season get amazing deals on all two-wheeler parts!\n\nVisit us: New Rahul Auto Spares\n📍 Telugu Peta, Nandyal\n📞 08514-244944'
   },
   {
-    icon: '',
+    icon: '🔔',
     title: 'New Stock',
-    msg: 'New Stock Arrived!\n\nFresh stock of genuine parts for Hero, Honda, TVS, Bajaj!\n\nVisit us today!\n📍 New Rahul Auto Spares, Nandyal'
+    msg: '🔔 New Stock Arrived!\n\nFresh stock of genuine parts for Hero, Honda, TVS, Bajaj!\n\nVisit us today!\n📍 New Rahul Auto Spares, Nandyal'
   },
 ];
 
@@ -79,7 +79,7 @@ export default function BroadcastScreen({ onBack, staff }) {
       [
         { text: 'Cancel', style: 'cancel' },
         {
-          text: 'Send All',
+          text: '✅ Send All',
           onPress: async () => {
             setSending(true);
             setSentCount(0);
@@ -125,14 +125,14 @@ export default function BroadcastScreen({ onBack, staff }) {
       [
         { text: 'Cancel', style: 'cancel' },
         {
-          text: 'Send',
+          text: '✅ Send',
           onPress: async () => {
             try {
               const r = await fetch(`${API_URL}/notify/broadcast`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                  title: 'New Rahul Auto Spares',
+                  title: '🏪 New Rahul Auto Spares',
                   body: message.trim()
                 })
               });
@@ -163,10 +163,10 @@ export default function BroadcastScreen({ onBack, staff }) {
         <TouchableOpacity style={s.backBtn} onPress={onBack}>
           <Text style={s.backBtnText}>← Back</Text>
         </TouchableOpacity>
-        <Text style={s.headerTitle}>Broadcast</Text>
+        <Text style={s.headerTitle}>📢 Broadcast</Text>
         <View style={s.customerCount}>
           <Text style={s.customerCountText}>
-            {customers.length}
+            👥 {customers.length}
           </Text>
         </View>
       </View>
@@ -174,8 +174,8 @@ export default function BroadcastScreen({ onBack, staff }) {
       {/* TABS */}
       <View style={s.tabRow}>
         {[
-          { id: 'compose', label: '️ Compose' },
-          { id: 'customers', label: 'Customers' },
+          { id: 'compose', label: '✏️ Compose' },
+          { id: 'customers', label: '👥 Customers' },
         ].map(t => (
           <TouchableOpacity
             key={t.id}
@@ -208,7 +208,7 @@ export default function BroadcastScreen({ onBack, staff }) {
           </View>
 
           {/* TEMPLATES */}
-          <Text style={s.sectionTitle}>Quick Templates</Text>
+          <Text style={s.sectionTitle}>📋 Quick Templates</Text>
           <ScrollView
             horizontal showsHorizontalScrollIndicator={false}
             contentContainerStyle={s.templatesRow}
@@ -232,7 +232,7 @@ export default function BroadcastScreen({ onBack, staff }) {
           </ScrollView>
 
           {/* MESSAGE */}
-          <Text style={s.sectionTitle}>Your Message</Text>
+          <Text style={s.sectionTitle}>💬 Your Message</Text>
           <TextInput
             style={s.messageInput}
             value={message}
@@ -256,8 +256,8 @@ export default function BroadcastScreen({ onBack, staff }) {
           >
             <Text style={s.waBtnText}>
               {sending
-                ? `Sending ${sentCount}/${customers.length}...`
-                : `WhatsApp Broadcast (${customers.length} customers)`}
+                ? `💬 Sending ${sentCount}/${customers.length}...`
+                : `💬 WhatsApp Broadcast (${customers.length} customers)`}
             </Text>
           </TouchableOpacity>
 
@@ -268,13 +268,13 @@ export default function BroadcastScreen({ onBack, staff }) {
             disabled={!message.trim()}
           >
             <Text style={s.pushBtnText}>
-              Send Push Notification
+              🔔 Send Push Notification
             </Text>
           </TouchableOpacity>
 
           <View style={s.noteBox}>
             <Text style={s.noteText}>
-              WhatsApp opens one by one for each customer.
+              💡 WhatsApp opens one by one for each customer.
               For quick sending, use Push Notification instead!
             </Text>
           </View>
@@ -317,7 +317,7 @@ export default function BroadcastScreen({ onBack, staff }) {
                   );
                 }}
               >
-                <Text style={s.waIconBtnText}></Text>
+                <Text style={s.waIconBtnText}>💬</Text>
               </TouchableOpacity>
             </View>
           )}

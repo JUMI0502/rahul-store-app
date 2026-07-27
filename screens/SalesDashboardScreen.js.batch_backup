@@ -330,7 +330,7 @@ export default function SalesDashboardScreen({ onBack }) {
             <Text style={s.cardTitle}>⏰ Orders by Hour (Today)</Text>
             {peakHour.count > 0 && (
               <Text style={s.chartSubtitle}>
-                Peak: {peakHour.hour}:00 with {peakHour.count} orders
+                🔥 Peak: {peakHour.hour}:00 with {peakHour.count} orders
               </Text>
             )}
             {todayOrders.length === 0 ? (

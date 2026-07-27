@@ -10,11 +10,11 @@ const API_URL = 'https://rahul-auto-spares-backend.onrender.com';
 const G = '#22C55E';
 
 function getLevel(spent) {
-  if (spent >= 10000) return { label: 'Diamond', color: '#60A5FA' };
-  if (spent >= 5000)  return { label: 'Gold',    color: '#FFC107' };
-  if (spent >= 2000)  return { label: 'Silver',  color: '#9CA3AF' };
-  if (spent >= 500)   return { label: 'Bronze',  color: '#CD7C3E' };
-  return { label: 'New', color: '#4ADE80' };
+  if (spent >= 10000) return { label: '💎 Diamond', color: '#60A5FA' };
+  if (spent >= 5000)  return { label: '🥇 Gold',    color: '#FFC107' };
+  if (spent >= 2000)  return { label: '🥈 Silver',  color: '#9CA3AF' };
+  if (spent >= 500)   return { label: '🥉 Bronze',  color: '#CD7C3E' };
+  return { label: '🌱 New', color: '#4ADE80' };
 }
 
 function StatBox({ icon, label, value, color }) {
@@ -159,7 +159,7 @@ export default function CustomerManagementScreen({ onBack }) {
           <Text style={s.backBtnText}>← Back</Text>
         </TouchableOpacity>
         <View style={{ flex: 1 }}>
-          <Text style={s.headerTitle}>Customers</Text>
+          <Text style={s.headerTitle}>👥 Customers</Text>
           <Text style={s.headerSub}>
             {customers.length} total
             {dataSource === 'orders' ? ' · derived from orders' : ''}
@@ -169,25 +169,25 @@ export default function CustomerManagementScreen({ onBack }) {
 
       {/* STATS */}
       <View style={s.statsRow}>
-        <StatBox icon="" label="Customers" value={customers.length} color={G} />
-        <StatBox icon="" label="Revenue"
+        <StatBox icon="👥" label="Customers" value={customers.length} color={G} />
+        <StatBox icon="💰" label="Revenue"
           value={`₹${(totalRevenue/1000).toFixed(1)}k`} color="#FFC107" />
-        <StatBox icon="" label="Orders" value={totalOrders} color="#4F6EF7" />
-        <StatBox icon="" label="Avg Spend"
+        <StatBox icon="📦" label="Orders" value={totalOrders} color="#4F6EF7" />
+        <StatBox icon="💎" label="Avg Spend"
           value={`₹${customers.length > 0 ? (totalRevenue/customers.length).toFixed(0) : 0}`}
           color="#A78BFA" />
       </View>
 
       {/* SEARCH */}
       <View style={s.searchBox}>
-        <Text></Text>
+        <Text>🔍</Text>
         <TextInput style={s.searchInput}
           placeholder="Search by name or phone..."
           placeholderTextColor="rgba(255,255,255,0.25)"
           value={search} onChangeText={setSearch} />
         {search.length > 0 && (
           <TouchableOpacity onPress={() => setSearch('')}>
-            <Text style={{ color: 'rgba(255,255,255,0.3)' }}></Text>
+            <Text style={{ color: 'rgba(255,255,255,0.3)' }}>✕</Text>
           </TouchableOpacity>
         )}
       </View>
@@ -197,7 +197,7 @@ export default function CustomerManagementScreen({ onBack }) {
         <Text style={s.sortLabel}>Sort:</Text>
         {[
           { id: 'spent',  label: '₹ Spent' },
-          { id: 'orders', label: 'Orders' },
+          { id: 'orders', label: '📦 Orders' },
           { id: 'name',   label: 'A-Z' },
         ].map(opt => (
           <TouchableOpacity key={opt.id}
@@ -213,7 +213,7 @@ export default function CustomerManagementScreen({ onBack }) {
 
       {loading ? (
         <View style={s.centerBox}>
-          <Text style={{ fontSize: 36, marginBottom: 10 }}></Text>
+          <Text style={{ fontSize: 36, marginBottom: 10 }}>👥</Text>
           <Text style={s.loadingText}>Loading customers...</Text>
         </View>
       ) : (
@@ -226,7 +226,7 @@ export default function CustomerManagementScreen({ onBack }) {
           }
           ListEmptyComponent={() => (
             <View style={s.emptyBox}>
-              <Text style={{ fontSize: 48 }}></Text>
+              <Text style={{ fontSize: 48 }}>👥</Text>
               <Text style={s.emptyText}>No customers yet!</Text>
               <Text style={s.emptySub}>
                 {search ? `No results for "${search}"` : 'Customers appear after they place orders'}
@@ -257,19 +257,19 @@ export default function CustomerManagementScreen({ onBack }) {
                       </Text>
                     </View>
                   </View>
-                  <Text style={s.customerPhone}>{item.phone}</Text>
+                  <Text style={s.customerPhone}>📱 {item.phone}</Text>
                   <View style={s.customerStats}>
                     <Text style={s.customerStat}>
-                      ₹{(item.total_spent || 0).toFixed(0)}
+                      💰 ₹{(item.total_spent || 0).toFixed(0)}
                     </Text>
                     <Text style={s.customerStatDot}>·</Text>
-                    <Text style={s.customerStat}>{item.order_count || 0} orders</Text>
+                    <Text style={s.customerStat}>📦 {item.order_count || 0} orders</Text>
                   </View>
                 </View>
                 <View style={s.customerActions}>
                   <TouchableOpacity style={s.actionCallBtn}
                     onPress={() => Linking.openURL(`tel:${item.phone}`)}>
-                    <Text></Text>
+                    <Text>📞</Text>
                   </TouchableOpacity>
                   <TouchableOpacity style={s.actionWaBtn}
                     onPress={() => Linking.openURL(
@@ -278,7 +278,7 @@ export default function CustomerManagementScreen({ onBack }) {
                         `Hi ${item.name}! This is New Rahul Auto Spares, Nandyal. How can we help you today?`
                       )
                     )}>
-                    <Text></Text>
+                    <Text>💬</Text>
                   </TouchableOpacity>
                 </View>
               </TouchableOpacity>
@@ -310,7 +310,7 @@ export default function CustomerManagementScreen({ onBack }) {
                   </Text>
                 </View>
                 <Text style={s.profileName}>{selectedCustomer.name || 'Unknown'}</Text>
-                <Text style={s.profilePhone}>{selectedCustomer.phone}</Text>
+                <Text style={s.profilePhone}>📱 {selectedCustomer.phone}</Text>
                 {(() => {
                   const level = getLevel(selectedCustomer.total_spent || 0);
                   return (
@@ -325,12 +325,12 @@ export default function CustomerManagementScreen({ onBack }) {
 
               {/* STATS */}
               <View style={s.statsRow}>
-                <StatBox icon="" label="Total Spent"
+                <StatBox icon="💰" label="Total Spent"
                   value={`₹${((selectedCustomer.total_spent||0)/1000).toFixed(1)}k`}
                   color="#FFC107" />
-                <StatBox icon="" label="Orders"
+                <StatBox icon="📦" label="Orders"
                   value={selectedCustomer.order_count || 0} color={G} />
-                <StatBox icon="" label="Points"
+                <StatBox icon="💎" label="Points"
                   value={Math.floor((selectedCustomer.total_spent||0)/50)}
                   color="#A78BFA" />
               </View>
@@ -339,7 +339,7 @@ export default function CustomerManagementScreen({ onBack }) {
               <View style={s.contactBtns}>
                 <TouchableOpacity style={s.callBigBtn}
                   onPress={() => Linking.openURL(`tel:${selectedCustomer.phone}`)}>
-                  <Text style={s.callBigBtnText}>Call Customer</Text>
+                  <Text style={s.callBigBtnText}>📞 Call Customer</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={s.waBigBtn}
                   onPress={() => Linking.openURL(
@@ -348,12 +348,12 @@ export default function CustomerManagementScreen({ onBack }) {
                       `Hi ${selectedCustomer.name}! New Rahul Auto Spares, Nandyal.`
                     )
                   )}>
-                  <Text style={s.waBigBtnText}>WhatsApp</Text>
+                  <Text style={s.waBigBtnText}>💬 WhatsApp</Text>
                 </TouchableOpacity>
               </View>
 
               {/* ORDER HISTORY */}
-              <Text style={s.sectionTitle}>Order History</Text>
+              <Text style={s.sectionTitle}>📋 Order History</Text>
               {loadingOrders ? (
                 <Text style={s.loadingText}>Loading orders...</Text>
               ) : customerOrders.length === 0 ? (

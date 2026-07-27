@@ -203,7 +203,7 @@ export default function AddProductScreen({ onBack, onProductAdded }) {
       Alert.alert(
         'Product Added!',
         `${nameEn.trim()} added!\nSKU: ${sku.trim().toUpperCase()}`,
-        [{ text: 'Great!', onPress: () => onProductAdded?.() }]
+        [{ text: 'Great! 🎉', onPress: () => onProductAdded?.() }]
       );
     } catch {
       Alert.alert('Error', 'Could not save. Check internet.');
@@ -351,7 +351,7 @@ export default function AddProductScreen({ onBack, onProductAdded }) {
             <>
               {/* MANUAL MODE */}
               <Text style={s.skuGuide}>
-                Valid formats:{'\n'}
+                ✅ Valid formats:{'\n'}
                 HRO-SPL-BRK (Hero Splendor Brake){'\n'}
                 HND-CBS-AIR (Honda CB Shine Air Filter){'\n'}
                 TVS-APR-CHN (TVS Apache Chain){'\n'}
@@ -445,10 +445,10 @@ export default function AddProductScreen({ onBack, onProductAdded }) {
                 color: margin > 0 ? G : margin === 0 ? '#FFC107' : '#EF4444'
               }]}>
                 {margin > 0
-                  ? `Margin: ₹${margin.toFixed(0)} (${((margin / parseFloat(mrp)) * 100).toFixed(0)}%)`
+                  ? `✅ Margin: ₹${margin.toFixed(0)} (${((margin / parseFloat(mrp)) * 100).toFixed(0)}%)`
                   : margin === 0
-                  ? `Selling at MRP — no margin`
-                  : `Selling price cannot exceed MRP!`}
+                  ? `⚠️ Selling at MRP — no margin`
+                  : `❌ Selling price cannot exceed MRP!`}
               </Text>
             </View>
           )}

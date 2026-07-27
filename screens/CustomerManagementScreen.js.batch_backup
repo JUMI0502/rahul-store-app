@@ -260,7 +260,7 @@ export default function CustomerManagementScreen({ onBack }) {
                   <Text style={s.customerPhone}>{item.phone}</Text>
                   <View style={s.customerStats}>
                     <Text style={s.customerStat}>
-                      ₹{(item.total_spent || 0).toFixed(0)}
+                      💰 ₹{(item.total_spent || 0).toFixed(0)}
                     </Text>
                     <Text style={s.customerStatDot}>·</Text>
                     <Text style={s.customerStat}>{item.order_count || 0} orders</Text>

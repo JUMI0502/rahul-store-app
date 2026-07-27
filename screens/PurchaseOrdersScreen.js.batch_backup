@@ -113,12 +113,12 @@ export default function PurchaseOrdersScreen({ onBack }) {
     await savePurchaseOrders(updated);
 
     const msg =
-      `*Purchase Order — New Rahul Auto Spares*\n` +
-      `${newOrder.date}\n\n` +
+      `🏪 *Purchase Order — New Rahul Auto Spares*\n` +
+      `📅 ${newOrder.date}\n\n` +
       `*Items Required:*\n` +
       items.map(i => `• ${i.name_en} (${i.sku}) — Qty: ${i.orderQty}`).join('\n') +
-      `\n\n${notes ? `Notes: ${notes}\n\n` : ''}` +
-      `Telugu Peta, Nandyal\n08514-244944`;
+      `\n\n${notes ? `📝 Notes: ${notes}\n\n` : ''}` +
+      `📍 Telugu Peta, Nandyal\n📞 08514-244944`;
 
     Alert.alert(
       'Order Created!',
@@ -186,7 +186,7 @@ export default function PurchaseOrdersScreen({ onBack }) {
       {!apiError && allAlerts.length > 0 && (
         <View style={s.alertBanner}>
           <Text style={s.alertText}>
-            {outOfStockProducts.length} out of stock ·
+            ⚠️ {outOfStockProducts.length} out of stock ·
             {lowStockProducts.length} running low · Reorder now!
           </Text>
         </View>
@@ -196,7 +196,7 @@ export default function PurchaseOrdersScreen({ onBack }) {
       {apiError && (
         <View style={s.errorBanner}>
           <Text style={s.errorText}>
-            Could not load stock levels. Check internet.
+            📡 Could not load stock levels. Check internet.
           </Text>
           <TouchableOpacity onPress={fetchData}>
             <Text style={s.retryText}>Retry →</Text>
@@ -207,8 +207,8 @@ export default function PurchaseOrdersScreen({ onBack }) {
       {/* TABS */}
       <View style={s.tabRow}>
         {[
-          { id: 'alerts', label: `Alerts (${allAlerts.length})` },
-          { id: 'orders', label: `Orders (${purchaseOrders.length})` },
+          { id: 'alerts', label: `⚠️ Alerts (${allAlerts.length})` },
+          { id: 'orders', label: `📋 Orders (${purchaseOrders.length})` },
         ].map(t => (
           <TouchableOpacity key={t.id}
             style={[s.tabBtn, tab === t.id && s.tabBtnActive]}
@@ -282,7 +282,7 @@ export default function PurchaseOrdersScreen({ onBack }) {
                         <Text style={s.alertName}>{item.name_en}</Text>
                         <Text style={s.alertSku}>{item.sku}</Text>
                         <Text style={[s.alertStock, { color: '#F59E0B' }]}>
-                          Only {item.stock_qty} left
+                          ⚠️ Only {item.stock_qty} left
                         </Text>
                       </View>
                       <TouchableOpacity
@@ -309,7 +309,7 @@ export default function PurchaseOrdersScreen({ onBack }) {
                   setShowCreateModal(true);
                 }}>
                 <Text style={s.orderAllBtnText}>
-                  Create Order for All {allAlerts.length} Items
+                  📋 Create Order for All {allAlerts.length} Items
                 </Text>
               </TouchableOpacity>
             </>
@@ -377,7 +377,7 @@ export default function PurchaseOrdersScreen({ onBack }) {
                 )}
                 <TouchableOpacity style={s.waPoBtn}
                   onPress={() => {
-                    const msg = `PO-${item.id.slice(-6)}\n` +
+                    const msg = `📋 PO-${item.id.slice(-6)}\n` +
                       item.items?.map(p => `• ${p.name_en} × ${p.orderQty}`).join('\n');
                     Linking.openURL(
                       `https://wa.me/91${item.supplier?.phone}?text=` + encodeURIComponent(msg)
@@ -452,7 +452,7 @@ export default function PurchaseOrdersScreen({ onBack }) {
                         <Text style={s.selectItemSku}>{item.sku}</Text>
                         <Text style={[s.selectItemStock,
                           item.stock_qty === 0 ? { color: '#EF4444' } : { color: '#F59E0B' }]}>
-                          {item.stock_qty === 0 ? 'Out of stock' : `${item.stock_qty} left`}
+                          {item.stock_qty === 0 ? 'Out of stock' : `⚠️ ${item.stock_qty} left`}
                         </Text>
                       </View>
                     </TouchableOpacity>
@@ -485,7 +485,7 @@ export default function PurchaseOrdersScreen({ onBack }) {
               onPress={createPurchaseOrder}
               disabled={selectedCount === 0 || !selectedSupplier}>
               <Text style={s.createOrderBtnText}>
-                Create Purchase Order ({selectedCount} items)
+                ✅ Create Purchase Order ({selectedCount} items)
               </Text>
             </TouchableOpacity>
             <View style={{ height: 60 }} />
