@@ -29,7 +29,7 @@ export default function QRScannerScreen({ onScanned, onClose }) {
         <StatusBar barStyle="light-content"
           backgroundColor="#060E06" />
         <View style={s.body}>
-          <Text style={{ fontSize: 60, marginBottom: 20 }}>📷</Text>
+          <Text style={{ fontSize: 60, marginBottom: 20 }}></Text>
           <Text style={s.title}>Camera Access Needed</Text>
           <Text style={s.sub}>
             Allow camera to scan QR codes
@@ -56,7 +56,7 @@ export default function QRScannerScreen({ onScanned, onClose }) {
         <TouchableOpacity style={s.backBtn} onPress={onClose}>
           <Text style={s.backText}>← Cancel</Text>
         </TouchableOpacity>
-        <Text style={s.headerTitle}>📷 Scan Order QR</Text>
+        <Text style={s.headerTitle}>Scan Order QR</Text>
         <View style={{ width: 70 }} />
       </View>
 
@@ -92,7 +92,7 @@ export default function QRScannerScreen({ onScanned, onClose }) {
                 style={s.rescanBtn}
                 onPress={() => setScanned(false)}
               >
-                <Text style={s.rescanText}>🔄 Scan Again</Text>
+                <Text style={s.rescanText}>Scan Again</Text>
               </TouchableOpacity>
             )}
           </View>

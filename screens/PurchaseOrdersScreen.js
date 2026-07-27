@@ -124,7 +124,7 @@ export default function PurchaseOrdersScreen({ onBack }) {
       'Order Created!',
       'Send to supplier via WhatsApp?',
       [
-        { text: '💬 Send WhatsApp', onPress: () => {
+        { text: 'Send WhatsApp', onPress: () => {
           Linking.openURL(
             `https://wa.me/91${selectedSupplier.phone}?text=` +
             encodeURIComponent(msg)
@@ -170,10 +170,10 @@ export default function PurchaseOrdersScreen({ onBack }) {
           <Text style={s.backBtnText}>← Back</Text>
         </TouchableOpacity>
         <View style={{ flex: 1 }}>
-          <Text style={s.headerTitle}>📋 Purchase Orders</Text>
+          <Text style={s.headerTitle}>Purchase Orders</Text>
           <Text style={s.headerSub}>
             {apiError
-              ? '⚠️ Could not load stock data'
+              ? '️ Could not load stock data'
               : `${outOfStockProducts.length} out · ${lowStockProducts.length} low`}
           </Text>
         </View>
@@ -232,7 +232,7 @@ export default function PurchaseOrdersScreen({ onBack }) {
             </View>
           ) : apiError ? (
             <View style={s.emptyBox}>
-              <Text style={{ fontSize: 48 }}>📡</Text>
+              <Text style={{ fontSize: 48 }}></Text>
               <Text style={s.emptyTitle}>Stock data unavailable</Text>
               <Text style={s.emptySub}>
                 Connect to internet and pull to refresh.{'\n'}
@@ -245,7 +245,7 @@ export default function PurchaseOrdersScreen({ onBack }) {
             </View>
           ) : allAlerts.length === 0 ? (
             <View style={s.emptyBox}>
-              <Text style={{ fontSize: 48 }}>✅</Text>
+              <Text style={{ fontSize: 48 }}></Text>
               <Text style={s.emptyTitle}>All Stock Levels OK!</Text>
               <Text style={s.emptySub}>No products need reordering right now.</Text>
             </View>
@@ -253,13 +253,13 @@ export default function PurchaseOrdersScreen({ onBack }) {
             <>
               {outOfStockProducts.length > 0 && (
                 <>
-                  <Text style={s.sectionLabel}>❌ Out of Stock</Text>
+                  <Text style={s.sectionLabel}>Out of Stock</Text>
                   {outOfStockProducts.map(item => (
                     <View key={item.id} style={[s.alertCard, s.alertCardOut]}>
                       <View style={{ flex: 1 }}>
                         <Text style={s.alertName}>{item.name_en}</Text>
                         <Text style={s.alertSku}>{item.sku}</Text>
-                        <Text style={[s.alertStock, { color: '#EF4444' }]}>❌ 0 in stock</Text>
+                        <Text style={[s.alertStock, { color: '#EF4444' }]}>0 in stock</Text>
                       </View>
                       <TouchableOpacity style={s.orderNowBtn}
                         onPress={() => {
@@ -275,7 +275,7 @@ export default function PurchaseOrdersScreen({ onBack }) {
 
               {lowStockProducts.length > 0 && (
                 <>
-                  <Text style={s.sectionLabel}>⚠️ Low Stock</Text>
+                  <Text style={s.sectionLabel}>️ Low Stock</Text>
                   {lowStockProducts.map(item => (
                     <View key={item.id} style={[s.alertCard, s.alertCardLow]}>
                       <View style={{ flex: 1 }}>
@@ -323,7 +323,7 @@ export default function PurchaseOrdersScreen({ onBack }) {
           contentContainerStyle={{ padding: 12, paddingBottom: 60 }}
           ListEmptyComponent={() => (
             <View style={s.emptyBox}>
-              <Text style={{ fontSize: 48 }}>📋</Text>
+              <Text style={{ fontSize: 48 }}></Text>
               <Text style={s.emptyTitle}>No Purchase Orders</Text>
               <Text style={s.emptySub}>Tap + Create to make your first order</Text>
             </View>
@@ -344,17 +344,17 @@ export default function PurchaseOrdersScreen({ onBack }) {
                     color: item.status === 'received' ? G
                       : item.status === 'ordered' ? '#4F6EF7' : '#F59E0B'
                   }]}>
-                    {item.status === 'received' ? '✅ Received'
-                      : item.status === 'ordered' ? '📦 Ordered'
+                    {item.status === 'received' ? 'Received'
+                      : item.status === 'ordered' ? 'Ordered'
                       : '⏳ Pending'}
                   </Text>
                 </View>
               </View>
-              <Text style={s.poSupplier}>🏪 {item.supplier?.name}</Text>
+              <Text style={s.poSupplier}>{item.supplier?.name}</Text>
               <Text style={s.poItems}>
                 {item.totalItems} units · {item.items?.length} products
               </Text>
-              {item.notes ? <Text style={s.poNotes}>📝 {item.notes}</Text> : null}
+              {item.notes ? <Text style={s.poNotes}>{item.notes}</Text> : null}
               {item.items?.slice(0, 3).map((p, i) => (
                 <Text key={i} style={s.poItemText}>• {p.name_en} × {p.orderQty}</Text>
               ))}
@@ -365,14 +365,14 @@ export default function PurchaseOrdersScreen({ onBack }) {
                 {item.status === 'pending' && (
                   <TouchableOpacity style={s.poActionBtn}
                     onPress={() => updateOrderStatus(item.id, 'ordered')}>
-                    <Text style={s.poActionBtnText}>📦 Mark Ordered</Text>
+                    <Text style={s.poActionBtnText}>Mark Ordered</Text>
                   </TouchableOpacity>
                 )}
                 {item.status === 'ordered' && (
                   <TouchableOpacity
                     style={[s.poActionBtn, { backgroundColor: 'rgba(34,197,94,0.1)', borderColor: G }]}
                     onPress={() => updateOrderStatus(item.id, 'received')}>
-                    <Text style={[s.poActionBtnText, { color: G }]}>✅ Mark Received</Text>
+                    <Text style={[s.poActionBtnText, { color: G }]}>Mark Received</Text>
                   </TouchableOpacity>
                 )}
                 <TouchableOpacity style={s.waPoBtn}
@@ -383,10 +383,10 @@ export default function PurchaseOrdersScreen({ onBack }) {
                       `https://wa.me/91${item.supplier?.phone}?text=` + encodeURIComponent(msg)
                     );
                   }}>
-                  <Text style={s.waPoText}>💬</Text>
+                  <Text style={s.waPoText}></Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={s.deletePoBtn} onPress={() => deleteOrder(item.id)}>
-                  <Text style={s.deletePoText}>🗑️</Text>
+                  <Text style={s.deletePoText}>️</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -401,7 +401,7 @@ export default function PurchaseOrdersScreen({ onBack }) {
           <StatusBar barStyle="light-content" backgroundColor="#060E06" />
           <View style={s.header}>
             <TouchableOpacity style={s.backBtn} onPress={() => setShowCreateModal(false)}>
-              <Text style={s.backBtnText}>✕ Cancel</Text>
+              <Text style={s.backBtnText}>Cancel</Text>
             </TouchableOpacity>
             <Text style={s.headerTitle}>Create Purchase Order</Text>
             <TouchableOpacity
@@ -434,8 +434,8 @@ export default function PurchaseOrdersScreen({ onBack }) {
               <View style={s.noAlertsBox}>
                 <Text style={s.noAlertsText}>
                   {apiError
-                    ? '⚠️ Stock data unavailable — type product name in Notes below'
-                    : '✅ No low/out of stock items — add items in Notes'}
+                    ? '️ Stock data unavailable — type product name in Notes below'
+                    : 'No low/out of stock items — add items in Notes'}
                 </Text>
               </View>
             ) : (
@@ -445,14 +445,14 @@ export default function PurchaseOrdersScreen({ onBack }) {
                   <View key={item.id} style={[s.selectItem, selected && s.selectItemActive]}>
                     <TouchableOpacity style={s.selectItemLeft} onPress={() => toggleItem(item)}>
                       <View style={[s.checkbox, selected && s.checkboxChecked]}>
-                        {selected && <Text style={s.checkboxCheck}>✓</Text>}
+                        {selected && <Text style={s.checkboxCheck}></Text>}
                       </View>
                       <View style={{ flex: 1 }}>
                         <Text style={s.selectItemName}>{item.name_en}</Text>
                         <Text style={s.selectItemSku}>{item.sku}</Text>
                         <Text style={[s.selectItemStock,
                           item.stock_qty === 0 ? { color: '#EF4444' } : { color: '#F59E0B' }]}>
-                          {item.stock_qty === 0 ? '❌ Out of stock' : `⚠️ ${item.stock_qty} left`}
+                          {item.stock_qty === 0 ? 'Out of stock' : `⚠️ ${item.stock_qty} left`}
                         </Text>
                       </View>
                     </TouchableOpacity>

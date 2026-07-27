@@ -11,14 +11,14 @@ const API_URL = 'https://rahul-auto-spares-backend.onrender.com';
 const G = '#22C55E';
 
 const BRANDS = [
-  { id: 'ALL', label: 'All',    icon: '🔩', color: '#6B7280' },
-  { id: 'HRO', label: 'Hero',   icon: '🏍️', color: '#E31837' },
-  { id: 'HND', label: 'Honda',  icon: '🏍️', color: '#CC0000' },
-  { id: 'TVS', label: 'TVS',    icon: '🛵', color: '#0050A0' },
-  { id: 'BAJ', label: 'Bajaj',  icon: '🏍️', color: '#003DA5' },
-  { id: 'YAM', label: 'Yamaha', icon: '🏍️', color: '#0047AB' },
-  { id: 'SUZ', label: 'Suzuki', icon: '🏍️', color: '#E8000D' },
-  { id: 'OIL', label: 'Oils',   icon: '🛢️', color: '#FF6B35' },
+  { id: 'ALL', label: 'All',    icon: '', color: '#6B7280' },
+  { id: 'HRO', label: 'Hero',   icon: '️', color: '#E31837' },
+  { id: 'HND', label: 'Honda',  icon: '️', color: '#CC0000' },
+  { id: 'TVS', label: 'TVS',    icon: '', color: '#0050A0' },
+  { id: 'BAJ', label: 'Bajaj',  icon: '️', color: '#003DA5' },
+  { id: 'YAM', label: 'Yamaha', icon: '️', color: '#0047AB' },
+  { id: 'SUZ', label: 'Suzuki', icon: '️', color: '#E8000D' },
+  { id: 'OIL', label: 'Oils',   icon: '️', color: '#FF6B35' },
 ];
 
 const PART_TYPES = [
@@ -119,16 +119,16 @@ function ProductFormModal({ visible, onClose, onSave, editProduct }) {
         <StatusBar barStyle="light-content" backgroundColor="#060E06" />
         <View style={ms.header}>
           <TouchableOpacity style={ms.cancelBtn} onPress={onClose}>
-            <Text style={ms.cancelBtnText}>✕ Cancel</Text>
+            <Text style={ms.cancelBtnText}>Cancel</Text>
           </TouchableOpacity>
           <Text style={ms.headerTitle}>
-            {editProduct ? '✏️ Edit Product' : '➕ Add New Product'}
+            {editProduct ? '️ Edit Product' : 'Add New Product'}
           </Text>
           <TouchableOpacity
             style={[ms.saveBtn, saving && { opacity: 0.5 }]}
             onPress={handleSave} disabled={saving}>
             <Text style={ms.saveBtnText}>
-              {saving ? '⏳' : '✅ Save'}
+              {saving ? '⏳' : 'Save'}
             </Text>
           </TouchableOpacity>
         </View>
@@ -290,8 +290,8 @@ function ProductFormModal({ visible, onClose, onSave, editProduct }) {
               onPress={handleSave} disabled={saving}>
               <Text style={ms.bigSaveBtnText}>
                 {saving ? '⏳ Saving...'
-                  : editProduct ? '✅ Update Product'
-                  : '✅ Add to Catalog'}
+                  : editProduct ? 'Update Product'
+                  : 'Add to Catalog'}
               </Text>
             </TouchableOpacity>
 
@@ -425,7 +425,7 @@ function StockUpdateModal({ visible, product, onClose, onUpdate }) {
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
       <View style={su.overlay}>
         <View style={su.card}>
-          <Text style={su.title}>📦 Update Stock</Text>
+          <Text style={su.title}>Update Stock</Text>
           <Text style={su.productName} numberOfLines={1}>
             {product?.name_en}
           </Text>
@@ -480,7 +480,7 @@ function StockUpdateModal({ visible, product, onClose, onUpdate }) {
             <TouchableOpacity
               style={[su.updateBtn, !qty && { opacity: 0.4 }]}
               onPress={handleUpdate} disabled={!qty}>
-              <Text style={su.updateBtnText}>✅ Update Stock</Text>
+              <Text style={su.updateBtnText}>Update Stock</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -597,7 +597,7 @@ export default function InventoryScreen() {
       [
         { text: 'Cancel', style: 'cancel' },
         {
-          text: '🗑️ Delete', style: 'destructive',
+          text: '️ Delete', style: 'destructive',
           onPress: async () => {
             try {
               await fetch(`${API_URL}/products/${product.id}`, { method: 'DELETE' });
@@ -646,7 +646,7 @@ export default function InventoryScreen() {
       >
         <View style={inv.addBannerLeft}>
           <View style={inv.addBannerIconBox}>
-            <Text style={{ fontSize: 30 }}>➕</Text>
+            <Text style={{ fontSize: 30 }}></Text>
           </View>
           <View>
             <Text style={inv.addBannerTitle}>Add New Product</Text>
@@ -691,14 +691,14 @@ export default function InventoryScreen() {
 
       {/* SEARCH */}
       <View style={inv.searchBox}>
-        <Text>🔍</Text>
+        <Text></Text>
         <TextInput style={inv.searchInput}
           placeholder="Search products, SKU..."
           placeholderTextColor="rgba(255,255,255,0.25)"
           value={search} onChangeText={setSearch} />
         {search.length > 0 && (
           <TouchableOpacity onPress={() => setSearch('')}>
-            <Text style={{ color: 'rgba(255,255,255,0.3)' }}>✕</Text>
+            <Text style={{ color: 'rgba(255,255,255,0.3)' }}></Text>
           </TouchableOpacity>
         )}
       </View>
@@ -768,7 +768,7 @@ export default function InventoryScreen() {
           }
           ListEmptyComponent={() => (
             <View style={inv.emptyBox}>
-              <Text style={{ fontSize: 56, marginBottom: 16 }}>📦</Text>
+              <Text style={{ fontSize: 56, marginBottom: 16 }}></Text>
               <Text style={inv.emptyTitle}>No products found</Text>
               <Text style={inv.emptySub}>
                 {search
@@ -777,7 +777,7 @@ export default function InventoryScreen() {
               </Text>
               <TouchableOpacity style={inv.emptyAddBtn}
                 onPress={() => { setEditProduct(null); setShowAddModal(true); }}>
-                <Text style={inv.emptyAddBtnText}>➕ Add First Product</Text>
+                <Text style={inv.emptyAddBtnText}>Add First Product</Text>
               </TouchableOpacity>
             </View>
           )}
@@ -796,11 +796,11 @@ export default function InventoryScreen() {
                   <View style={[inv.productIconBox,
                     { backgroundColor: brandColor + '15' }]}>
                     <Text style={{ fontSize: 22 }}>
-                      {item.sku?.startsWith('OIL') ? '🛢️'
-                        : item.sku?.startsWith('HRO') ? '🏍️'
-                        : item.sku?.startsWith('HND') ? '🏍️'
-                        : item.sku?.startsWith('TVS') ? '🛵'
-                        : '🔩'}
+                      {item.sku?.startsWith('OIL') ? '️'
+                        : item.sku?.startsWith('HRO') ? '️'
+                        : item.sku?.startsWith('HND') ? '️'
+                        : item.sku?.startsWith('TVS') ? ''
+                        : ''}
                     </Text>
                   </View>
                   <View style={{ flex: 1 }}>
@@ -817,11 +817,11 @@ export default function InventoryScreen() {
                   <View style={{ gap: 4 }}>
                     <TouchableOpacity style={inv.editBtn}
                       onPress={() => { setEditProduct(item); setShowAddModal(true); }}>
-                      <Text style={inv.editBtnText}>✏️</Text>
+                      <Text style={inv.editBtnText}>️</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={inv.deleteBtn}
                       onPress={() => deleteProduct(item)}>
-                      <Text style={inv.deleteBtnText}>🗑️</Text>
+                      <Text style={inv.deleteBtnText}>️</Text>
                     </TouchableOpacity>
                   </View>
                 </View>
@@ -867,7 +867,7 @@ export default function InventoryScreen() {
                       isLow && { color: '#F59E0B' },
                       !isOut && !isLow && { color: G }
                     ]}>
-                      {isOut ? '❌ Out of Stock'
+                      {isOut ? 'Out of Stock'
                         : isLow ? `⚠️ Low: ${item.stock_qty} left`
                         : `✅ ${item.stock_qty} in stock`}
                     </Text>
@@ -879,7 +879,7 @@ export default function InventoryScreen() {
                       setStockProduct(item);
                       setShowStockModal(true);
                     }}>
-                    <Text style={inv.updateStockBtnText}>📦 Update</Text>
+                    <Text style={inv.updateStockBtnText}>Update</Text>
                   </TouchableOpacity>
                 </View>
               </View>

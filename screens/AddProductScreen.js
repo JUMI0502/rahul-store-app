@@ -12,55 +12,55 @@ const G = '#22C55E';
 
 // ── SKU BUILDER DATA ──
 const BIKE_MODELS = [
-  { label: '🔴 Hero Splendor+',    prefix: 'HRO-SPL' },
-  { label: '🔴 Hero HF Deluxe',    prefix: 'HRO-HFD' },
-  { label: '🔴 Hero Passion Pro',   prefix: 'HRO-PAS' },
-  { label: '🔴 Hero Glamour',       prefix: 'HRO-GLA' },
-  { label: '🔴 Hero Xtreme 160R',   prefix: 'HRO-XTR' },
-  { label: '🔴 Hero Super Splendor',prefix: 'HRO-SSP' },
-  { label: '🔴 Hero Maestro Edge',  prefix: 'HRO-MAE' },
-  { label: '🔴 Hero Destini 125',   prefix: 'HRO-DES' },
-  { label: '🔵 Honda CB Shine',     prefix: 'HND-CBS' },
-  { label: '🔵 Honda Activa 6G',    prefix: 'HND-ACT' },
-  { label: '🔵 Honda SP 125',       prefix: 'HND-SP1' },
-  { label: '🔵 Honda Unicorn',      prefix: 'HND-UNI' },
-  { label: '🔵 Honda Livo',         prefix: 'HND-LIV' },
-  { label: '🔵 Honda Hornet 2.0',   prefix: 'HND-HRN' },
-  { label: '🔵 Honda Dio',          prefix: 'HND-DIO' },
-  { label: '🔵 Honda Dream Yuga',   prefix: 'HND-DYG' },
-  { label: '🟡 TVS Apache',         prefix: 'TVS-APR' },
-  { label: '🟡 TVS Jupiter',        prefix: 'TVS-JPT' },
-  { label: '🟡 TVS Star City',      prefix: 'TVS-STC' },
-  { label: '🟣 Bajaj Pulsar 150',   prefix: 'BAJ-P15' },
-  { label: '🟣 Bajaj Platina',      prefix: 'BAJ-PLT' },
-  { label: '🟣 Bajaj CT100',        prefix: 'BAJ-CT1' },
-  { label: '🛢️ Engine Oil',         prefix: 'OIL' },
+  { label: 'Hero Splendor+',    prefix: 'HRO-SPL' },
+  { label: 'Hero HF Deluxe',    prefix: 'HRO-HFD' },
+  { label: 'Hero Passion Pro',   prefix: 'HRO-PAS' },
+  { label: 'Hero Glamour',       prefix: 'HRO-GLA' },
+  { label: 'Hero Xtreme 160R',   prefix: 'HRO-XTR' },
+  { label: 'Hero Super Splendor',prefix: 'HRO-SSP' },
+  { label: 'Hero Maestro Edge',  prefix: 'HRO-MAE' },
+  { label: 'Hero Destini 125',   prefix: 'HRO-DES' },
+  { label: 'Honda CB Shine',     prefix: 'HND-CBS' },
+  { label: 'Honda Activa 6G',    prefix: 'HND-ACT' },
+  { label: 'Honda SP 125',       prefix: 'HND-SP1' },
+  { label: 'Honda Unicorn',      prefix: 'HND-UNI' },
+  { label: 'Honda Livo',         prefix: 'HND-LIV' },
+  { label: 'Honda Hornet 2.0',   prefix: 'HND-HRN' },
+  { label: 'Honda Dio',          prefix: 'HND-DIO' },
+  { label: 'Honda Dream Yuga',   prefix: 'HND-DYG' },
+  { label: 'TVS Apache',         prefix: 'TVS-APR' },
+  { label: 'TVS Jupiter',        prefix: 'TVS-JPT' },
+  { label: 'TVS Star City',      prefix: 'TVS-STC' },
+  { label: 'Bajaj Pulsar 150',   prefix: 'BAJ-P15' },
+  { label: 'Bajaj Platina',      prefix: 'BAJ-PLT' },
+  { label: 'Bajaj CT100',        prefix: 'BAJ-CT1' },
+  { label: '️ Engine Oil',         prefix: 'OIL' },
 ];
 
 const PART_TYPES = [
-  { label: '🛑 Brake Shoe',      code: 'BRK' },
-  { label: '💨 Air Filter',      code: 'AIR' },
-  { label: '⛓️ Chain Kit',       code: 'CHN' },
-  { label: '⚡ Spark Plug',      code: 'SPK' },
-  { label: '🔧 Clutch Plates',   code: 'CLT' },
-  { label: '🔧 Clutch Cable',    code: 'CLB' },
-  { label: '🔩 Cam Chain Kit',   code: 'CAM' },
-  { label: '🔩 Gear Shaft',      code: 'GRS' },
-  { label: '🔩 Gear Rod',        code: 'GRR' },
-  { label: '💡 Self Motor',      code: 'SLF' },
-  { label: '🔒 Lock Set',        code: 'LCK' },
-  { label: '📊 Meter Assembly',  code: 'MTR' },
-  { label: '🛵 Center Stand',    code: 'CTS' },
-  { label: '🛵 Side Stand',      code: 'SDS' },
-  { label: '🔧 Suspension',      code: 'SUS' },
-  { label: '🔧 Fork Set',        code: 'FRK' },
-  { label: '🔧 Handle Bar',      code: 'HDL' },
-  { label: '🔌 Handle Switch',   code: 'HBS' },
-  { label: '🔌 Self Switch',     code: 'SWC' },
-  { label: '⚙️ Bearing Kit',     code: 'BRG' },
-  { label: '🛢️ Engine Oil 900ml',code: '900' },
-  { label: '🛢️ Engine Oil 1L',   code: '01L' },
-  { label: '🛢️ Other',          code: 'OTH' },
+  { label: 'Brake Shoe',      code: 'BRK' },
+  { label: 'Air Filter',      code: 'AIR' },
+  { label: '️ Chain Kit',       code: 'CHN' },
+  { label: 'Spark Plug',      code: 'SPK' },
+  { label: 'Clutch Plates',   code: 'CLT' },
+  { label: 'Clutch Cable',    code: 'CLB' },
+  { label: 'Cam Chain Kit',   code: 'CAM' },
+  { label: 'Gear Shaft',      code: 'GRS' },
+  { label: 'Gear Rod',        code: 'GRR' },
+  { label: 'Self Motor',      code: 'SLF' },
+  { label: 'Lock Set',        code: 'LCK' },
+  { label: 'Meter Assembly',  code: 'MTR' },
+  { label: 'Center Stand',    code: 'CTS' },
+  { label: 'Side Stand',      code: 'SDS' },
+  { label: 'Suspension',      code: 'SUS' },
+  { label: 'Fork Set',        code: 'FRK' },
+  { label: 'Handle Bar',      code: 'HDL' },
+  { label: 'Handle Switch',   code: 'HBS' },
+  { label: 'Self Switch',     code: 'SWC' },
+  { label: '️ Bearing Kit',     code: 'BRG' },
+  { label: '️ Engine Oil 900ml',code: '900' },
+  { label: '️ Engine Oil 1L',   code: '01L' },
+  { label: '️ Other',          code: 'OTH' },
 ];
 
 export default function AddProductScreen({ onBack, onProductAdded }) {
@@ -224,7 +224,7 @@ export default function AddProductScreen({ onBack, onProductAdded }) {
           <Text style={s.backBtnText}>← Back</Text>
         </TouchableOpacity>
         <View style={{ flex: 1 }}>
-          <Text style={s.headerTitle}>➕ Add Product</Text>
+          <Text style={s.headerTitle}>Add Product</Text>
           <Text style={s.headerSub}>New part to catalog</Text>
         </View>
         <TouchableOpacity
@@ -232,7 +232,7 @@ export default function AddProductScreen({ onBack, onProductAdded }) {
           onPress={handleSave} disabled={saving}>
           {saving
             ? <ActivityIndicator size="small" color="#fff" />
-            : <Text style={s.saveBtnText}>✅ Save</Text>}
+            : <Text style={s.saveBtnText}>Save</Text>}
         </TouchableOpacity>
       </View>
 
@@ -240,33 +240,33 @@ export default function AddProductScreen({ onBack, onProductAdded }) {
 
         {/* ── PHOTO ── */}
         <View style={s.card}>
-          <Text style={s.cardTitle}>📸 Product Photo</Text>
+          <Text style={s.cardTitle}>Product Photo</Text>
           {imageUri ? (
             <View style={s.imagePreviewBox}>
               <Image source={{ uri: imageUri }} style={s.imagePreview} />
               <View style={s.imageActions}>
                 <TouchableOpacity style={s.changeImageBtn}
                   onPress={() => Alert.alert('Add Photo', 'Choose source', [
-                    { text: '📷 Camera', onPress: () => pickImage(true) },
-                    { text: '🖼️ Gallery', onPress: () => pickImage(false) },
+                    { text: 'Camera', onPress: () => pickImage(true) },
+                    { text: '️ Gallery', onPress: () => pickImage(false) },
                     { text: 'Cancel', style: 'cancel' },
                   ])}>
-                  <Text style={s.changeImageBtnText}>🔄 Change</Text>
+                  <Text style={s.changeImageBtnText}>Change</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={s.removeImageBtn}
                   onPress={() => { setImageUri(null); setImageBase64(null); }}>
-                  <Text style={s.removeImageBtnText}>✕ Remove</Text>
+                  <Text style={s.removeImageBtnText}>Remove</Text>
                 </TouchableOpacity>
               </View>
             </View>
           ) : (
             <View style={s.imagePickerRow}>
               <TouchableOpacity style={s.imagePickBtn} onPress={() => pickImage(true)}>
-                <Text style={s.imagePickBtnIcon}>📷</Text>
+                <Text style={s.imagePickBtnIcon}></Text>
                 <Text style={s.imagePickBtnText}>Camera</Text>
               </TouchableOpacity>
               <TouchableOpacity style={s.imagePickBtn} onPress={() => pickImage(false)}>
-                <Text style={s.imagePickBtnIcon}>🖼️</Text>
+                <Text style={s.imagePickBtnIcon}>️</Text>
                 <Text style={s.imagePickBtnText}>Gallery</Text>
               </TouchableOpacity>
             </View>
@@ -282,12 +282,12 @@ export default function AddProductScreen({ onBack, onProductAdded }) {
         {/* ── SKU BUILDER ── */}
         <View style={s.card}>
           <View style={s.skuModeRow}>
-            <Text style={s.cardTitle}>🔑 SKU Code Builder</Text>
+            <Text style={s.cardTitle}>SKU Code Builder</Text>
             <TouchableOpacity
               style={s.modeToggle}
               onPress={() => setSkuMode(skuMode === 'builder' ? 'manual' : 'builder')}>
               <Text style={s.modeToggleText}>
-                {skuMode === 'builder' ? '✏️ Type manually' : '🔧 Use builder'}
+                {skuMode === 'builder' ? '️ Type manually' : 'Use builder'}
               </Text>
             </TouchableOpacity>
           </View>
@@ -333,7 +333,7 @@ export default function AddProductScreen({ onBack, onProductAdded }) {
                   <Text style={s.skuPreviewLabel}>Generated SKU:</Text>
                   <Text style={s.skuPreviewValue}>{sku}</Text>
                   {selectedBike && selectedPart && (
-                    <Text style={s.skuPreviewValid}>✅ Valid format</Text>
+                    <Text style={s.skuPreviewValid}>Valid format</Text>
                   )}
                 </View>
               ) : null}
@@ -371,7 +371,7 @@ export default function AddProductScreen({ onBack, onProductAdded }) {
 
         {/* ── PRODUCT DETAILS ── */}
         <View style={s.card}>
-          <Text style={s.cardTitle}>📦 Product Details</Text>
+          <Text style={s.cardTitle}>Product Details</Text>
 
           <Text style={s.label}>Name (English) *</Text>
           <TextInput style={s.input}
@@ -415,7 +415,7 @@ export default function AddProductScreen({ onBack, onProductAdded }) {
 
         {/* ── PRICING ── */}
         <View style={s.card}>
-          <Text style={s.cardTitle}>💰 Pricing</Text>
+          <Text style={s.cardTitle}>Pricing</Text>
           <View style={s.priceRow}>
             <View style={{ flex: 1 }}>
               <Text style={s.label}>MRP (₹) *</Text>
@@ -456,7 +456,7 @@ export default function AddProductScreen({ onBack, onProductAdded }) {
 
         {/* ── SKU FORMAT GUIDE ── */}
         <View style={s.guideCard}>
-          <Text style={s.guideTitle}>📖 SKU Format Guide</Text>
+          <Text style={s.guideTitle}>SKU Format Guide</Text>
           <Text style={s.guideText}>
             BRAND - MODEL - PART TYPE{'\n\n'}
             HRO = Hero · HND = Honda{'\n'}

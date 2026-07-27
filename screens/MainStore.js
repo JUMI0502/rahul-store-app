@@ -35,24 +35,24 @@ const STATUS_LABELS = {
 };
 
 const AVATAR_OPTIONS = [
-  { id: 'owner',    emoji: '👑', label: 'Owner' },
+  { id: 'owner',    emoji: '', label: 'Owner' },
   { id: 'star',     emoji: '⭐', label: 'Senior' },
-  { id: 'worker',   emoji: '👷', label: 'Staff' },
-  { id: 'mechanic', emoji: '🔧', label: 'Mechanic' },
-  { id: 'bike',     emoji: '🏍️', label: 'Biker' },
-  { id: 'gear',     emoji: '⚙️', label: 'Technical' },
-  { id: 'shield',   emoji: '🛡️', label: 'Manager' },
-  { id: 'rocket',   emoji: '🚀', label: 'Fast' },
-  { id: 'fire',     emoji: '🔥', label: 'Hot' },
-  { id: 'diamond',  emoji: '💎', label: 'Premium' },
-  { id: 'trophy',   emoji: '🏆', label: 'Champion' },
-  { id: 'lion',     emoji: '🦁', label: 'Leader' },
+  { id: 'worker',   emoji: '', label: 'Staff' },
+  { id: 'mechanic', emoji: '', label: 'Mechanic' },
+  { id: 'bike',     emoji: '️', label: 'Biker' },
+  { id: 'gear',     emoji: '️', label: 'Technical' },
+  { id: 'shield',   emoji: '️', label: 'Manager' },
+  { id: 'rocket',   emoji: '', label: 'Fast' },
+  { id: 'fire',     emoji: '', label: 'Hot' },
+  { id: 'diamond',  emoji: '', label: 'Premium' },
+  { id: 'trophy',   emoji: '', label: 'Champion' },
+  { id: 'lion',     emoji: '', label: 'Leader' },
 ];
 
 const getDefaultAvatar = (role) => {
-  if (role === 'owner') return '👑';
+  if (role === 'owner') return '';
   if (role === 'senior') return '⭐';
-  return '👷';
+  return '';
 };
 
 // ── BOTTOM NAV ──
@@ -166,7 +166,7 @@ function AvatarRing({ avatar, profileImage, size = 90, onPress }) {
       )}
       {onPress && (
         <View style={avr.badge}>
-          <Text style={{ fontSize: 11 }}>📸</Text>
+          <Text style={{ fontSize: 11 }}></Text>
         </View>
       )}
     </TouchableOpacity>
@@ -234,7 +234,7 @@ function AvatarPickerModal({ visible, currentAvatar, currentImage, onSelectEmoji
       <View style={ap.overlay}>
         <View style={ap.sheet}>
           <View style={ap.handle} />
-          <Text style={ap.title}>📸 Change Profile Picture</Text>
+          <Text style={ap.title}>Change Profile Picture</Text>
           <Text style={ap.sub}>Pick from gallery, take a photo, or choose an emoji</Text>
 
           {/* PHOTO ACTION BUTTONS */}
@@ -242,7 +242,7 @@ function AvatarPickerModal({ visible, currentAvatar, currentImage, onSelectEmoji
             <TouchableOpacity style={ap.photoBtn} onPress={pickFromGallery}
               activeOpacity={0.8}>
               <View style={[ap.photoBtnIcon, { backgroundColor: 'rgba(79,110,247,0.15)' }]}>
-                <Text style={{ fontSize: 30 }}>🖼️</Text>
+                <Text style={{ fontSize: 30 }}>️</Text>
               </View>
               <Text style={ap.photoBtnLabel}>Gallery</Text>
               <Text style={ap.photoBtnSub}>Pick from{'\n'}photos</Text>
@@ -251,7 +251,7 @@ function AvatarPickerModal({ visible, currentAvatar, currentImage, onSelectEmoji
             <TouchableOpacity style={ap.photoBtn} onPress={takePhoto}
               activeOpacity={0.8}>
               <View style={[ap.photoBtnIcon, { backgroundColor: 'rgba(34,197,94,0.15)' }]}>
-                <Text style={{ fontSize: 30 }}>📷</Text>
+                <Text style={{ fontSize: 30 }}></Text>
               </View>
               <Text style={ap.photoBtnLabel}>Camera</Text>
               <Text style={ap.photoBtnSub}>Take a{'\n'}selfie</Text>
@@ -261,7 +261,7 @@ function AvatarPickerModal({ visible, currentAvatar, currentImage, onSelectEmoji
               <TouchableOpacity style={ap.photoBtn} onPress={removePhoto}
                 activeOpacity={0.8}>
                 <View style={[ap.photoBtnIcon, { backgroundColor: 'rgba(239,68,68,0.1)' }]}>
-                  <Text style={{ fontSize: 30 }}>🗑️</Text>
+                  <Text style={{ fontSize: 30 }}>️</Text>
                 </View>
                 <Text style={[ap.photoBtnLabel, { color: '#EF4444' }]}>Remove</Text>
                 <Text style={ap.photoBtnSub}>Use emoji{'\n'}instead</Text>
@@ -296,7 +296,7 @@ function AvatarPickerModal({ visible, currentAvatar, currentImage, onSelectEmoji
                     </Text>
                     {selected && (
                       <View style={ap.checkBadge}>
-                        <Text style={ap.checkText}>✓</Text>
+                        <Text style={ap.checkText}></Text>
                       </View>
                     )}
                   </TouchableOpacity>
@@ -374,7 +374,7 @@ export default function MainStore({ staff, onLogout }) {
   const [offerTitle, setOfferTitle] = useState('');
   const [offerDesc, setOfferDesc] = useState('');
   const [offerDiscount, setOfferDiscount] = useState('');
-  const [offerEmoji, setOfferEmoji] = useState('🎉');
+  const [offerEmoji, setOfferEmoji] = useState('');
   const [showOfferForm, setShowOfferForm] = useState(false);
 
   // PROFILE
@@ -1133,7 +1133,7 @@ export default function MainStore({ staff, onLogout }) {
       `Order: ${orderId}\nCustomer: ${order.customer_name}\nTotal: ₹${order.total_amount}\n\nMark as Collected?`,
       [
         { text: 'Cancel', style: 'cancel' },
-        { text: '✅ Collected', onPress: () => updateStatus(order.id, 'collected') }
+        { text: 'Collected', onPress: () => updateStatus(order.id, 'collected') }
       ]
     );
   };
@@ -1195,7 +1195,7 @@ export default function MainStore({ staff, onLogout }) {
       });
       await fetchOffers();
       setOfferTitle(''); setOfferDesc(''); setOfferDiscount('');
-      setOfferEmoji('🎉'); setShowOfferForm(false);
+      setOfferEmoji(''); setShowOfferForm(false);
       Alert.alert('Offer Created!', 'Customers can see it now!');
     } catch { Alert.alert('Error', 'Could not create offer'); }
   };
@@ -1423,7 +1423,7 @@ export default function MainStore({ staff, onLogout }) {
         </View>
         {offline && (
           <View style={s.offlineBadge}>
-            <Text style={s.offlineBadgeText}>📴 Offline</Text>
+            <Text style={s.offlineBadgeText}>Offline</Text>
           </View>
         )}
         {newCount > 0 && (
@@ -2547,7 +2547,7 @@ export default function MainStore({ staff, onLogout }) {
         {tab === 'scanner' && (
           <View style={s.centerBox}>
             <View style={s.scannerBox}>
-              <Text style={{ fontSize: 80 }}>📷</Text>
+              <Text style={{ fontSize: 80 }}></Text>
             </View>
             <Text style={s.scannerTitle}>QR Order Pickup</Text>
             <Text style={s.scannerSub}>Scan customer's QR code to mark order as collected</Text>
@@ -2555,7 +2555,7 @@ export default function MainStore({ staff, onLogout }) {
               ఆర్డర్ పికప్ కోసం QR స్కాన్ చేయండి
             </Text>
             <TouchableOpacity style={s.scanBtn} onPress={() => setShowScanner(true)}>
-              <Text style={s.scanBtnText}>📷 Open QR Scanner</Text>
+              <Text style={s.scanBtnText}>Open QR Scanner</Text>
             </TouchableOpacity>
           </View>
         )}
@@ -2665,14 +2665,14 @@ export default function MainStore({ staff, onLogout }) {
             </View>
 
             <View style={s.stockSearchBox}>
-              <Text style={{ fontSize: 16 }}>🔍</Text>
+              <Text style={{ fontSize: 16 }}></Text>
               <TextInput style={s.stockSearchInput}
                 placeholder="Search products..."
                 placeholderTextColor="rgba(255,255,255,0.25)"
                 value={stockSearch} onChangeText={setStockSearch} />
               {stockSearch.length > 0 && (
                 <TouchableOpacity onPress={() => setStockSearch('')}>
-                  <Text style={{ color: 'rgba(255,255,255,0.3)', fontSize: 16 }}>✕</Text>
+                  <Text style={{ color: 'rgba(255,255,255,0.3)', fontSize: 16 }}></Text>
                 </TouchableOpacity>
               )}
             </View>
@@ -2688,12 +2688,12 @@ export default function MainStore({ staff, onLogout }) {
               }
               ListEmptyComponent={() => (
                 <View style={{ alignItems: 'center', padding: 40 }}>
-                  <Text style={{ fontSize: 48, marginBottom: 12 }}>📦</Text>
+                  <Text style={{ fontSize: 48, marginBottom: 12 }}></Text>
                   <Text style={{ color: 'rgba(255,255,255,0.4)', fontSize: 15, marginBottom: 16 }}>
                     {stockSearch ? `No products matching "${stockSearch}"` : 'No products yet!'}
                   </Text>
                   <TouchableOpacity style={s.emptyAddBtn} onPress={() => setShowAddProduct(true)}>
-                    <Text style={s.emptyAddBtnText}>➕ Add First Product</Text>
+                    <Text style={s.emptyAddBtnText}>Add First Product</Text>
                   </TouchableOpacity>
                 </View>
               )}
@@ -2714,7 +2714,7 @@ export default function MainStore({ staff, onLogout }) {
                       <Text style={[s.stockQty,
                         item.stock_qty === 0 ? { color: '#EF4444' }
                           : item.stock_qty <= 5 ? { color: '#F59E0B' } : { color: G }]}>
-                        {item.stock_qty === 0 ? '❌ Out of stock'
+                        {item.stock_qty === 0 ? 'Out of stock'
                           : item.stock_qty <= 5 ? `⚠️ Low: ${item.stock_qty}`
                           : `✅ ${item.stock_qty} in stock`}
                       </Text>
@@ -3151,7 +3151,7 @@ export default function MainStore({ staff, onLogout }) {
               <View style={s.zohoTargetFooter}>
                 <Text style={s.zohoTargetSub}>₹{(summary?.total_revenue||0).toFixed(0)} of ₹10,000</Text>
                 <Text style={s.zohoTargetSub}>
-                  {(summary?.total_revenue||0) >= 10000 ? '🎯 Target achieved!' : `₹${(10000-(summary?.total_revenue||0)).toFixed(0)} remaining`}
+                  {(summary?.total_revenue||0) >= 10000 ? 'Target achieved!' : `₹${(10000-(summary?.total_revenue||0)).toFixed(0)} remaining`}
                 </Text>
               </View>
             </View>
@@ -3159,7 +3159,7 @@ export default function MainStore({ staff, onLogout }) {
             <View style={{ flexDirection: 'row', gap: 10, marginBottom: 10 }}>
               <TouchableOpacity style={[s.actionCard, { borderColor: 'rgba(79,110,247,0.3)' }]}
                 onPress={() => setShowSalesDashboard(true)}>
-                <Text style={{ fontSize: 26 }}>📊</Text>
+                <Text style={{ fontSize: 26 }}></Text>
                 <View style={{ flex: 1 }}>
                   <Text style={[s.actionCardTitle, { color: '#4F6EF7' }]}>Dashboard</Text>
                   <Text style={s.actionCardSub}>Charts & Analytics</Text>
@@ -3168,7 +3168,7 @@ export default function MainStore({ staff, onLogout }) {
               </TouchableOpacity>
               <TouchableOpacity style={[s.actionCard, { borderColor: 'rgba(34,197,94,0.3)' }]}
                 onPress={() => setShowCustomers(true)}>
-                <Text style={{ fontSize: 26 }}>👥</Text>
+                <Text style={{ fontSize: 26 }}></Text>
                 <View style={{ flex: 1 }}>
                   <Text style={[s.actionCardTitle, { color: G }]}>Customers</Text>
                   <Text style={s.actionCardSub}>View all</Text>
@@ -3180,7 +3180,7 @@ export default function MainStore({ staff, onLogout }) {
             <View style={{ flexDirection: 'row', gap: 10, marginBottom: 10 }}>
               <TouchableOpacity style={[s.actionCard, { borderColor: 'rgba(245,158,11,0.3)' }]}
                 onPress={() => setShowPurchaseOrders(true)}>
-                <Text style={{ fontSize: 26 }}>📋</Text>
+                <Text style={{ fontSize: 26 }}></Text>
                 <View style={{ flex: 1 }}>
                   <Text style={[s.actionCardTitle, { color: '#F59E0B' }]}>Purchase Orders</Text>
                   <Text style={s.actionCardSub}>Reorder stock</Text>
@@ -3189,7 +3189,7 @@ export default function MainStore({ staff, onLogout }) {
               </TouchableOpacity>
               <TouchableOpacity style={[s.actionCard, { borderColor: 'rgba(37,211,102,0.3)' }]}
                 onPress={() => setShowBroadcast(true)}>
-                <Text style={{ fontSize: 26 }}>📢</Text>
+                <Text style={{ fontSize: 26 }}></Text>
                 <View style={{ flex: 1 }}>
                   <Text style={[s.actionCardTitle, { color: '#25D366' }]}>Broadcast</Text>
                   <Text style={s.actionCardSub}>Message all</Text>
@@ -3201,7 +3201,7 @@ export default function MainStore({ staff, onLogout }) {
             <View style={{ flexDirection: 'row', gap: 10, marginBottom: 12 }}>
               <TouchableOpacity style={[s.actionCard, { borderColor: 'rgba(34,197,94,0.5)' }]}
                 onPress={() => setShowAddProduct(true)}>
-                <Text style={{ fontSize: 26 }}>➕</Text>
+                <Text style={{ fontSize: 26 }}></Text>
                 <View style={{ flex: 1 }}>
                   <Text style={[s.actionCardTitle, { color: G }]}>Add Product</Text>
                   <Text style={s.actionCardSub}>New parts</Text>
@@ -3210,7 +3210,7 @@ export default function MainStore({ staff, onLogout }) {
               </TouchableOpacity>
               <TouchableOpacity style={[s.actionCard, { borderColor: 'rgba(34,197,94,0.3)' }]}
                 onPress={() => setShowAnalytics(true)}>
-                <Text style={{ fontSize: 26 }}>📈</Text>
+                <Text style={{ fontSize: 26 }}></Text>
                 <View style={{ flex: 1 }}>
                   <Text style={[s.actionCardTitle, { color: G }]}>Analytics</Text>
                   <Text style={s.actionCardSub}>Top customers</Text>
@@ -3222,7 +3222,7 @@ export default function MainStore({ staff, onLogout }) {
             <View style={{ flexDirection: 'row', gap: 10, marginBottom: 12 }}>
               <TouchableOpacity style={[s.actionCard, { borderColor: 'rgba(255,193,7,0.3)' }]}
                 onPress={sendDailySummary}>
-                <Text style={{ fontSize: 26 }}>📋</Text>
+                <Text style={{ fontSize: 26 }}></Text>
                 <View style={{ flex: 1 }}>
                   <Text style={[s.actionCardTitle, { color: '#FFC107' }]}>Daily Report</Text>
                   <Text style={s.actionCardSub}>Send WhatsApp</Text>
@@ -3234,12 +3234,12 @@ export default function MainStore({ staff, onLogout }) {
 
             {/* ORDER STATUS */}
             <View style={s.reportCard}>
-              <Text style={s.reportCardTitle}>📋 Order Status</Text>
+              <Text style={s.reportCardTitle}>Order Status</Text>
               {[
                 { label: '🆕 New', key: 'new', color: '#4F6EF7' },
-                { label: '📦 Packing', key: 'packing', color: '#F59E0B' },
-                { label: '✅ Ready', key: 'ready', color: G },
-                { label: '🏁 Collected', key: 'collected', color: 'rgba(255,255,255,0.4)' },
+                { label: 'Packing', key: 'packing', color: '#F59E0B' },
+                { label: 'Ready', key: 'ready', color: G },
+                { label: 'Collected', key: 'collected', color: 'rgba(255,255,255,0.4)' },
               ].map((st, i) => (
                 <View key={i} style={s.reportRow}>
                   <Text style={s.reportLabel}>{st.label}</Text>
@@ -3255,11 +3255,11 @@ export default function MainStore({ staff, onLogout }) {
             {/* BESTSELLERS */}
             {bestsellers.length > 0 && (
               <View style={s.reportCard}>
-                <Text style={s.reportCardTitle}>🏆 Top Selling</Text>
+                <Text style={s.reportCardTitle}>Top Selling</Text>
                 {bestsellers.slice(0,5).map((b, i) => (
                   <View key={i} style={s.bestRow}>
                     <Text style={s.bestRank}>
-                      {i===0?'🥇':i===1?'🥈':i===2?'🥉':`#${i+1}`}
+                      {i===0?'':i===1?'':i===2?'':`#${i+1}`}
                     </Text>
                     <View style={{ flex: 1 }}>
                       <Text style={s.bestName} numberOfLines={1}>{b.name_en||b.product_name}</Text>
@@ -3275,7 +3275,7 @@ export default function MainStore({ staff, onLogout }) {
             {(isOwner || isSenior) && (
               <View style={s.reportCard}>
                 <View style={s.offerHeader}>
-                  <Text style={s.reportCardTitle}>🎁 Active Offers</Text>
+                  <Text style={s.reportCardTitle}>Active Offers</Text>
                   <TouchableOpacity onPress={() => setShowOfferForm(true)}>
                     <Text style={s.addOfferText}>+ Add Offer</Text>
                   </TouchableOpacity>
@@ -3296,7 +3296,7 @@ export default function MainStore({ staff, onLogout }) {
                       </Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => deleteOffer(o.id)} style={{ padding: 4 }}>
-                      <Text>🗑️</Text>
+                      <Text>️</Text>
                     </TouchableOpacity>
                   </View>
                 ))}
@@ -3407,7 +3407,7 @@ export default function MainStore({ staff, onLogout }) {
             {/* CHANGE PIN */}
             <TouchableOpacity style={s.pinCard}
               onPress={() => { setPinStep('current'); setPinInput(''); setPinError(''); }}>
-              <Text style={{ fontSize: 28 }}>🔐</Text>
+              <Text style={{ fontSize: 28 }}></Text>
               <View style={{ flex: 1 }}>
                 <Text style={s.pinCardTitle}>Change My PIN</Text>
                 <Text style={s.pinCardSub}>Update your 4-digit login PIN</Text>
@@ -3456,7 +3456,7 @@ export default function MainStore({ staff, onLogout }) {
             </View>
             <ScrollView contentContainerStyle={{ padding: 16 }}>
               <View style={s.detailCard}>
-                <Text style={s.detailCardTitle}>👤 Customer</Text>
+                <Text style={s.detailCardTitle}>Customer</Text>
                 <View style={s.detailRow}>
                   <Text style={s.detailLabel}>Name</Text>
                   <Text style={s.detailValue}>{selectedOrder.customer_name||'—'}</Text>
@@ -3465,7 +3465,7 @@ export default function MainStore({ staff, onLogout }) {
                   <TouchableOpacity style={s.detailRow}
                     onPress={() => Linking.openURL(`tel:${selectedOrder.customer_phone}`)}>
                     <Text style={s.detailLabel}>Phone</Text>
-                    <Text style={[s.detailValue, { color: G }]}>📞 {selectedOrder.customer_phone}</Text>
+                    <Text style={[s.detailValue, { color: G }]}>{selectedOrder.customer_phone}</Text>
                   </TouchableOpacity>
                 )}
                 {selectedOrder.customer_phone && (isOwner || isSenior) && (
@@ -3475,7 +3475,7 @@ export default function MainStore({ staff, onLogout }) {
                       Linking.openURL(`https://wa.me/91${selectedOrder.customer_phone}?text=${encodeURIComponent(msg)}`);
                     }}>
                     <Text style={s.detailLabel}>Send UPI</Text>
-                    <Text style={[s.detailValue, { color: G }]}>📱 Send Payment Details</Text>
+                    <Text style={[s.detailValue, { color: G }]}>Send Payment Details</Text>
                   </TouchableOpacity>
                 )}
                 <View style={s.detailRow}>
@@ -3489,7 +3489,7 @@ export default function MainStore({ staff, onLogout }) {
               </View>
 
               <View style={s.detailCard}>
-                <Text style={s.detailCardTitle}>📦 Items</Text>
+                <Text style={s.detailCardTitle}>Items</Text>
                 {orderItems.length === 0 ? (
                   <Text style={s.loadingText}>Loading items...</Text>
                 ) : orderItems.map((item, i) => (
@@ -3505,13 +3505,13 @@ export default function MainStore({ staff, onLogout }) {
               </View>
 
               <View style={s.detailCard}>
-                <Text style={s.detailCardTitle}>🔄 Update Status</Text>
+                <Text style={s.detailCardTitle}>Update Status</Text>
                 <View style={s.statusGrid}>
                   {[
                     { k:'new', l:'🆕 New', c:'#4F6EF7' },
-                    { k:'packing', l:'📦 Packing', c:'#F59E0B' },
-                    { k:'ready', l:'✅ Ready!', c:G },
-                    { k:'collected', l:'🏁 Collected', c:'rgba(255,255,255,0.4)' },
+                    { k:'packing', l:'Packing', c:'#F59E0B' },
+                    { k:'ready', l:'Ready!', c:G },
+                    { k:'collected', l:'Collected', c:'rgba(255,255,255,0.4)' },
                   ].map(st => (
                     <TouchableOpacity key={st.k}
                       style={[s.statusBtn, selectedOrder.status===st.k && { backgroundColor: st.c+'20', borderColor: st.c }]}
@@ -3524,11 +3524,11 @@ export default function MainStore({ staff, onLogout }) {
               </View>
 
               <View style={s.detailCard}>
-                <Text style={s.detailCardTitle}>💳 Payment</Text>
+                <Text style={s.detailCardTitle}>Payment</Text>
                 <View style={s.paymentRow}>
                   {[
-                    { k:'cash', l:'💵 Cash' },
-                    { k:'upi', l:'📱 UPI' },
+                    { k:'cash', l:'Cash' },
+                    { k:'upi', l:'UPI' },
                     { k:'pending', l:'⏳ Pending' },
                   ].map(p => (
                     <TouchableOpacity key={p.k}
@@ -3545,14 +3545,14 @@ export default function MainStore({ staff, onLogout }) {
                   style={[s.waBtn, { flex: 1, backgroundColor: 'rgba(79,110,247,0.1)', borderColor: 'rgba(79,110,247,0.3)' }]}
                   onPress={() => handleGenerateInvoice(selectedOrder, false)} disabled={generatingInvoice}>
                   <Text style={[s.waBtnText, { color: '#4F6EF7' }]}>
-                    {generatingInvoice ? '⏳...' : '🧾 Invoice'}
+                    {generatingInvoice ? '⏳...' : 'Invoice'}
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={[s.waBtn, { flex: 1, backgroundColor: 'rgba(255,193,7,0.1)', borderColor: 'rgba(255,193,7,0.3)' }]}
                   onPress={() => handleGenerateInvoice(selectedOrder, true)} disabled={generatingInvoice}>
                   <Text style={[s.waBtnText, { color: '#FFC107' }]}>
-                    {generatingInvoice ? '⏳...' : '🧾 GST Bill'}
+                    {generatingInvoice ? '⏳...' : 'GST Bill'}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -3563,11 +3563,11 @@ export default function MainStore({ staff, onLogout }) {
                     const msg =
                       `Hi ${selectedOrder.customer_name}! 🙏\n` +
                       `Order ${selectedOrder.custom_id||`RAS-${selectedOrder.id}`} ` +
-                      `is ${selectedOrder.status==='ready' ? '✅ READY for pickup!' : 'being processed.'}\n` +
+                      `is ${selectedOrder.status==='ready' ? 'READY for pickup!' : 'being processed.'}\n` +
                       `📍 New Rahul Auto Spares, Nandyal`;
                     Linking.openURL(`https://wa.me/91${selectedOrder.customer_phone}?text=${encodeURIComponent(msg)}`);
                   }}>
-                  <Text style={s.waBtnText}>💬 WhatsApp Customer</Text>
+                  <Text style={s.waBtnText}>WhatsApp Customer</Text>
                 </TouchableOpacity>
               )}
               <View style={{ height: 40 }} />
@@ -3585,7 +3585,7 @@ export default function MainStore({ staff, onLogout }) {
             <TouchableOpacity style={s.modalBack} onPress={() => setShowEditProfile(false)}>
               <Text style={s.modalBackText}>← Cancel</Text>
             </TouchableOpacity>
-            <Text style={s.modalTitle}>✏️ Edit My Profile</Text>
+            <Text style={s.modalTitle}>️ Edit My Profile</Text>
           </View>
           <ScrollView contentContainerStyle={{ padding: 20 }}>
 
@@ -3606,7 +3606,7 @@ export default function MainStore({ staff, onLogout }) {
                   setTimeout(() => setShowAvatarPicker(true), 400);
                 }}
                 style={s.changePicBtn}>
-                <Text style={s.changePicBtnText}>📸 Change Profile Picture</Text>
+                <Text style={s.changePicBtnText}>Change Profile Picture</Text>
               </TouchableOpacity>
               <Text style={{ fontSize: 12, color: G, letterSpacing: 2, marginTop: 4, fontWeight: 'bold' }}>
                 {staff?.role?.toUpperCase()}
@@ -3631,7 +3631,7 @@ export default function MainStore({ staff, onLogout }) {
               style={[s.saveProfileBtn, savingProfile && { opacity: 0.5 }]}
               onPress={saveProfile} disabled={savingProfile}>
               <Text style={s.saveProfileBtnText}>
-                {savingProfile ? '⏳ Saving...' : '✅ Save Changes'}
+                {savingProfile ? '⏳ Saving...' : 'Save Changes'}
               </Text>
             </TouchableOpacity>
           </ScrollView>
@@ -3648,10 +3648,10 @@ export default function MainStore({ staff, onLogout }) {
               onPress={() => { setShowPriceManager(false); setEditingPriceId(null); }}>
               <Text style={s.modalBackText}>← Back</Text>
             </TouchableOpacity>
-            <Text style={s.modalTitle}>💰 Price Manager</Text>
+            <Text style={s.modalTitle}>Price Manager</Text>
           </View>
           <View style={s.stockSearchBox}>
-            <Text style={{ fontSize: 16 }}>🔍</Text>
+            <Text style={{ fontSize: 16 }}></Text>
             <TextInput style={s.stockSearchInput} placeholder="Search products..."
               placeholderTextColor="rgba(255,255,255,0.25)"
               value={priceSearch} onChangeText={setPriceSearch} />
@@ -3673,7 +3673,7 @@ export default function MainStore({ staff, onLogout }) {
                       if (editingPriceId===item.id) setEditingPriceId(null);
                       else { setEditingPriceId(item.id); setNewMrp(item.mrp?.toString()||''); setNewSellingPrice(item.selling_price?.toString()||''); }
                     }}>
-                    <Text style={s.editPriceBtnText}>{editingPriceId===item.id ? '✕ Cancel' : '✏️ Edit'}</Text>
+                    <Text style={s.editPriceBtnText}>{editingPriceId===item.id ? 'Cancel' : '️ Edit'}</Text>
                   </TouchableOpacity>
                 </View>
                 {editingPriceId !== item.id ? (
@@ -3705,7 +3705,7 @@ export default function MainStore({ staff, onLogout }) {
                       </View>
                     </View>
                     <TouchableOpacity style={s.savePriceBtn} onPress={() => savePrice(item.id)}>
-                      <Text style={s.savePriceBtnText}>✅ Save Price</Text>
+                      <Text style={s.savePriceBtnText}>Save Price</Text>
                     </TouchableOpacity>
                   </View>
                 )}
@@ -3725,7 +3725,7 @@ export default function MainStore({ staff, onLogout }) {
               onPress={() => { setPinStep(null); setPinInput(''); setNewPin(''); setPinError(''); }}>
               <Text style={s.modalBackText}>← Cancel</Text>
             </TouchableOpacity>
-            <Text style={s.modalTitle}>🔐 Change PIN</Text>
+            <Text style={s.modalTitle}>Change PIN</Text>
           </View>
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24 }}>
             <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#fff', marginBottom: 4 }}>
@@ -3781,13 +3781,13 @@ export default function MainStore({ staff, onLogout }) {
             <TouchableOpacity style={s.modalBack} onPress={() => setShowOfferForm(false)}>
               <Text style={s.modalBackText}>← Cancel</Text>
             </TouchableOpacity>
-            <Text style={s.modalTitle}>🎁 Create Offer</Text>
+            <Text style={s.modalTitle}>Create Offer</Text>
           </View>
           <ScrollView contentContainerStyle={{ padding: 16 }}>
             <Text style={s.editLabel}>Emoji</Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}
               contentContainerStyle={{ gap: 8, paddingBottom: 14 }}>
-              {['🎉','🎁','🔥','⭐','💥','🏷️','🎊','✨'].map(e => (
+              {['','','','⭐','','️','',''].map(e => (
                 <TouchableOpacity key={e}
                   style={[{
                     backgroundColor: '#0D1A0D', borderRadius: 12, padding: 12,
@@ -3814,7 +3814,7 @@ export default function MainStore({ staff, onLogout }) {
             <TouchableOpacity
               style={[s.saveProfileBtn, !offerTitle.trim() && { opacity: 0.4 }]}
               onPress={createOffer} disabled={!offerTitle.trim()}>
-              <Text style={s.saveProfileBtnText}>✅ Create Offer</Text>
+              <Text style={s.saveProfileBtnText}>Create Offer</Text>
             </TouchableOpacity>
           </ScrollView>
         </SafeAreaView>

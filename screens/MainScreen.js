@@ -19,18 +19,18 @@ const STATUS_COLORS = {
   ready: '#22C55E', collected: 'rgba(255,255,255,0.3)'
 };
 const STATUS_LABELS = {
-  new: '🆕 New', packing: '📦 Packing',
-  ready: '✅ Ready', collected: '🏁 Done'
+  new: '🆕 New', packing: 'Packing',
+  ready: 'Ready', collected: 'Done'
 };
 
 // ── BOTTOM NAV ──
 function BottomNav({ active, onChange, newCount, isOwner }) {
   const tabs = [
-    { id: 'orders', icon: '📋', label: 'Orders', badge: newCount },
-    { id: 'scanner', icon: '📷', label: 'Scan QR' },
-    { id: 'stock', icon: '📦', label: 'Stock' },
-    { id: 'reports', icon: '📊', label: 'Reports' },
-    { id: 'profile', icon: '👤', label: 'Me' },
+    { id: 'orders', icon: '', label: 'Orders', badge: newCount },
+    { id: 'scanner', icon: '', label: 'Scan QR' },
+    { id: 'stock', icon: '', label: 'Stock' },
+    { id: 'reports', icon: '', label: 'Reports' },
+    { id: 'profile', icon: '', label: 'Me' },
   ];
   return (
     <View style={nb.bar}>
@@ -145,7 +145,7 @@ export default function MainStore({ staff, onLogout }) {
   const [offerTitle, setOfferTitle] = useState('');
   const [offerDesc, setOfferDesc] = useState('');
   const [offerDiscount, setOfferDiscount] = useState('');
-  const [offerEmoji, setOfferEmoji] = useState('🎉');
+  const [offerEmoji, setOfferEmoji] = useState('');
   const [showOfferForm, setShowOfferForm] = useState(false);
 
   // Profile / PIN Change
@@ -286,7 +286,7 @@ export default function MainStore({ staff, onLogout }) {
       [
         { text: 'Cancel', style: 'cancel' },
         {
-          text: '✅ Mark Collected',
+          text: 'Mark Collected',
           onPress: () => updateStatus(order.id, 'collected')
         }
       ]
@@ -359,7 +359,7 @@ export default function MainStore({ staff, onLogout }) {
         Haptics.NotificationFeedbackType.Success
       );
       Alert.alert(
-        approve ? '✅ Approved!' : '❌ Rejected',
+        approve ? 'Approved!' : 'Rejected',
         approve
           ? 'Mechanic can now get 5% discount!'
           : 'Mechanic registration rejected.'
@@ -395,7 +395,7 @@ export default function MainStore({ staff, onLogout }) {
       });
       await fetchOffers();
       setOfferTitle(''); setOfferDesc('');
-      setOfferDiscount(''); setOfferEmoji('🎉');
+      setOfferDiscount(''); setOfferEmoji('');
       setShowOfferForm(false);
       await Haptics.notificationAsync(
         Haptics.NotificationFeedbackType.Success
@@ -562,15 +562,15 @@ export default function MainStore({ staff, onLogout }) {
       <View style={s.header}>
         <View style={{ flex: 1 }}>
           <Text style={s.headerRole}>
-            {staff?.role === 'owner' ? '👑 OWNER'
+            {staff?.role === 'owner' ? 'OWNER'
              : staff?.role === 'senior' ? '⭐ SENIOR STAFF'
-             : '👷 STAFF'}
+             : 'STAFF'}
           </Text>
           <Text style={s.headerName}>{staff?.name}</Text>
         </View>
         {offline && (
           <View style={s.offlineBadge}>
-            <Text style={s.offlineBadgeText}>📴 Offline</Text>
+            <Text style={s.offlineBadgeText}>Offline</Text>
           </View>
         )}
         {newCount > 0 && (
@@ -584,7 +584,7 @@ export default function MainStore({ staff, onLogout }) {
           style={s.refreshBtn}
           onPress={onRefresh}
         >
-          <Text>🔄</Text>
+          <Text></Text>
         </TouchableOpacity>
       </View>
 
@@ -602,17 +602,17 @@ export default function MainStore({ staff, onLogout }) {
                 color="#4F6EF7"
               />
               <StatCard
-                icon="📦" label="Packing"
+                icon="" label="Packing"
                 value={orders.filter(o => o.status === 'packing').length}
                 color="#F59E0B"
               />
               <StatCard
-                icon="✅" label="Ready"
+                icon="" label="Ready"
                 value={orders.filter(o => o.status === 'ready').length}
                 color="#22C55E"
               />
               <StatCard
-                icon="🏁" label="Done"
+                icon="" label="Done"
                 value={orders.filter(o => o.status === 'collected').length}
                 color="rgba(255,255,255,0.4)"
               />
@@ -729,8 +729,8 @@ export default function MainStore({ staff, onLogout }) {
                       </View>
                       {item.payment_type && (
                         <Text style={s.payBadge}>
-                          {item.payment_type === 'cash' ? '💵'
-                           : item.payment_type === 'upi' ? '📱'
+                          {item.payment_type === 'cash' ? ''
+                           : item.payment_type === 'upi' ? ''
                            : '⏳'}
                         </Text>
                       )}
@@ -747,7 +747,7 @@ export default function MainStore({ staff, onLogout }) {
         {tab === 'scanner' && (
           <View style={s.centerBox}>
             <View style={[s.scannerIllustration]}>
-              <Text style={{ fontSize: 80 }}>📷</Text>
+              <Text style={{ fontSize: 80 }}></Text>
             </View>
             <Text style={s.scannerTitle}>
               QR Order Pickup
@@ -845,12 +845,12 @@ export default function MainStore({ staff, onLogout }) {
             {/* STATS */}
             <View style={s.statsRow}>
               <StatCard
-                icon="📦" label="Orders"
+                icon="" label="Orders"
                 value={summary?.total_orders || 0}
                 color="#4F6EF7"
               />
               <StatCard
-                icon="💵" label="Cash"
+                icon="" label="Cash"
                 value={`₹${(summary?.payment_breakdown?.cash || 0).toFixed(0)}`}
                 color={G}
               />
@@ -863,12 +863,12 @@ export default function MainStore({ staff, onLogout }) {
 
             {/* ORDER STATUS */}
             <View style={s.reportCard}>
-              <Text style={s.reportCardTitle}>📋 Order Status</Text>
+              <Text style={s.reportCardTitle}>Order Status</Text>
               {[
                 { label: '🆕 New', key: 'new', color: '#4F6EF7' },
-                { label: '📦 Packing', key: 'packing', color: '#F59E0B' },
-                { label: '✅ Ready', key: 'ready', color: G },
-                { label: '🏁 Collected', key: 'collected',
+                { label: 'Packing', key: 'packing', color: '#F59E0B' },
+                { label: 'Ready', key: 'ready', color: G },
+                { label: 'Collected', key: 'collected',
                   color: 'rgba(255,255,255,0.4)' },
               ].map((s2, i) => (
                 <View key={i} style={s.reportRow}>
@@ -887,12 +887,12 @@ export default function MainStore({ staff, onLogout }) {
             {/* BESTSELLERS */}
             {bestsellers.length > 0 && (
               <View style={s.reportCard}>
-                <Text style={s.reportCardTitle}>🏆 Top Selling</Text>
+                <Text style={s.reportCardTitle}>Top Selling</Text>
                 {bestsellers.slice(0, 5).map((b, i) => (
                   <View key={i} style={s.bestRow}>
                     <Text style={s.bestRank}>
-                      {i === 0 ? '🥇' : i === 1 ? '🥈'
-                       : i === 2 ? '🥉' : `#${i+1}`}
+                      {i === 0 ? '' : i === 1 ? ''
+                       : i === 2 ? '' : `#${i+1}`}
                     </Text>
                     <View style={{ flex: 1 }}>
                       <Text style={s.bestName} numberOfLines={1}>
@@ -1000,7 +1000,7 @@ export default function MainStore({ staff, onLogout }) {
                           onPress={() => deleteOffer(o.id)}
                           style={{ padding: 4 }}
                         >
-                          <Text>🗑️</Text>
+                          <Text>️</Text>
                         </TouchableOpacity>
                       </View>
                     ))
@@ -1020,8 +1020,8 @@ export default function MainStore({ staff, onLogout }) {
             <View style={s.profileCard}>
               <View style={s.avatarRing}>
                 <Text style={{ fontSize: 44 }}>
-                  {staff?.role === 'owner' ? '👑'
-                   : staff?.role === 'senior' ? '⭐' : '👷'}
+                  {staff?.role === 'owner' ? ''
+                   : staff?.role === 'senior' ? '⭐' : ''}
                 </Text>
               </View>
               <Text style={s.profileName}>{staff?.name}</Text>
@@ -1070,7 +1070,7 @@ export default function MainStore({ staff, onLogout }) {
                 setPinError('');
               }}
             >
-              <Text style={s.pinCardIcon}>🔐</Text>
+              <Text style={s.pinCardIcon}></Text>
               <View style={{ flex: 1 }}>
                 <Text style={s.pinCardTitle}>Change My PIN</Text>
                 <Text style={s.pinCardSub}>
@@ -1139,7 +1139,7 @@ export default function MainStore({ staff, onLogout }) {
             <ScrollView contentContainerStyle={{ padding: 16 }}>
               {/* CUSTOMER */}
               <View style={s.detailCard}>
-                <Text style={s.detailCardTitle}>👤 Customer</Text>
+                <Text style={s.detailCardTitle}>Customer</Text>
                 <View style={s.detailRow}>
                   <Text style={s.detailLabel}>Name</Text>
                   <Text style={s.detailValue}>
@@ -1176,7 +1176,7 @@ export default function MainStore({ staff, onLogout }) {
 
               {/* ITEMS */}
               <View style={s.detailCard}>
-                <Text style={s.detailCardTitle}>📦 Items</Text>
+                <Text style={s.detailCardTitle}>Items</Text>
                 {orderItems.length === 0 ? (
                   <Text style={s.loadingText}>Loading...</Text>
                 ) : (
@@ -1209,9 +1209,9 @@ export default function MainStore({ staff, onLogout }) {
                 <View style={s.statusGrid}>
                   {[
                     { k: 'new', l: '🆕 New', c: '#4F6EF7' },
-                    { k: 'packing', l: '📦 Packing', c: '#F59E0B' },
-                    { k: 'ready', l: '✅ Ready!', c: G },
-                    { k: 'collected', l: '🏁 Collected',
+                    { k: 'packing', l: 'Packing', c: '#F59E0B' },
+                    { k: 'ready', l: 'Ready!', c: G },
+                    { k: 'collected', l: 'Collected',
                       c: 'rgba(255,255,255,0.4)' },
                   ].map(st => (
                     <TouchableOpacity
@@ -1247,8 +1247,8 @@ export default function MainStore({ staff, onLogout }) {
                 </Text>
                 <View style={s.paymentRow}>
                   {[
-                    { k: 'cash', l: '💵 Cash' },
-                    { k: 'upi', l: '📱 UPI' },
+                    { k: 'cash', l: 'Cash' },
+                    { k: 'upi', l: 'UPI' },
                     { k: 'pending', l: '⏳ Pending' },
                   ].map(p => (
                     <TouchableOpacity
@@ -1281,7 +1281,7 @@ export default function MainStore({ staff, onLogout }) {
                       `Order ${selectedOrder.custom_id ||
                         `RAS-${selectedOrder.id}`} ` +
                       `is ${selectedOrder.status === 'ready'
-                        ? '✅ READY for pickup!'
+                        ? 'READY for pickup!'
                         : 'being processed.'}\n` +
                       `📍 New Rahul Auto Spares, Nandyal`;
                     Linking.openURL(
@@ -1325,7 +1325,7 @@ export default function MainStore({ staff, onLogout }) {
             >
               <Text style={s.modalBackText}>← Cancel</Text>
             </TouchableOpacity>
-            <Text style={s.modalTitle}>🔐 Change PIN</Text>
+            <Text style={s.modalTitle}>Change PIN</Text>
           </View>
 
           {/* STEP INDICATOR */}
@@ -1339,7 +1339,7 @@ export default function MainStore({ staff, onLogout }) {
                     i <= stepIdx && s.stepCircleActive]}>
                     <Text style={[s.stepNum,
                       i <= stepIdx && { color: '#fff' }]}>
-                      {i < stepIdx ? '✓' : i + 1}
+                      {i < stepIdx ? '' : i + 1}
                     </Text>
                   </View>
                   <Text style={[s.stepLabel,
@@ -1425,13 +1425,13 @@ export default function MainStore({ staff, onLogout }) {
             >
               <Text style={s.modalBackText}>← Cancel</Text>
             </TouchableOpacity>
-            <Text style={s.modalTitle}>🎁 Create Offer</Text>
+            <Text style={s.modalTitle}>Create Offer</Text>
           </View>
           <ScrollView contentContainerStyle={{ padding: 16 }}>
             <Text style={s.formLabel}>Emoji</Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}
               contentContainerStyle={s.emojiRow}>
-              {['🎉','🎁','🔥','⭐','💥','🏷️','🎊','✨'].map(e => (
+              {['','','','⭐','','️','',''].map(e => (
                 <TouchableOpacity
                   key={e}
                   style={[s.emojiBtn,
@@ -1477,7 +1477,7 @@ export default function MainStore({ staff, onLogout }) {
               onPress={createOffer}
               disabled={!offerTitle.trim()}
             >
-              <Text style={s.createBtnText}>✅ Create Offer</Text>
+              <Text style={s.createBtnText}>Create Offer</Text>
             </TouchableOpacity>
           </ScrollView>
         </SafeAreaView>

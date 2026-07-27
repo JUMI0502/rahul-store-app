@@ -28,7 +28,7 @@ function AnimatedNumber({ value, color = '#fff', size = 24 }) {
 }
 
 function CustomerCard({ customer, rank, type }) {
-  const medals = ['🥇', '🥈', '🥉'];
+  const medals = ['', '', ''];
   const anim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -87,7 +87,7 @@ function CustomerCard({ customer, rank, type }) {
           `https://wa.me/91${customer.phone}`
         )}
       >
-        <Text>💬</Text>
+        <Text></Text>
       </TouchableOpacity>
     </Animated.View>
   );
@@ -129,7 +129,7 @@ export default function CustomerAnalyticsScreen({ onBack }) {
         <TouchableOpacity style={styles.backBtn} onPress={onBack}>
           <Text style={styles.backBtnText}>← Back</Text>
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>📊 Customer Analytics</Text>
+        <Text style={styles.headerTitle}>Customer Analytics</Text>
         <View style={{ width: 70 }} />
       </View>
 
@@ -146,20 +146,20 @@ export default function CustomerAnalyticsScreen({ onBack }) {
             />
           }
         >
-          <Text style={styles.sectionTitle}>📅 This Month</Text>
+          <Text style={styles.sectionTitle}>This Month</Text>
           <View style={styles.statsGrid}>
             <View style={[styles.statCard, { borderColor: 'rgba(255,193,7,0.3)' }]}>
-              <Text style={styles.statIcon}>💰</Text>
+              <Text style={styles.statIcon}></Text>
               <AnimatedNumber value={monthly.total_revenue||0} color="#FFC107" size={20} />
               <Text style={styles.statLabel}>Revenue</Text>
             </View>
             <View style={[styles.statCard, { borderColor: 'rgba(34,197,94,0.3)' }]}>
-              <Text style={styles.statIcon}>📦</Text>
+              <Text style={styles.statIcon}></Text>
               <AnimatedNumber value={monthly.total_orders||0} color={G} size={20} />
               <Text style={styles.statLabel}>Orders</Text>
             </View>
             <View style={[styles.statCard, { borderColor: 'rgba(79,110,247,0.3)' }]}>
-              <Text style={styles.statIcon}>👥</Text>
+              <Text style={styles.statIcon}></Text>
               <AnimatedNumber value={monthly.unique_customers||0} color="#4F6EF7" size={20} />
               <Text style={styles.statLabel}>Customers</Text>
             </View>
@@ -182,7 +182,7 @@ export default function CustomerAnalyticsScreen({ onBack }) {
           </View>
 
           <View style={styles.listHeader}>
-            <Text style={styles.sectionTitle}>🏆 Top Customers</Text>
+            <Text style={styles.sectionTitle}>Top Customers</Text>
             <View style={styles.listToggle}>
               <TouchableOpacity
                 style={[styles.toggleBtn,
@@ -209,7 +209,7 @@ export default function CustomerAnalyticsScreen({ onBack }) {
 
           {topList.length === 0 ? (
             <View style={styles.emptyBox}>
-              <Text style={{ fontSize: 40, marginBottom: 10 }}>👥</Text>
+              <Text style={{ fontSize: 40, marginBottom: 10 }}></Text>
               <Text style={styles.emptyText}>No customer data yet!</Text>
             </View>
           ) : (

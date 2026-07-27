@@ -71,7 +71,7 @@ function ClockCard({ member, record, isMe, canClock, onClock }) {
       <View style={cc.left}>
         <View style={[cc.avatar, isClockedIn && { backgroundColor: 'rgba(34,197,94,0.15)' }]}>
           <Text style={cc.avatarText}>
-            {member.role === 'owner' ? '👑' : member.role === 'senior' ? '⭐' : '👷'}
+            {member.role === 'owner' ? '' : member.role === 'senior' ? '⭐' : ''}
           </Text>
         </View>
         <View>
@@ -288,7 +288,7 @@ export default function AttendanceScreen({ onBack, staff }) {
           <Text style={s.backBtnText}>← Back</Text>
         </TouchableOpacity>
         <View style={{ flex: 1 }}>
-          <Text style={s.headerTitle}>📱 Staff Attendance</Text>
+          <Text style={s.headerTitle}>Staff Attendance</Text>
           <Text style={s.headerSub}>
             {currentTime.toLocaleTimeString('en', {
               hour: '2-digit', minute: '2-digit', second: '2-digit'
@@ -324,7 +324,7 @@ export default function AttendanceScreen({ onBack, staff }) {
         {[
           { id: 'today',   label: 'Today' },
           { id: 'monthly', label: 'Monthly' },
-          { id: 'salary',  label: '💰 Salary' },
+          { id: 'salary',  label: 'Salary' },
         ].map(t => (
           <TouchableOpacity key={t.id}
             style={[s.tabBtn, tab === t.id && s.tabBtnActive]}
@@ -393,7 +393,7 @@ export default function AttendanceScreen({ onBack, staff }) {
                   <View style={s.monthlyTop}>
                     <View style={s.monthlyAvatar}>
                       <Text style={{ fontSize: 20 }}>
-                        {member.role === 'owner' ? '👑' : member.role === 'senior' ? '⭐' : '👷'}
+                        {member.role === 'owner' ? '' : member.role === 'senior' ? '⭐' : ''}
                       </Text>
                     </View>
                     <View style={{ flex: 1 }}>
@@ -522,14 +522,14 @@ export default function AttendanceScreen({ onBack, staff }) {
                           `Pay ₹${earned.toFixed(0)} to ${member.name}?`,
                           [
                             { text: 'Cancel', style: 'cancel' },
-                            { text: '✅ Mark Paid', onPress: async () => {
+                            { text: 'Mark Paid', onPress: async () => {
                               await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
                               Alert.alert('Salary Marked as Paid!');
                             }}
                           ]
                         );
                       }}>
-                      <Text style={s.payBtnText}>💰 Pay ₹{earned.toFixed(0)}</Text>
+                      <Text style={s.payBtnText}>Pay ₹{earned.toFixed(0)}</Text>
                     </TouchableOpacity>
                   )}
 
