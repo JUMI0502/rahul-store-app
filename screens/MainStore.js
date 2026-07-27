@@ -11,6 +11,7 @@ import { Ionicons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import QRScannerScreen from './QRScannerScreen';
 import BroadcastScreen from './BroadcastScreen';
+import ServiceRemindersScreen from './ServiceRemindersScreen';
 import CustomerAnalyticsScreen from './CustomerAnalyticsScreen';
 import AddProductScreen from './AddProductScreen';
 import CustomerManagementScreen from './CustomerManagementScreen';
@@ -402,6 +403,7 @@ export default function MainStore({ staff, onLogout }) {
   // NEW SCREENS
   const [showScanner, setShowScanner] = useState(false);
   const [showBroadcast, setShowBroadcast] = useState(false);
+  const [showServiceReminders, setShowServiceReminders] = useState(false);
   const [showAnalytics, setShowAnalytics] = useState(false);
   const [showCustomers, setShowCustomers] = useState(false);
   const [showPurchaseOrders, setShowPurchaseOrders] = useState(false);
@@ -1382,6 +1384,9 @@ export default function MainStore({ staff, onLogout }) {
   // ── SPECIAL SCREENS ──
   if (showScanner) return (
     <QRScannerScreen onScanned={handleQRScanned} onClose={() => setShowScanner(false)} />
+  );
+  if (showServiceReminders) return (
+    <ServiceRemindersScreen onBack={() => setShowServiceReminders(false)} />
   );
   if (showBroadcast) return (
     <BroadcastScreen onBack={() => setShowBroadcast(false)} staff={staff} />
@@ -2917,6 +2922,21 @@ export default function MainStore({ staff, onLogout }) {
                   <View>
                     <Text style={s.customerHistoryBtnTitle}>Staff Manager</Text>
                     <Text style={s.customerHistoryBtnSub}>Add, view and manage staff profiles</Text>
+                  </View>
+                </View>
+                <Ionicons name="chevron-forward" size={18} color="rgba(255,255,255,0.3)" />
+              </TouchableOpacity>
+            )}
+
+            {/* SERVICE REMINDERS */}
+            {(isOwner || isSenior) && (
+              <TouchableOpacity style={s.customerHistoryBtn}
+                onPress={() => setShowServiceReminders(true)}>
+                <View style={s.customerHistoryBtnLeft}>
+                  <Ionicons name="time" size={22} color="#25D366" />
+                  <View>
+                    <Text style={s.customerHistoryBtnTitle}>Service Reminders</Text>
+                    <Text style={s.customerHistoryBtnSub}>Nudge customers who haven't visited recently</Text>
                   </View>
                 </View>
                 <Ionicons name="chevron-forward" size={18} color="rgba(255,255,255,0.3)" />
