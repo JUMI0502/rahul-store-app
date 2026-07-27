@@ -816,7 +816,7 @@ export default function MainStore({ staff, onLogout }) {
         setNewStaffPin(''); setNewStaffRole('staff');
         fetchAllStaff();
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-        Alert.alert('✅ Staff Added!', `${newStaffName} has been added.\nThey can login with PIN: ${newStaffPin}`);
+        Alert.alert('Staff Added!', `${newStaffName} has been added.\nThey can login with PIN: ${newStaffPin}`);
       }
     } catch { Alert.alert('Error', 'Could not add staff'); }
   };
@@ -1114,7 +1114,7 @@ export default function MainStore({ staff, onLogout }) {
       if (!r.ok) throw new Error('failed');
       fetchStoreRewards();
     } catch {
-      Alert.alert('❌ Error', 'Could not delete reward');
+      Alert.alert('Error', 'Could not delete reward');
     }
   };
 
@@ -1246,16 +1246,16 @@ export default function MainStore({ staff, onLogout }) {
       if (selectedOrder?.id === orderId)
         setSelectedOrder(prev => ({ ...prev, payment_type: type }));
     } catch {
-      Alert.alert('❌ Error', 'Could not save payment. Please try again.');
+      Alert.alert('Error', 'Could not save payment. Please try again.');
     }
   };
 
   const handleQRScanned = async (orderId) => {
     setShowScanner(false);
     const order = orders.find(o => (o.custom_id || `RAS-${o.id}`) === orderId);
-    if (!order) { Alert.alert('❌ Not Found', `Order ${orderId} not found`); return; }
-    if (order.status === 'collected') { Alert.alert('✅ Already Done', `${orderId} already collected!`); return; }
-    Alert.alert('📱 QR Scanned!',
+    if (!order) { Alert.alert('Not Found', `Order ${orderId} not found`); return; }
+    if (order.status === 'collected') { Alert.alert('Already Done', `${orderId} already collected!`); return; }
+    Alert.alert('QR Scanned!',
       `Order: ${orderId}\nCustomer: ${order.customer_name}\nTotal: ₹${order.total_amount}\n\nMark as Collected?`,
       [
         { text: 'Cancel', style: 'cancel' },
@@ -1284,7 +1284,7 @@ export default function MainStore({ staff, onLogout }) {
         p.id === productId ? { ...p, stock_qty: newQty } : p
       ));
       await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    } catch { Alert.alert('❌ Error', 'Could not update stock'); }
+    } catch { Alert.alert('Error', 'Could not update stock'); }
   };
 
   // ── REPORTS ──
@@ -1309,7 +1309,7 @@ export default function MainStore({ staff, onLogout }) {
   };
 
   const createOffer = async () => {
-    if (!offerTitle.trim()) { Alert.alert('❌', 'Enter offer title'); return; }
+    if (!offerTitle.trim()) { Alert.alert('', 'Enter offer title'); return; }
     try {
       await fetch(`${API_URL}/offers`, {
         method: 'POST',
@@ -1322,8 +1322,8 @@ export default function MainStore({ staff, onLogout }) {
       await fetchOffers();
       setOfferTitle(''); setOfferDesc(''); setOfferDiscount('');
       setOfferEmoji('🎉'); setShowOfferForm(false);
-      Alert.alert('✅ Offer Created!', 'Customers can see it now!');
-    } catch { Alert.alert('❌ Error', 'Could not create offer'); }
+      Alert.alert('Offer Created!', 'Customers can see it now!');
+    } catch { Alert.alert('Error', 'Could not create offer'); }
   };
 
   const toggleOffer = async (id) => {
@@ -1332,7 +1332,7 @@ export default function MainStore({ staff, onLogout }) {
       if (!r.ok) throw new Error('failed');
       await fetchOffers();
     } catch {
-      Alert.alert('❌ Error', 'Could not update offer');
+      Alert.alert('Error', 'Could not update offer');
     }
   };
 
@@ -1345,7 +1345,7 @@ export default function MainStore({ staff, onLogout }) {
           if (!r.ok) throw new Error('failed');
           await fetchOffers();
         } catch {
-          Alert.alert('❌ Error', 'Could not delete offer');
+          Alert.alert('Error', 'Could not delete offer');
         }
       }}
     ]);
@@ -1374,7 +1374,7 @@ export default function MainStore({ staff, onLogout }) {
             setIsClockedIn(false); setClockTime(null);
             await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
           } catch {
-            Alert.alert('❌ Error', 'Could not clock out. Please try again.');
+            Alert.alert('Error', 'Could not clock out. Please try again.');
           }
         }}
       ]);
@@ -1385,7 +1385,7 @@ export default function MainStore({ staff, onLogout }) {
         setIsClockedIn(true); setClockTime(new Date().toISOString());
         await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       } catch {
-        Alert.alert('❌ Error', 'Could not clock in. Please try again.');
+        Alert.alert('Error', 'Could not clock in. Please try again.');
       }
     }
   };
@@ -1400,7 +1400,7 @@ export default function MainStore({ staff, onLogout }) {
   };
 
   const saveProfile = async () => {
-    if (!editName.trim()) { Alert.alert('❌', 'Name cannot be empty!'); return; }
+    if (!editName.trim()) { Alert.alert('', 'Name cannot be empty!'); return; }
     setSavingProfile(true);
     try {
       await fetch(`${API_URL}/staff/${staff?.id}/profile`, {
@@ -1414,16 +1414,16 @@ export default function MainStore({ staff, onLogout }) {
         JSON.stringify({ ...staff, name: editName.trim(), phone: editPhone.trim() }));
       await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       setShowEditProfile(false);
-      Alert.alert('✅ Profile Updated!');
-    } catch { Alert.alert('❌ Error', 'Could not save.'); }
+      Alert.alert('Profile Updated!');
+    } catch { Alert.alert('Error', 'Could not save.'); }
     setSavingProfile(false);
   };
 
   const savePrice = async (productId) => {
     const mrp = parseFloat(newMrp);
     const selling = parseFloat(newSellingPrice);
-    if (isNaN(mrp) || isNaN(selling)) { Alert.alert('❌', 'Enter valid prices'); return; }
-    if (selling > mrp) { Alert.alert('❌', 'Selling price cannot exceed MRP!'); return; }
+    if (isNaN(mrp) || isNaN(selling)) { Alert.alert('', 'Enter valid prices'); return; }
+    if (selling > mrp) { Alert.alert('', 'Selling price cannot exceed MRP!'); return; }
     try {
       await fetch(`${API_URL}/products/${productId}/price`, {
         method: 'PUT',
@@ -1435,8 +1435,8 @@ export default function MainStore({ staff, onLogout }) {
       ));
       setEditingPriceId(null);
       await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-      Alert.alert('✅ Price Updated!');
-    } catch { Alert.alert('❌ Error', 'Could not update price'); }
+      Alert.alert('Price Updated!');
+    } catch { Alert.alert('Error', 'Could not update price'); }
   };
 
   const handleGenerateInvoice = async (order, gst = false) => {
@@ -1448,7 +1448,7 @@ export default function MainStore({ staff, onLogout }) {
         includeGST: gst,
       });
       await shareInvoice(uri, order.custom_id || `RAS-${order.id}`);
-    } catch { Alert.alert('❌ Error', 'Could not generate invoice'); }
+    } catch { Alert.alert('Error', 'Could not generate invoice'); }
     setGeneratingInvoice(false);
   };
 
@@ -1465,7 +1465,7 @@ export default function MainStore({ staff, onLogout }) {
         `💵 Cash: ₹${d.cash?.toFixed(0)}\n📱 UPI: ₹${d.upi?.toFixed(0)}\n\n` +
         `🏆 *Top Selling:*\n${topParts}\n\n🏪 New Rahul Auto Spares · Nandyal`;
       Linking.openURL(`https://wa.me/916300281504?text=${encodeURIComponent(msg)}`);
-    } catch { Alert.alert('❌ Error', 'Could not fetch daily summary'); }
+    } catch { Alert.alert('Error', 'Could not fetch daily summary'); }
   };
 
   const handlePinKey = async (digit) => {
@@ -1494,8 +1494,8 @@ export default function MainStore({ staff, onLogout }) {
             body: JSON.stringify({ pin: newPin })
           });
           staff.pin = newPin;
-          Alert.alert('✅ PIN Changed!', `New PIN: ${newPin}`);
-        } catch { Alert.alert('⚠️ Saved Locally', `New PIN: ${newPin}`); }
+          Alert.alert('PIN Changed!', `New PIN: ${newPin}`);
+        } catch { Alert.alert('️ Saved Locally', `New PIN: ${newPin}`); }
         setPinStep(null); setPinInput(''); setNewPin(''); setPinError('');
       } else {
         await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
@@ -2851,7 +2851,7 @@ export default function MainStore({ staff, onLogout }) {
                   </View>
                   <TouchableOpacity style={s.stockBtn}
                     onPress={() => Alert.alert(
-                      '📦 Update Stock', `${item.name_en}\nCurrent: ${item.stock_qty} units`,
+                      'Update Stock', `${item.name_en}\nCurrent: ${item.stock_qty} units`,
                       [
                         { text: '+1', onPress: () => updateStock(item.id, item.stock_qty + 1) },
                         { text: '+5', onPress: () => updateStock(item.id, item.stock_qty + 5) },
