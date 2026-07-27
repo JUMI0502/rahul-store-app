@@ -50,3 +50,8 @@ eslint-check.config.mjs
 fix_*.py
 eslint-check.config.mjs
 mobile-app/
+*.broadbackup
+*.bulkbackup
+*.batch_backup
+*.finalbackup
+*.final_backup
