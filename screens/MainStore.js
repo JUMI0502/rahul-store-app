@@ -128,6 +128,15 @@ function StatCard({ icon, label, value, color }) {
   );
 }
 const sc = StyleSheet.create({
+  oemToggleBtn: {
+    flex: 1, paddingVertical: 12, borderRadius: 10,
+    alignItems: 'center', borderWidth: 1,
+    borderColor: 'rgba(34,197,94,0.2)',
+    backgroundColor: 'rgba(34,197,94,0.05)',
+  },
+  oemToggleBtnActive: { backgroundColor: G, borderColor: G },
+  oemToggleText: { fontSize: 12, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)' },
+  oemToggleTextActive: { color: '#fff' },
   card: {
     flex: 1, backgroundColor: '#0D1A0D', borderRadius: 14,
     padding: 14, alignItems: 'center', gap: 6, borderWidth: 1,
@@ -540,6 +549,7 @@ export default function MainStore({ staff, onLogout }) {
   const [stockAdjustProduct, setStockAdjustProduct] = useState(null);
   const [stockAdjustQty, setStockAdjustQty] = useState('');
   const [stockAdjustReason, setStockAdjustReason] = useState('');
+  const [stockAdjustIsOem, setStockAdjustIsOem] = useState(false);
   const [showCashRegister, setShowCashRegister] = useState(false);
   const [dashboardData, setDashboardData] = useState(null);
   const [cashItems, setCashItems] = useState([]);
@@ -1892,7 +1902,31 @@ export default function MainStore({ staff, onLogout }) {
                   placeholder="Reason (e.g. Damaged, Physical count)"
                   placeholderTextColor="rgba(255,255,255,0.2)"
                   value={stockAdjustReason} onChangeText={setStockAdjustReason} />
-                <TouchableOpacity style={s.saveVendorBtn} onPress={adjustStock}>
+
+                <Text style={{ color: 'rgba(255,255,255,0.4)', fontSize: 12, marginBottom: 8, marginTop: 4 }}>Part Type</Text>
+                <View style={{ flexDirection: 'row', gap: 10, marginBottom: 14 }}>
+                  <TouchableOpacity
+                    style={[s.oemToggleBtn, stockAdjustIsOem && s.oemToggleBtnActive]}
+                    onPress={() => setStockAdjustIsOem(true)}>
+                    <Text style={[s.oemToggleText, stockAdjustIsOem && s.oemToggleTextActive]}>Original OEM</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={[s.oemToggleBtn, !stockAdjustIsOem && s.oemToggleBtnActive]}
+                    onPress={() => setStockAdjustIsOem(false)}>
+                    <Text style={[s.oemToggleText, !stockAdjustIsOem && s.oemToggleTextActive]}>Generic / Compatible</Text>
+                  </TouchableOpacity>
+                </View>
+
+                <TouchableOpacity style={s.saveVendorBtn} onPress={async () => {
+                  await adjustStock();
+                  try {
+                    await fetch(`${API_URL}/products/${stockAdjustProduct.id}/oem`, {
+                      method: 'PUT',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({ is_oem: stockAdjustIsOem })
+                    });
+                  } catch {}
+                }}>
                   <Text style={s.saveVendorBtnText}>Update Stock</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={{ padding: 12, alignItems: 'center' }}
@@ -1905,7 +1939,7 @@ export default function MainStore({ staff, onLogout }) {
                 <Text style={s.historyTitle}>SELECT PRODUCT TO ADJUST</Text>
                 {products.map(p => (
                   <TouchableOpacity key={p.id} style={s.cashProductRow}
-                    onPress={() => { setStockAdjustProduct(p); setStockAdjustQty(p.stock_qty.toString()); }}>
+                    onPress={() => { setStockAdjustProduct(p); setStockAdjustQty(p.stock_qty.toString()); setStockAdjustIsOem(!!p.is_oem); }}>
                     <View style={{ flex: 1 }}>
                       <Text style={s.cashProductName}>{p.name_en}</Text>
                       <Text style={s.cashProductSku}>{p.sku}</Text>
