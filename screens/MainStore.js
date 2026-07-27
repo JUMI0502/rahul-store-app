@@ -558,6 +558,11 @@ export default function MainStore({ staff, onLogout }) {
   const [mechanics, setMechanics] = useState([]);
   const [mechanicsPendingCount, setMechanicsPendingCount] = useState(0);
   const [loadingMechanics, setLoadingMechanics] = useState(false);
+  const [editingMechanicId, setEditingMechanicId] = useState(null);
+  const [editMechanicName, setEditMechanicName] = useState('');
+  const [editMechanicPhone, setEditMechanicPhone] = useState('');
+  const [editMechanicShop, setEditMechanicShop] = useState('');
+  const [editMechanicArea, setEditMechanicArea] = useState('');
   const [newStaffName, setNewStaffName] = useState('');
   const [newStaffPhone, setNewStaffPhone] = useState('');
   const [newStaffRole, setNewStaffRole] = useState('staff');
@@ -720,6 +725,43 @@ export default function MainStore({ staff, onLogout }) {
       setMechanicsPendingCount(d.pending || 0);
     } catch { setMechanics([]); }
     setLoadingMechanics(false);
+  };
+
+  const updateMechanic = async (id) => {
+    try {
+      const r = await fetch(`${API_URL}/mechanics/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: editMechanicName,
+          phone: editMechanicPhone,
+          shop_name: editMechanicShop,
+          area: editMechanicArea
+        })
+      });
+      if (!r.ok) throw new Error('failed');
+      setEditingMechanicId(null);
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      fetchMechanics();
+    } catch {
+      Alert.alert('Error', 'Could not update mechanic');
+    }
+  };
+
+  const deleteMechanic = (id, name) => {
+    Alert.alert('Delete Mechanic?', `Remove ${name} permanently?`, [
+      { text: 'Cancel', style: 'cancel' },
+      { text: 'Delete', style: 'destructive', onPress: async () => {
+        try {
+          const r = await fetch(`${API_URL}/mechanics/${id}`, { method: 'DELETE' });
+          if (!r.ok) throw new Error('failed');
+          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+          fetchMechanics();
+        } catch {
+          Alert.alert('Error', 'Could not delete mechanic');
+        }
+      }}
+    ]);
   };
 
   const respondToMechanic = async (id, status) => {
@@ -2041,45 +2083,79 @@ export default function MainStore({ staff, onLogout }) {
             ) : (
               mechanics.map(m => (
                 <View key={m.id} style={s.detailCard}>
-                  <View style={s.detailRow}>
-                    <Text style={s.detailLabel}>Name</Text>
-                    <Text style={s.detailValue}>{m.name}</Text>
-                  </View>
-                  <View style={s.detailRow}>
-                    <Text style={s.detailLabel}>Phone</Text>
-                    <Text style={s.detailValue}>{m.phone}</Text>
-                  </View>
-                  {m.shop_name ? (
-                    <View style={s.detailRow}>
-                      <Text style={s.detailLabel}>Shop</Text>
-                      <Text style={s.detailValue}>{m.shop_name}</Text>
-                    </View>
-                  ) : null}
-                  {m.area ? (
-                    <View style={s.detailRow}>
-                      <Text style={s.detailLabel}>Area</Text>
-                      <Text style={s.detailValue}>{m.area}</Text>
-                    </View>
-                  ) : null}
-                  <View style={[s.detailRow, { borderBottomWidth: 0 }]}>
-                    <Text style={s.detailLabel}>Status</Text>
-                    <Text style={[s.detailValue, {
-                      color: m.status === 'approved' ? G : m.status === 'rejected' ? '#EF4444' : '#F59E0B'
-                    }]}>{m.status.toUpperCase()}</Text>
-                  </View>
-                  {m.status === 'pending' && (
-                    <View style={{ flexDirection: 'row', gap: 10, marginTop: 12 }}>
-                      <TouchableOpacity
-                        style={{ flex: 1, backgroundColor: G, borderRadius: 10, padding: 12, alignItems: 'center' }}
-                        onPress={() => respondToMechanic(m.id, 'approved')}>
-                        <Text style={{ color: '#060E06', fontWeight: '700' }}>Approve</Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity
-                        style={{ flex: 1, backgroundColor: 'rgba(239,68,68,0.15)', borderRadius: 10, padding: 12, alignItems: 'center', borderWidth: 1, borderColor: '#EF4444' }}
-                        onPress={() => respondToMechanic(m.id, 'rejected')}>
-                        <Text style={{ color: '#EF4444', fontWeight: '700' }}>Reject</Text>
-                      </TouchableOpacity>
-                    </View>
+                  {editingMechanicId === m.id ? (
+                    <>
+                      <TextInput style={s.input} value={editMechanicName} onChangeText={setEditMechanicName} placeholder="Name" placeholderTextColor="rgba(255,255,255,0.3)" />
+                      <TextInput style={s.input} value={editMechanicPhone} onChangeText={setEditMechanicPhone} placeholder="Phone" placeholderTextColor="rgba(255,255,255,0.3)" />
+                      <TextInput style={s.input} value={editMechanicShop} onChangeText={setEditMechanicShop} placeholder="Shop Name" placeholderTextColor="rgba(255,255,255,0.3)" />
+                      <TextInput style={s.input} value={editMechanicArea} onChangeText={setEditMechanicArea} placeholder="Area" placeholderTextColor="rgba(255,255,255,0.3)" />
+                      <View style={{ flexDirection: 'row', gap: 10, marginTop: 12 }}>
+                        <TouchableOpacity style={{ flex: 1, backgroundColor: G, borderRadius: 10, padding: 12, alignItems: 'center' }}
+                          onPress={() => updateMechanic(m.id)}>
+                          <Text style={{ color: '#060E06', fontWeight: '700' }}>Save</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{ flex: 1, backgroundColor: 'rgba(255,255,255,0.08)', borderRadius: 10, padding: 12, alignItems: 'center' }}
+                          onPress={() => setEditingMechanicId(null)}>
+                          <Text style={{ color: '#fff', fontWeight: '700' }}>Cancel</Text>
+                        </TouchableOpacity>
+                      </View>
+                    </>
+                  ) : (
+                    <>
+                      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <Text style={s.addRewardFormTitle}>{m.name}</Text>
+                        <View style={{ flexDirection: 'row', gap: 14 }}>
+                          <TouchableOpacity onPress={() => {
+                            setEditingMechanicId(m.id);
+                            setEditMechanicName(m.name);
+                            setEditMechanicPhone(m.phone);
+                            setEditMechanicShop(m.shop_name || '');
+                            setEditMechanicArea(m.area || '');
+                          }}>
+                            <Ionicons name="create-outline" size={20} color="#4F6EF7" />
+                          </TouchableOpacity>
+                          <TouchableOpacity onPress={() => deleteMechanic(m.id, m.name)}>
+                            <Ionicons name="trash-outline" size={20} color="#EF4444" />
+                          </TouchableOpacity>
+                        </View>
+                      </View>
+                      <View style={s.detailRow}>
+                        <Text style={s.detailLabel}>Phone</Text>
+                        <Text style={s.detailValue}>{m.phone}</Text>
+                      </View>
+                      {m.shop_name ? (
+                        <View style={s.detailRow}>
+                          <Text style={s.detailLabel}>Shop</Text>
+                          <Text style={s.detailValue}>{m.shop_name}</Text>
+                        </View>
+                      ) : null}
+                      {m.area ? (
+                        <View style={s.detailRow}>
+                          <Text style={s.detailLabel}>Area</Text>
+                          <Text style={s.detailValue}>{m.area}</Text>
+                        </View>
+                      ) : null}
+                      <View style={[s.detailRow, { borderBottomWidth: 0 }]}>
+                        <Text style={s.detailLabel}>Status</Text>
+                        <Text style={[s.detailValue, {
+                          color: m.status === 'approved' ? G : m.status === 'rejected' ? '#EF4444' : '#F59E0B'
+                        }]}>{m.status.toUpperCase()}</Text>
+                      </View>
+                      {m.status === 'pending' && (
+                        <View style={{ flexDirection: 'row', gap: 10, marginTop: 12 }}>
+                          <TouchableOpacity
+                            style={{ flex: 1, backgroundColor: G, borderRadius: 10, padding: 12, alignItems: 'center' }}
+                            onPress={() => respondToMechanic(m.id, 'approved')}>
+                            <Text style={{ color: '#060E06', fontWeight: '700' }}>Approve</Text>
+                          </TouchableOpacity>
+                          <TouchableOpacity
+                            style={{ flex: 1, backgroundColor: 'rgba(239,68,68,0.15)', borderRadius: 10, padding: 12, alignItems: 'center', borderWidth: 1, borderColor: '#EF4444' }}
+                            onPress={() => respondToMechanic(m.id, 'rejected')}>
+                            <Text style={{ color: '#EF4444', fontWeight: '700' }}>Reject</Text>
+                          </TouchableOpacity>
+                        </View>
+                      )}
+                    </>
                   )}
                 </View>
               ))
@@ -2950,21 +3026,6 @@ export default function MainStore({ staff, onLogout }) {
                     <Text style={s.customerHistoryBtnSub}>
                       {mechanicsPendingCount > 0 ? `${mechanicsPendingCount} pending request(s)` : 'Review mechanic access requests'}
                     </Text>
-                  </View>
-                </View>
-                <Ionicons name="chevron-forward" size={18} color="rgba(255,255,255,0.3)" />
-              </TouchableOpacity>
-            )}
-
-            {/* ACTIVITY LOG */}
-            {isOwner && (
-              <TouchableOpacity style={s.customerHistoryBtn}
-                onPress={() => { fetchActivityLog(); setShowActivityLog(true); }}>
-                <View style={s.customerHistoryBtnLeft}>
-                  <Ionicons name="list-circle" size={22} color="#4F6EF7" />
-                  <View>
-                    <Text style={s.customerHistoryBtnTitle}>Activity Log</Text>
-                    <Text style={s.customerHistoryBtnSub}>See all staff actions in real-time</Text>
                   </View>
                 </View>
                 <Ionicons name="chevron-forward" size={18} color="rgba(255,255,255,0.3)" />
