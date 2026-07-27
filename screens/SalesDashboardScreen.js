@@ -64,6 +64,7 @@ export default function SalesDashboardScreen({ onBack }) {
   const [refreshing, setRefreshing] = useState(false);
   const [liveTime, setLiveTime] = useState(new Date());
   const [apiStatus, setApiStatus] = useState({ summary: false, orders: false, bestsellers: false });
+  const [businessHealth, setBusinessHealth] = useState(null);
 
   useEffect(() => {
     fetchData();
@@ -94,6 +95,15 @@ export default function SalesDashboardScreen({ onBack }) {
         const d = await r.json();
         setOrders(d.orders || []);
         status.orders = true;
+      }
+    } catch {}
+
+    // Fetch business health KPIs
+    try {
+      const r = await fetch(`${API_URL}/reports/business-health`);
+      if (r.ok) {
+        const d = await r.json();
+        setBusinessHealth(d);
       }
     } catch {}
 
@@ -451,6 +461,48 @@ export default function SalesDashboardScreen({ onBack }) {
               })}
             </View>
           </View>
+
+          {/* BUSINESS HEALTH */}
+          {businessHealth && (
+            <View style={s.payCard}>
+              <Text style={s.cardTitle}>Business Health</Text>
+
+              <Text style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', marginTop: 10, marginBottom: 8 }}>
+                Staff Productivity (this month, owner view only)
+              </Text>
+              {businessHealth.staff_productivity.length === 0 ? (
+                <Text style={{ fontSize: 12, color: 'rgba(255,255,255,0.3)' }}>No completed orders yet this month</Text>
+              ) : (
+                businessHealth.staff_productivity.map((sp, i) => (
+                  <View key={i} style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 6, borderBottomWidth: 1, borderBottomColor: 'rgba(34,197,94,0.08)' }}>
+                    <Text style={{ fontSize: 13, color: '#fff' }}>{sp.name}</Text>
+                    <Text style={{ fontSize: 13, color: G, fontWeight: 'bold' }}>{sp.orders_completed} orders</Text>
+                  </View>
+                ))
+              )}
+
+              <View style={{ flexDirection: 'row', gap: 10, marginTop: 16 }}>
+                <View style={{ flex: 1, backgroundColor: 'rgba(245,158,11,0.08)', borderRadius: 10, padding: 12, borderWidth: 1, borderColor: 'rgba(245,158,11,0.2)' }}>
+                  <Text style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)' }}>Warranty Claim Rate</Text>
+                  <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#F59E0B', marginTop: 4 }}>
+                    {businessHealth.warranty.claim_rate_percent}%
+                  </Text>
+                  <Text style={{ fontSize: 10, color: 'rgba(255,255,255,0.3)', marginTop: 2 }}>
+                    {businessHealth.warranty.claims_this_month} of {businessHealth.warranty.orders_this_month} orders
+                  </Text>
+                </View>
+                <View style={{ flex: 1, backgroundColor: 'rgba(79,110,247,0.08)', borderRadius: 10, padding: 12, borderWidth: 1, borderColor: 'rgba(79,110,247,0.2)' }}>
+                  <Text style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)' }}>Customer Retention</Text>
+                  <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#4F6EF7', marginTop: 4 }}>
+                    {businessHealth.retention.retention_rate_percent}%
+                  </Text>
+                  <Text style={{ fontSize: 10, color: 'rgba(255,255,255,0.3)', marginTop: 2 }}>
+                    {businessHealth.retention.active_customers} active, {businessHealth.retention.lapsed_customers} lapsed
+                  </Text>
+                </View>
+              </View>
+            </View>
+          )}
 
           <View style={{ height: 60 }} />
         </ScrollView>
