@@ -348,7 +348,7 @@ export default function AttendanceScreen({ onBack, staff }) {
             {!isPrivileged && (
               <View style={s.privacyBanner}>
                 <Text style={s.privacyText}>
-                  🔒 You can only clock yourself in/out. Colleagues show On/Off status only.
+                  You can only clock yourself in/out. Colleagues show On/Off status only.
                 </Text>
               </View>
             )}
@@ -460,14 +460,14 @@ export default function AttendanceScreen({ onBack, staff }) {
         {tab === 'salary' && (
           <>
             <Text style={s.sectionLabel}>
-              💰 Salary — {new Date().toLocaleDateString('en-IN', { month: 'long' })}
+              Salary — {new Date().toLocaleDateString('en-IN', { month: 'long' })}
             </Text>
 
             {/* ✅ PRIVACY: Non-privileged staff only see their own salary */}
             {!isPrivileged && (
               <View style={s.privacyBanner}>
                 <Text style={s.privacyText}>
-                  🔒 Your salary information is private. Only you can see this.
+                  Your salary information is private. Only you can see this.
                 </Text>
               </View>
             )}

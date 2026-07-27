@@ -652,9 +652,7 @@ export default function MainStore({ staff, onLogout }) {
               </View>
             ) : filteredOrders.length === 0 ? (
               <View style={s.centerBox}>
-                <Text style={{ fontSize: 48, marginBottom: 12 }}>
-                  📋
-                </Text>
+
                 <Text style={s.emptyText}>
                   {statusFilter === 'all'
                     ? 'No orders yet!'

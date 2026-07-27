@@ -13,27 +13,27 @@ const TEMPLATES = [
   {
     icon: '',
     title: 'New Offer',
-    msg: 'Special Offer at New Rahul Auto Spares!\n\nGet EXTRA DISCOUNT on all engine oils this week!\n\n📍 Telugu Peta, Nandyal\n📞 08514-244944'
+    msg: 'Special Offer at New Rahul Auto Spares!\n\nGet EXTRA DISCOUNT on all engine oils this week!\n\nTelugu Peta, Nandyal\n08514-244944'
   },
   {
-    icon: '️',
+    icon: '',
     title: 'Service Reminder',
-    msg: '️ Hi! Time for your bike service?\n\nVisit New Rahul Auto Spares for genuine OEM parts at best prices!\n\n📍 Telugu Peta, Nandyal\n📞 08514-244944'
+    msg: 'Hi! Time for your bike service?\n\nVisit New Rahul Auto Spares for genuine OEM parts at best prices!\n\nTelugu Peta, Nandyal\n08514-244944'
   },
   {
     icon: '',
     title: 'Flash Sale',
-    msg: 'FLASH SALE - Today Only!\n\nAll spare parts at special prices!\nFirst come first served!\n\n🕐 10AM - 9PM\n📍 New Rahul Auto Spares, Nandyal'
+    msg: 'FLASH SALE - Today Only!\n\nAll spare parts at special prices!\nFirst come first served!\n\n10AM - 9PM\nNew Rahul Auto Spares, Nandyal'
   },
   {
     icon: '',
     title: 'Festival Offer',
-    msg: 'Festival Special Offer!\n\nThis festive season get amazing deals on all two-wheeler parts!\n\nVisit us: New Rahul Auto Spares\n📍 Telugu Peta, Nandyal\n📞 08514-244944'
+    msg: 'Festival Special Offer!\n\nThis festive season get amazing deals on all two-wheeler parts!\n\nVisit us: New Rahul Auto Spares\nTelugu Peta, Nandyal\n08514-244944'
   },
   {
     icon: '',
     title: 'New Stock',
-    msg: 'New Stock Arrived!\n\nFresh stock of genuine parts for Hero, Honda, TVS, Bajaj!\n\nVisit us today!\n📍 New Rahul Auto Spares, Nandyal'
+    msg: 'New Stock Arrived!\n\nFresh stock of genuine parts for Hero, Honda, TVS, Bajaj!\n\nVisit us today!\nNew Rahul Auto Spares, Nandyal'
   },
 ];
 

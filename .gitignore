@@ -55,3 +55,4 @@ mobile-app/
 *.batch_backup
 *.finalbackup
 *.final_backup
+*.vfinal_backup
