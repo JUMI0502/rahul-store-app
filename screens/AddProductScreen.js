@@ -146,16 +146,16 @@ export default function AddProductScreen({ onBack, onProductAdded }) {
 
   // ── SAVE PRODUCT ──
   const handleSave = async () => {
-    if (!nameEn.trim()) { Alert.alert('❌', 'Product name (English) is required'); return; }
-    if (!sku.trim())    { Alert.alert('❌', 'SKU is required'); return; }
-    if (!mrp || isNaN(parseFloat(mrp))) { Alert.alert('❌', 'Valid MRP required'); return; }
-    if (!sellingPrice || isNaN(parseFloat(sellingPrice))) { Alert.alert('❌', 'Valid selling price required'); return; }
-    if (parseFloat(sellingPrice) > parseFloat(mrp)) { Alert.alert('❌', 'Selling price cannot exceed MRP'); return; }
+    if (!nameEn.trim()) { Alert.alert('', 'Product name (English) is required'); return; }
+    if (!sku.trim())    { Alert.alert('', 'SKU is required'); return; }
+    if (!mrp || isNaN(parseFloat(mrp))) { Alert.alert('', 'Valid MRP required'); return; }
+    if (!sellingPrice || isNaN(parseFloat(sellingPrice))) { Alert.alert('', 'Valid selling price required'); return; }
+    if (parseFloat(sellingPrice) > parseFloat(mrp)) { Alert.alert('', 'Selling price cannot exceed MRP'); return; }
 
     // Validate SKU format
     if (!validateSku(sku.trim().toUpperCase())) {
       Alert.alert(
-        '⚠️ Invalid SKU Format',
+        '️ Invalid SKU Format',
         `SKU must start with a valid prefix like:\nHRO-SPL-, HND-CBS-, TVS-APR-, OIL-\n\nYour SKU: ${sku}\n\nPlease use the bike model selector above.`,
         [{ text: 'Fix SKU', style: 'cancel' }]
       );
@@ -182,7 +182,7 @@ export default function AddProductScreen({ onBack, onProductAdded }) {
       });
       const d = await r.json();
 
-      if (d.error) { Alert.alert('❌ Error', d.error); setSaving(false); return; }
+      if (d.error) { Alert.alert('Error', d.error); setSaving(false); return; }
 
       const productId = d.id || d.product_id;
 
@@ -201,12 +201,12 @@ export default function AddProductScreen({ onBack, onProductAdded }) {
 
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       Alert.alert(
-        '✅ Product Added!',
+        'Product Added!',
         `${nameEn.trim()} added!\nSKU: ${sku.trim().toUpperCase()}`,
         [{ text: 'Great! 🎉', onPress: () => onProductAdded?.() }]
       );
     } catch {
-      Alert.alert('❌ Error', 'Could not save. Check internet.');
+      Alert.alert('Error', 'Could not save. Check internet.');
     }
     setSaving(false);
   };

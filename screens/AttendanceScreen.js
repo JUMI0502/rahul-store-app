@@ -220,7 +220,7 @@ export default function AttendanceScreen({ onBack, staff }) {
   const handleClock = async (staffId, isClockedIn) => {
     // ✅ PRIVACY: Non-owner staff can only clock themselves
     if (!isPrivileged && staffId !== myId) {
-      Alert.alert('🔒 Not Allowed', 'You can only clock yourself in/out.');
+      Alert.alert('Not Allowed', 'You can only clock yourself in/out.');
       return;
     }
 
@@ -246,12 +246,12 @@ export default function AttendanceScreen({ onBack, staff }) {
       setMonthlyData(monthly);
       await AsyncStorage.setItem(`attendance_month_${monthKey}`, JSON.stringify(monthly));
 
-      Alert.alert('✅ Clocked Out!',
+      Alert.alert('Clocked Out!',
         `${memberName} — ${hours.toFixed(1)} hours worked today`
       );
     } else {
       updated[staffId] = { clockIn: now, clockOut: null };
-      Alert.alert('✅ Clocked In!', `${memberName} is now on shift`);
+      Alert.alert('Clocked In!', `${memberName} is now on shift`);
     }
 
     await saveToday(updated);
@@ -518,13 +518,13 @@ export default function AttendanceScreen({ onBack, staff }) {
                     <TouchableOpacity style={s.payBtn}
                       onPress={() => {
                         Alert.alert(
-                          '💰 Pay Salary',
+                          'Pay Salary',
                           `Pay ₹${earned.toFixed(0)} to ${member.name}?`,
                           [
                             { text: 'Cancel', style: 'cancel' },
                             { text: '✅ Mark Paid', onPress: async () => {
                               await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-                              Alert.alert('✅ Salary Marked as Paid!');
+                              Alert.alert('Salary Marked as Paid!');
                             }}
                           ]
                         );

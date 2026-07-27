@@ -67,7 +67,7 @@ export default function PurchaseOrdersScreen({ onBack }) {
       await AsyncStorage.setItem('purchase_orders', JSON.stringify(orders));
       setPurchaseOrders(orders);
     } catch {
-      Alert.alert('❌ Save Error', 'Could not save purchase orders locally.');
+      Alert.alert('Save Error', 'Could not save purchase orders locally.');
     }
   };
 
@@ -96,8 +96,8 @@ export default function PurchaseOrdersScreen({ onBack }) {
 
   const createPurchaseOrder = async () => {
     const items = Object.values(selectedItems);
-    if (items.length === 0) { Alert.alert('❌', 'Select at least one product'); return; }
-    if (!selectedSupplier)  { Alert.alert('❌', 'Select a supplier'); return; }
+    if (items.length === 0) { Alert.alert('', 'Select at least one product'); return; }
+    if (!selectedSupplier)  { Alert.alert('', 'Select a supplier'); return; }
 
     const newOrder = {
       id: Date.now().toString(),
@@ -121,7 +121,7 @@ export default function PurchaseOrdersScreen({ onBack }) {
       `📍 Telugu Peta, Nandyal\n📞 08514-244944`;
 
     Alert.alert(
-      '✅ Order Created!',
+      'Order Created!',
       'Send to supplier via WhatsApp?',
       [
         { text: '💬 Send WhatsApp', onPress: () => {

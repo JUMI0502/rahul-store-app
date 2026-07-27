@@ -242,7 +242,7 @@ export default function MainStore({ staff, onLogout }) {
         }).catch(() => {});
       }
     } catch {
-      Alert.alert('❌ Error', 'Could not update. Check internet.');
+      Alert.alert('Error', 'Could not update. Check internet.');
     }
   };
 
@@ -272,16 +272,16 @@ export default function MainStore({ staff, onLogout }) {
       (o.custom_id || `RAS-${o.id}`) === orderId
     );
     if (!order) {
-      Alert.alert('❌ Not Found', `Order ${orderId} not found`);
+      Alert.alert('Not Found', `Order ${orderId} not found`);
       return;
     }
     if (order.status === 'collected') {
-      Alert.alert('✅ Already Done',
+      Alert.alert('Already Done',
         `${orderId} was already collected!`);
       return;
     }
     Alert.alert(
-      '📱 QR Scanned!',
+      'QR Scanned!',
       `Order: ${orderId}\nCustomer: ${order.customer_name}\nTotal: ₹${order.total_amount}\n\nMark as Collected?`,
       [
         { text: 'Cancel', style: 'cancel' },
@@ -316,7 +316,7 @@ export default function MainStore({ staff, onLogout }) {
         Haptics.NotificationFeedbackType.Success
       );
     } catch {
-      Alert.alert('❌ Error', 'Could not update stock');
+      Alert.alert('Error', 'Could not update stock');
     }
   };
 
@@ -365,7 +365,7 @@ export default function MainStore({ staff, onLogout }) {
           : 'Mechanic registration rejected.'
       );
     } catch {
-      Alert.alert('❌ Error', 'Could not update mechanic');
+      Alert.alert('Error', 'Could not update mechanic');
     }
   };
 
@@ -380,7 +380,7 @@ export default function MainStore({ staff, onLogout }) {
 
   const createOffer = async () => {
     if (!offerTitle.trim()) {
-      Alert.alert('❌', 'Enter offer title'); return;
+      Alert.alert('', 'Enter offer title'); return;
     }
     try {
       await fetch(`${API_URL}/offers`, {
@@ -400,9 +400,9 @@ export default function MainStore({ staff, onLogout }) {
       await Haptics.notificationAsync(
         Haptics.NotificationFeedbackType.Success
       );
-      Alert.alert('✅ Offer Created!',
+      Alert.alert('Offer Created!',
         'Customers will see it on home screen!');
-    } catch { Alert.alert('❌ Error', 'Could not create offer'); }
+    } catch { Alert.alert('Error', 'Could not create offer'); }
   };
 
   const toggleOffer = async (id) => {
@@ -513,11 +513,11 @@ export default function MainStore({ staff, onLogout }) {
           await Haptics.notificationAsync(
             Haptics.NotificationFeedbackType.Success
           );
-          Alert.alert('✅ PIN Changed!',
+          Alert.alert('PIN Changed!',
             `New PIN: ${newPin}\nRemember it!`);
           staff.pin = newPin;
         } catch {
-          Alert.alert('⚠️ Saved Locally',
+          Alert.alert('️ Saved Locally',
             `New PIN: ${newPin}`);
         }
         setPinStep(null); setPinInput('');
@@ -780,7 +780,7 @@ export default function MainStore({ staff, onLogout }) {
               <TouchableOpacity
                 style={s.manualBtn}
                 onPress={() => {
-                  Alert.alert('🔍', 'Search order by ID');
+                  Alert.alert('', 'Search order by ID');
                 }}
               >
                 <Text style={s.manualBtnText}>Go</Text>

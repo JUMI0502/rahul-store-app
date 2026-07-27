@@ -73,11 +73,11 @@ function ProductFormModal({ visible, onClose, onSave, editProduct }) {
     : '0';
 
   const handleSave = async () => {
-    if (!nameEn.trim()) { Alert.alert('❌', 'Product name required'); return; }
-    if (!mrp || parseFloat(mrp) <= 0) { Alert.alert('❌', 'Enter valid MRP'); return; }
-    if (!selling || parseFloat(selling) <= 0) { Alert.alert('❌', 'Enter selling price'); return; }
+    if (!nameEn.trim()) { Alert.alert('', 'Product name required'); return; }
+    if (!mrp || parseFloat(mrp) <= 0) { Alert.alert('', 'Enter valid MRP'); return; }
+    if (!selling || parseFloat(selling) <= 0) { Alert.alert('', 'Enter selling price'); return; }
     if (parseFloat(selling) > parseFloat(mrp)) {
-      Alert.alert('❌', 'Selling price cannot exceed MRP'); return;
+      Alert.alert('', 'Selling price cannot exceed MRP'); return;
     }
     setSaving(true);
     try {
@@ -96,7 +96,7 @@ function ProductFormModal({ visible, onClose, onSave, editProduct }) {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
-        Alert.alert('✅ Updated!', `${nameEn} updated.`);
+        Alert.alert('Updated!', `${nameEn} updated.`);
       } else {
         const r = await fetch(`${API_URL}/products`, {
           method: 'POST',
@@ -104,12 +104,12 @@ function ProductFormModal({ visible, onClose, onSave, editProduct }) {
           body: JSON.stringify(payload)
         });
         const d = await r.json();
-        if (d.error) { Alert.alert('❌ Error', d.error); setSaving(false); return; }
-        Alert.alert('✅ Product Added!', `${nameEn}\nSKU: ${sku}`);
+        if (d.error) { Alert.alert('Error', d.error); setSaving(false); return; }
+        Alert.alert('Product Added!', `${nameEn}\nSKU: ${sku}`);
       }
       await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       onSave(); onClose();
-    } catch { Alert.alert('❌ Error', 'Could not save. Check internet.'); }
+    } catch { Alert.alert('Error', 'Could not save. Check internet.'); }
     setSaving(false);
   };
 
@@ -416,7 +416,7 @@ function StockUpdateModal({ visible, product, onClose, onUpdate }) {
 
   const handleUpdate = async () => {
     const amount = parseInt(qty);
-    if (isNaN(amount) || amount <= 0) { Alert.alert('❌', 'Enter valid quantity'); return; }
+    if (isNaN(amount) || amount <= 0) { Alert.alert('', 'Enter valid quantity'); return; }
     await onUpdate(product?.id, getNewQty());
     onClose();
   };
@@ -587,12 +587,12 @@ export default function InventoryScreen() {
         p.id === productId ? { ...p, stock_qty: newQty } : p
       ));
       await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    } catch { Alert.alert('❌ Error', 'Could not update stock'); }
+    } catch { Alert.alert('Error', 'Could not update stock'); }
   };
 
   const deleteProduct = (product) => {
     Alert.alert(
-      '🗑️ Delete Product?',
+      '️ Delete Product?',
       `Delete "${product.name_en}"?\n\nThis cannot be undone!`,
       [
         { text: 'Cancel', style: 'cancel' },
@@ -603,7 +603,7 @@ export default function InventoryScreen() {
               await fetch(`${API_URL}/products/${product.id}`, { method: 'DELETE' });
               setProducts(prev => prev.filter(p => p.id !== product.id));
               Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-            } catch { Alert.alert('❌ Error', 'Could not delete'); }
+            } catch { Alert.alert('Error', 'Could not delete'); }
           }
         }
       ]

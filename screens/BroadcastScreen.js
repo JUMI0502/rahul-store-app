@@ -65,16 +65,16 @@ export default function BroadcastScreen({ onBack, staff }) {
 
   const sendWhatsAppBroadcast = async () => {
     if (!message.trim()) {
-      Alert.alert('❌', 'Please enter a message!');
+      Alert.alert('', 'Please enter a message!');
       return;
     }
     if (customers.length === 0) {
-      Alert.alert('❌', 'No customers found!');
+      Alert.alert('', 'No customers found!');
       return;
     }
 
     Alert.alert(
-      '📢 Send Broadcast?',
+      'Send Broadcast?',
       `Send to ${customers.length} customers via WhatsApp?`,
       [
         { text: 'Cancel', style: 'cancel' },
@@ -105,7 +105,7 @@ export default function BroadcastScreen({ onBack, staff }) {
               Haptics.NotificationFeedbackType.Success
             );
             Alert.alert(
-              '✅ Done!',
+              'Done!',
               `Broadcast sent to ${count} customers!`
             );
           }
@@ -116,11 +116,11 @@ export default function BroadcastScreen({ onBack, staff }) {
 
   const sendPushBroadcast = async () => {
     if (!message.trim()) {
-      Alert.alert('❌', 'Please enter a message!');
+      Alert.alert('', 'Please enter a message!');
       return;
     }
     Alert.alert(
-      '🔔 Send Push Notification?',
+      'Send Push Notification?',
       `Send to all customers who have the app?`,
       [
         { text: 'Cancel', style: 'cancel' },
@@ -141,11 +141,11 @@ export default function BroadcastScreen({ onBack, staff }) {
                 Haptics.NotificationFeedbackType.Success
               );
               Alert.alert(
-                '✅ Push Sent!',
+                'Push Sent!',
                 `Notification sent to ${d.sent} devices!`
               );
             } catch {
-              Alert.alert('❌ Error', 'Could not send push notification');
+              Alert.alert('Error', 'Could not send push notification');
             }
           }
         }
