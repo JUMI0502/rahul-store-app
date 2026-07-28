@@ -6,7 +6,7 @@ import {
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import * as Haptics from 'expo-haptics';
 
-export default function QRScannerScreen({ onScanned, onClose }) {
+export default function QRScannerScreen({ onScanned, onClose, mode = 'order' }) {
   const [permission, requestPermission] = useCameraPermissions();
   const [scanned, setScanned] = useState(false);
 
@@ -56,7 +56,7 @@ export default function QRScannerScreen({ onScanned, onClose }) {
         <TouchableOpacity style={s.backBtn} onPress={onClose}>
           <Text style={s.backText}>← Cancel</Text>
         </TouchableOpacity>
-        <Text style={s.headerTitle}>Scan Order QR</Text>
+        <Text style={s.headerTitle}>{mode === 'product' ? 'Scan Product Barcode' : 'Scan Order QR'}</Text>
         <View style={{ width: 70 }} />
       </View>
 
@@ -64,7 +64,7 @@ export default function QRScannerScreen({ onScanned, onClose }) {
         <CameraView
           style={{ flex: 1 }}
           facing="back"
-          barcodeScannerSettings={{ barcodeTypes: ['qr'] }}
+          barcodeScannerSettings={{ barcodeTypes: mode === 'product' ? ['ean13', 'ean8', 'upc_a', 'upc_e', 'code128', 'qr'] : ['qr'] }}
           onBarcodeScanned={scanned ? undefined : handleBarcode}
         />
         {/* OVERLAY */}

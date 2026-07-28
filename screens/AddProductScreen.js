@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Haptics from 'expo-haptics';
+import QRScannerScreen from './QRScannerScreen';
 
 const API_URL = 'https://rahul-auto-spares-backend.onrender.com';
 const G = '#22C55E';
@@ -77,6 +78,8 @@ export default function AddProductScreen({ onBack, onProductAdded }) {
   const [imageBase64, setImageBase64] = useState(null);
   const [saving, setSaving]           = useState(false);
   const [uploadingImage, setUploadingImage] = useState(false);
+  const [showScanner, setShowScanner] = useState(false);
+  const [checkingBarcode, setCheckingBarcode] = useState(false);
 
   // ── SKU BUILDER STATE ──
   const [selectedBike, setSelectedBike]     = useState(null);
@@ -135,6 +138,30 @@ export default function AddProductScreen({ onBack, onProductAdded }) {
     } catch {
       Alert.alert('Error', 'Could not pick image');
     }
+  };
+
+  // ── SCAN BARCODE ──
+  const handleBarcodeScanned = async (code) => {
+    setShowScanner(false);
+    setCheckingBarcode(true);
+    try {
+      const r = await fetch(`${API_URL}/products/barcode/${code}`);
+      const d = await r.json();
+      if (d.found && d.product) {
+        Alert.alert(
+          'Product Already Exists',
+          `${d.product.name_en} (SKU: ${d.product.sku}) is already in your catalog with ${d.product.stock_qty} units in stock.\n\nUse the Stock tab to adjust its quantity instead of creating a duplicate.`,
+          [{ text: 'OK' }]
+        );
+      } else {
+        setSku(code.toUpperCase());
+        setSkuMode('manual');
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      }
+    } catch {
+      Alert.alert('Error', 'Could not check barcode. You can still enter the SKU manually.');
+    }
+    setCheckingBarcode(false);
   };
 
   // ── VALIDATE SKU FORMAT ──
@@ -214,6 +241,10 @@ export default function AddProductScreen({ onBack, onProductAdded }) {
   const margin = mrp && sellingPrice && !isNaN(parseFloat(mrp)) && !isNaN(parseFloat(sellingPrice))
     ? parseFloat(mrp) - parseFloat(sellingPrice) : null;
 
+  if (showScanner) return (
+    <QRScannerScreen mode="product" onScanned={handleBarcodeScanned} onClose={() => setShowScanner(false)} />
+  );
+
   return (
     <SafeAreaView style={s.container}>
       <StatusBar barStyle="light-content" backgroundColor="#060E06" />
@@ -287,10 +318,19 @@ export default function AddProductScreen({ onBack, onProductAdded }) {
               style={s.modeToggle}
               onPress={() => setSkuMode(skuMode === 'builder' ? 'manual' : 'builder')}>
               <Text style={s.modeToggleText}>
-                {skuMode === 'builder' ? '️ Type manually' : 'Use builder'}
+                {skuMode === 'builder' ? 'Type manually' : 'Use builder'}
               </Text>
             </TouchableOpacity>
           </View>
+
+          <TouchableOpacity
+            style={[s.modeToggle, { alignSelf: 'flex-start', marginBottom: 14, backgroundColor: 'rgba(79,110,247,0.1)', borderColor: 'rgba(79,110,247,0.25)' }]}
+            disabled={checkingBarcode}
+            onPress={() => setShowScanner(true)}>
+            {checkingBarcode
+              ? <ActivityIndicator size="small" color="#4F6EF7" />
+              : <Text style={[s.modeToggleText, { color: '#4F6EF7' }]}>Scan Barcode Instead</Text>}
+          </TouchableOpacity>
 
           {skuMode === 'builder' ? (
             <>
