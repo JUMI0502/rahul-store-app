@@ -22,6 +22,8 @@ const SUPPLIERS = [
 export default function PurchaseOrdersScreen({ onBack }) {
   const [lowStockProducts, setLowStockProducts] = useState([]);
   const [outOfStockProducts, setOutOfStockProducts] = useState([]);
+  const [forecasts, setForecasts] = useState([]);
+  const [loadingForecast, setLoadingForecast] = useState(true);
   const [purchaseOrders, setPurchaseOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [apiError, setApiError] = useState(false);
@@ -35,7 +37,19 @@ export default function PurchaseOrdersScreen({ onBack }) {
   useEffect(() => {
     fetchData();
     loadPurchaseOrders();
+    fetchForecast();
   }, []);
+
+  const fetchForecast = async () => {
+    try {
+      const r = await fetch(`${API_URL}/products/forecast?days_threshold=7`);
+      const d = await r.json();
+      setForecasts(d.forecasts || []);
+    } catch {
+      setForecasts([]);
+    }
+    setLoadingForecast(false);
+  };
 
   // ✅ BUG FIX: Graceful error handling — show empty state instead of crashing
   const fetchData = async () => {
@@ -208,6 +222,7 @@ export default function PurchaseOrdersScreen({ onBack }) {
       <View style={s.tabRow}>
         {[
           { id: 'alerts', label: `Alerts (${allAlerts.length})` },
+          { id: 'forecast', label: `Forecast (${forecasts.filter(f => f.at_risk).length})` },
           { id: 'orders', label: `Orders (${purchaseOrders.length})` },
         ].map(t => (
           <TouchableOpacity key={t.id}
@@ -220,7 +235,7 @@ export default function PurchaseOrdersScreen({ onBack }) {
         ))}
       </View>
 
-      {tab === 'alerts' ? (
+      {tab === 'forecast' ? null : tab === 'alerts' ? (
         <ScrollView contentContainerStyle={{ padding: 12 }}
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor={G} />
@@ -392,6 +407,32 @@ export default function PurchaseOrdersScreen({ onBack }) {
             </View>
           )}
         />
+      )}
+
+      {tab === 'forecast' && (
+        <ScrollView contentContainerStyle={{ padding: 12 }}
+          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={fetchForecast} tintColor={G} />}>
+          {loadingForecast ? (
+            <View style={s.centerBox}><ActivityIndicator color={G} /></View>
+          ) : forecasts.filter(f => f.at_risk).length === 0 ? (
+            <View style={s.noAlertsBox}>
+              <Text style={s.noAlertsText}>No products projected to run out within 7 days</Text>
+            </View>
+          ) : (
+            forecasts.filter(f => f.at_risk).map(f => (
+              <View key={f.product_id} style={s.selectItem}>
+                <Text style={{ fontSize: 14, fontWeight: 'bold', color: '#fff', marginBottom: 4 }}>{f.name}</Text>
+                <Text style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 6 }}>{f.sku}</Text>
+                <View style={{ flexDirection: 'row', gap: 16 }}>
+                  <Text style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)' }}>Stock: {f.stock_qty}</Text>
+                  <Text style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)' }}>Selling: {f.avg_daily_rate}/day</Text>
+                  <Text style={{ fontSize: 12, color: '#EF4444', fontWeight: 'bold' }}>~{f.days_remaining} days left</Text>
+                </View>
+              </View>
+            ))
+          )}
+          <View style={{ height: 60 }} />
+        </ScrollView>
       )}
 
       {/* CREATE MODAL */}
