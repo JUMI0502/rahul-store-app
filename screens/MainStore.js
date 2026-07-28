@@ -13,6 +13,7 @@ import QRScannerScreen from './QRScannerScreen';
 import BroadcastScreen from './BroadcastScreen';
 import ServiceRemindersScreen from './ServiceRemindersScreen';
 import WarrantyReturnsScreen from './WarrantyReturnsScreen';
+import AbandonedCartsScreen from './AbandonedCartsScreen';
 import CustomerAnalyticsScreen from './CustomerAnalyticsScreen';
 import AddProductScreen from './AddProductScreen';
 import CustomerManagementScreen from './CustomerManagementScreen';
@@ -406,6 +407,7 @@ export default function MainStore({ staff, onLogout }) {
   const [showBroadcast, setShowBroadcast] = useState(false);
   const [showServiceReminders, setShowServiceReminders] = useState(false);
   const [showWarrantyReturns, setShowWarrantyReturns] = useState(false);
+  const [showAbandonedCarts, setShowAbandonedCarts] = useState(false);
   const [showAnalytics, setShowAnalytics] = useState(false);
   const [showCustomers, setShowCustomers] = useState(false);
   const [showPurchaseOrders, setShowPurchaseOrders] = useState(false);
@@ -1386,6 +1388,9 @@ export default function MainStore({ staff, onLogout }) {
   // ── SPECIAL SCREENS ──
   if (showScanner) return (
     <QRScannerScreen onScanned={handleQRScanned} onClose={() => setShowScanner(false)} />
+  );
+  if (showAbandonedCarts) return (
+    <AbandonedCartsScreen onBack={() => setShowAbandonedCarts(false)} />
   );
   if (showWarrantyReturns) return (
     <WarrantyReturnsScreen onBack={() => setShowWarrantyReturns(false)} staff={staff} />
@@ -2927,6 +2932,21 @@ export default function MainStore({ staff, onLogout }) {
                   <View>
                     <Text style={s.customerHistoryBtnTitle}>Staff Manager</Text>
                     <Text style={s.customerHistoryBtnSub}>Add, view and manage staff profiles</Text>
+                  </View>
+                </View>
+                <Ionicons name="chevron-forward" size={18} color="rgba(255,255,255,0.3)" />
+              </TouchableOpacity>
+            )}
+
+            {/* ABANDONED CARTS */}
+            {(isOwner || isSenior) && (
+              <TouchableOpacity style={s.customerHistoryBtn}
+                onPress={() => setShowAbandonedCarts(true)}>
+                <View style={s.customerHistoryBtnLeft}>
+                  <Ionicons name="cart" size={22} color="#4F6EF7" />
+                  <View>
+                    <Text style={s.customerHistoryBtnTitle}>Abandoned Carts</Text>
+                    <Text style={s.customerHistoryBtnSub}>Nudge customers who didn't finish checking out</Text>
                   </View>
                 </View>
                 <Ionicons name="chevron-forward" size={18} color="rgba(255,255,255,0.3)" />
