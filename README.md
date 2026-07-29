@@ -15,7 +15,7 @@ root — get this from the team lead if not already present.
 
 ## Running (development build — required, Expo Go will NOT work)
 This app uses custom native modules (including a full-screen order alert
-feature) and cannot run in Expo Go.
+feature and camera-based scanning) and cannot run in Expo Go.
 ```bash
 npx expo prebuild --clean
 npx expo run:android
@@ -33,26 +33,48 @@ Android Studio / SDK installed locally.
 | Khaja | Staff | 1234 | Same as above |
 
 ## What to Test
-- Order lifecycle: New → Packing → Ready → Collected, confirm status updates
-  instantly and syncs correctly in the order detail view
+
+### Core (Orders, Stock, Staff)
+- Order lifecycle: New → Packing → Ready → Collected
 - Push notification: place a test order from the customer app, confirm "New
   Order!" arrives even with this app closed
 - Staff Manager (owner/senior only): Add, Edit, Delete, Reset PIN
-- Mechanic Approvals (owner/senior only): approve/reject a pending mechanic
-  registration submitted from the customer app
-- Stock: adjust quantity, mark items OEM vs Generic/Compatible from the
-  Stock tab
-- Scanner tab: scan a customer's order QR code, confirm it offers "Mark as
-  Collected"
+- Stock: adjust quantity, mark items **OEM vs Generic/Compatible** (new)
+- Scanner tab: scan a customer's order QR code → "Mark as Collected"
 - Clock In / Clock Out (Attendance)
+
+### New features (all under Reports tab, owner/senior only)
+- **Mechanic Approvals**: approve/reject/edit/delete pending mechanic
+  registrations submitted from the customer app
+- **Service Reminders**: review customers 60+ days since last order, send a
+  WhatsApp nudge with one tap
+- **Warranty & Returns**: log a defect claim (product, customer, issue),
+  resolve as replaced/refunded/repaired, or reject
+- **Abandoned Carts**: see customers who added items but never checked out
+  (3+ hours idle), send a WhatsApp nudge listing their cart contents
+- **Sales Dashboard → Business Health section**: private staff productivity
+  counts (not a public leaderboard), warranty claim rate, customer retention
+- **Purchase Orders → Forecast tab**: products projected to run out within 7
+  days based on actual 30-day sales velocity, not just a flat stock count
+- **Add Product → Scan Barcode**: scan a product barcode to auto-check for
+  duplicates or pre-fill the SKU field
+
+### Removed (intentionally, part of professional redesign)
+- Staff leaderboard, medals, and daily goal ring — removed as gamification;
+  replaced by the private Business Health metrics above
+- Checkout-time loyalty point discount — replaced by the rewards catalog
 
 ## Known Limitations
 - Full-screen "incoming order" alert (like a ride-hailing app) is built but
   only tested for foreground/background app state — not yet verified when
   the app is fully force-closed
+- Delivery-related UI does not exist here (deliberately not built — business
+  decision)
 - No automated tests yet
 - `mobile-app/` folder in this repo is unrelated legacy code — do not test
   or reference it
+- `DashboardScreen.js` exists in the codebase but is unused/unreferenced —
+  don't test it, `SalesDashboardScreen.js` is the real one
 
 ## Reporting Bugs
 Please include: staff account/role used, exact steps to reproduce,
