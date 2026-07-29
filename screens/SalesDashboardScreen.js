@@ -2,9 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import {
   StyleSheet, Text, View, TouchableOpacity,
   SafeAreaView, StatusBar, ScrollView,
-  Animated, RefreshControl, Dimensions
+  Animated, RefreshControl, Dimensions, ActivityIndicator
 } from 'react-native';
 import * as Haptics from 'expo-haptics';
+import { Ionicons } from '@expo/vector-icons';
 
 const { width } = Dimensions.get('window');
 const API_URL = 'https://rahul-auto-spares-backend.onrender.com';
@@ -35,7 +36,7 @@ function RevenueCard({ label, value, sublabel, icon, color }) {
   return (
     <Animated.View style={[rc.card, { borderColor: color + '30', transform: [{ scale: scaleAnim }] }]}>
       <View style={[rc.iconBox, { backgroundColor: color + '15' }]}>
-        <Text style={rc.icon}>{icon}</Text>
+        <Ionicons name={icon} size={22} color={color} />
       </View>
       <Text style={[rc.value, { color }]}>{value}</Text>
       <Text style={rc.label}>{label}</Text>
@@ -241,7 +242,7 @@ export default function SalesDashboardScreen({ onBack }) {
 
       {loading ? (
         <View style={s.centerBox}>
-          <Text style={{ fontSize: 36, marginBottom: 10 }}></Text>
+          <ActivityIndicator size="large" color={G} style={{ marginBottom: 12 }} />
           <Text style={s.loadingText}>Loading dashboard...</Text>
         </View>
       ) : (
@@ -249,15 +250,6 @@ export default function SalesDashboardScreen({ onBack }) {
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor={G} />
           }>
-
-          {/* API STATUS NOTICE */}
-          {!apiStatus.summary && (
-            <View style={s.noticeBanner}>
-              <Text style={s.noticeText}>
-                ℹ️ Using order data directly · Summary API not connected yet
-              </Text>
-            </View>
-          )}
 
           {/* REVENUE HERO */}
           <View style={s.heroCard}>
@@ -298,15 +290,15 @@ export default function SalesDashboardScreen({ onBack }) {
 
           {/* STAT CARDS */}
           <View style={s.cardsRow}>
-            <RevenueCard icon="" label="Cash" color={G}
+            <RevenueCard icon="cash-outline" label="Cash" color={G}
               value={`₹${(cashRevenue/1000).toFixed(1)}k`} />
-            <RevenueCard icon="" label="UPI" color="#4F6EF7"
+            <RevenueCard icon="phone-portrait-outline" label="UPI" color="#4F6EF7"
               value={`₹${(upiRevenue/1000).toFixed(1)}k`} />
           </View>
           <View style={s.cardsRow}>
-            <RevenueCard icon="⏳" label="Pending" color="#F59E0B"
+            <RevenueCard icon="hourglass-outline" label="Pending" color="#F59E0B"
               value={`₹${(pendingRevenue/1000).toFixed(1)}k`} />
-            <RevenueCard icon="⏰" label="Peak Hour" color="#A78BFA"
+            <RevenueCard icon="time-outline" label="Peak Hour" color="#A78BFA"
               value={peakHour.count > 0 ? `${peakHour.hour}:00` : 'N/A'}
               sublabel={`${peakHour.count} orders`} />
           </View>
