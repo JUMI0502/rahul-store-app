@@ -307,7 +307,7 @@ export default function SalesDashboardScreen({ onBack }) {
           <View style={s.statusCard}>
             <Text style={s.cardTitle}>Order Status Live</Text>
             {[
-              { key: 'new',       label: '🆕 New',       color: '#4F6EF7' },
+              { key: 'new',       label: 'New',       color: '#4F6EF7' },
               { key: 'packing',   label: 'Packing',   color: '#F59E0B' },
               { key: 'ready',     label: 'Ready',      color: G },
               { key: 'collected', label: 'Collected', color: '#6B7280' },
@@ -329,7 +329,7 @@ export default function SalesDashboardScreen({ onBack }) {
 
           {/* ORDERS BY HOUR */}
           <View style={s.chartCard}>
-            <Text style={s.cardTitle}>⏰ Orders by Hour (Today)</Text>
+            <Text style={s.cardTitle}>Orders by Hour (Today)</Text>
             {peakHour.count > 0 && (
               <Text style={s.chartSubtitle}>
                 Peak: {peakHour.hour}:00 with {peakHour.count} orders
