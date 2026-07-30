@@ -56,3 +56,4 @@ mobile-app/
 *.finalbackup
 *.final_backup
 *.vfinal_backup
+add_*.py
