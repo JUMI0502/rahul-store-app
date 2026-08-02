@@ -3970,7 +3970,7 @@ const s = StyleSheet.create({
     borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)',
   },
   saveVendorBtn: {
-    backgroundColor: '#22C55E', borderRadius: 10,
+    backgroundColor: '#C9A84C', borderRadius: 10,
     padding: 12, alignItems: 'center',
   },
   saveVendorBtnText: { color: '#060E06', fontWeight: '800', fontSize: 14 },
