@@ -1485,7 +1485,7 @@ export default function MainStore({ staff, onLogout }) {
                 </TouchableOpacity>
                 <View style={s.dashActions}>
                   <TouchableOpacity style={s.cashRegBtn} onPress={() => setShowCashRegister(true)}>
-                    <Ionicons name="cash-outline" size={16} color="#22C55E" />
+                    <Ionicons name="cash-outline" size={16} color="#C9A84C" />
                     <Text style={s.cashRegBtnText}>Cash Sale</Text>
                   </TouchableOpacity>
                   <TouchableOpacity style={s.reportBtn} onPress={sendDailyReport}>
@@ -3899,14 +3899,14 @@ const s = StyleSheet.create({
   newOrderBadgeText: { color: '#EF4444', fontSize: 11, fontWeight: 'bold' },
   refreshBtn: { backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 10, padding: 8, borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)' },
   // Dashboard
-  dashBanner: { backgroundColor: '#0D1A0D', borderBottomWidth: 1, borderBottomColor: 'rgba(34,197,94,0.1)', padding: 12 },
-  dashCard: { flexDirection: 'row', alignItems: 'center', backgroundColor: 'rgba(34,197,94,0.05)', borderRadius: 12, padding: 12, marginBottom: 8, borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)' },
+  dashBanner: { backgroundColor: '#0D1A0D', borderBottomWidth: 1, borderBottomColor: 'rgba(201,168,76,0.15)', padding: 12 },
+  dashCard: { flexDirection: 'row', alignItems: 'center', backgroundColor: 'rgba(201,168,76,0.05)', borderRadius: 12, padding: 12, marginBottom: 8, borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)' },
   dashItem: { flex: 1, alignItems: 'center' },
   dashValue: { fontSize: 20, fontWeight: '900', color: '#22C55E', marginBottom: 2 },
   dashLabel: { fontSize: 10, color: 'rgba(255,255,255,0.4)', fontWeight: '600' },
   dashDivider: { width: 1, height: 36, backgroundColor: 'rgba(255,255,255,0.06)' },
   dashActions: { flexDirection: 'row', gap: 8 },
-  cashRegBtn: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: 10, padding: 10, borderWidth: 1, borderColor: 'rgba(34,197,94,0.3)' },
+  cashRegBtn: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 10, padding: 10, borderWidth: 1, borderColor: 'rgba(201,168,76,0.3)' },
   cashRegBtnText: { color: '#22C55E', fontWeight: '700', fontSize: 13 },
   reportBtn: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, backgroundColor: 'rgba(37,211,102,0.1)', borderRadius: 10, padding: 10, borderWidth: 1, borderColor: 'rgba(37,211,102,0.3)' },
   reportBtnText: { color: '#25D366', fontWeight: '700', fontSize: 13 },
