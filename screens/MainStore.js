@@ -3889,15 +3889,15 @@ const s = StyleSheet.create({
   header: {
     backgroundColor: '#0D1A0D', paddingHorizontal: 16, paddingVertical: 12,
     flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1,
-    borderBottomColor: 'rgba(34,197,94,0.15)', gap: 8,
+    borderBottomColor: 'rgba(201,168,76,0.25)', gap: 8,
   },
-  headerRole: { fontSize: 10, color: 'rgba(34,197,94,0.6)', letterSpacing: 2, marginBottom: 2 },
+  headerRole: { fontSize: 10, color: 'rgba(201,168,76,0.7)', letterSpacing: 2, marginBottom: 2 },
   headerName: { fontSize: 16, fontWeight: 'bold', color: '#fff' },
   offlineBadge: { backgroundColor: 'rgba(245,158,11,0.15)', borderRadius: 8, paddingHorizontal: 8, paddingVertical: 3, borderWidth: 1, borderColor: 'rgba(245,158,11,0.3)' },
   offlineBadgeText: { color: '#F59E0B', fontSize: 10 },
   newOrderBadge: { backgroundColor: 'rgba(239,68,68,0.15)', borderRadius: 8, paddingHorizontal: 8, paddingVertical: 4, borderWidth: 1, borderColor: 'rgba(239,68,68,0.3)' },
   newOrderBadgeText: { color: '#EF4444', fontSize: 11, fontWeight: 'bold' },
-  refreshBtn: { backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: 10, padding: 8, borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)' },
+  refreshBtn: { backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 10, padding: 8, borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)' },
   // Dashboard
   dashBanner: { backgroundColor: '#0D1A0D', borderBottomWidth: 1, borderBottomColor: 'rgba(34,197,94,0.1)', padding: 12 },
   dashCard: { flexDirection: 'row', alignItems: 'center', backgroundColor: 'rgba(34,197,94,0.05)', borderRadius: 12, padding: 12, marginBottom: 8, borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)' },
