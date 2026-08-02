@@ -80,7 +80,7 @@ function BottomNav({ active, onChange, newCount }) {
             <Ionicons
               name={active === tab.id ? tab.icon.replace('-outline','') : tab.icon}
               size={22}
-              color={active === tab.id ? '#22C55E' : 'rgba(255,255,255,0.35)'}
+              color={active === tab.id ? '#C9A84C' : 'rgba(255,255,255,0.35)'}
             />
             {tab.badge > 0 && (
               <View style={nb.badge}>
@@ -101,7 +101,7 @@ function BottomNav({ active, onChange, newCount }) {
 const nb = StyleSheet.create({
   bar: {
     flexDirection: 'row', backgroundColor: '#060E06',
-    borderTopWidth: 1, borderTopColor: 'rgba(34,197,94,0.2)',
+    borderTopWidth: 1, borderTopColor: 'rgba(201,168,76,0.25)',
     paddingBottom: 8, paddingTop: 10,
   },
   tab: { flex: 1, alignItems: 'center', paddingVertical: 2 },
@@ -114,8 +114,8 @@ const nb = StyleSheet.create({
   },
   badgeText: { color: '#fff', fontSize: 9, fontWeight: 'bold' },
   label: { fontSize: 10, color: 'rgba(255,255,255,0.3)', fontWeight: '600' },
-  labelActive: { color: G },
-  dot: { width: 4, height: 4, borderRadius: 2, backgroundColor: G, marginTop: 2 },
+  labelActive: { color: '#C9A84C' },
+  dot: { width: 4, height: 4, borderRadius: 2, backgroundColor: '#C9A84C', marginTop: 2 },
 });
 
 // ── STAT CARD ──
