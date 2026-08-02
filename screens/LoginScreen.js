@@ -19,12 +19,12 @@ const API_URL = 'https://rahul-auto-spares-backend.onrender.com';
 const DEFAULT_STAFF = [
   { id: 1, name: 'Abdul Azeez', role: 'owner',  pin: '1111', color: '#C9A84C', initials: 'AA' },
   { id: 2, name: 'Chand Basha', role: 'senior', pin: '2222', color: '#4F6EF7', initials: 'CB' },
-  { id: 3, name: 'Mabasha',     role: 'staff',  pin: '3333', color: '#22C55E', initials: 'MB' },
-  { id: 4, name: 'Hussain',     role: 'staff',  pin: '4444', color: '#22C55E', initials: 'HB' },
-  { id: 5, name: 'Khaja',       role: 'staff',  pin: '5555', color: '#22C55E', initials: 'KJ' },
+  { id: 3, name: 'Mabasha',     role: 'staff',  pin: '3333', color: '#C9A84C', initials: 'MB' },
+  { id: 4, name: 'Hussain',     role: 'staff',  pin: '4444', color: '#C9A84C', initials: 'HB' },
+  { id: 5, name: 'Khaja',       role: 'staff',  pin: '5555', color: '#C9A84C', initials: 'KJ' },
 ];
 
-const ROLE_COLORS = { owner: '#C9A84C', senior: '#4F6EF7', staff: '#22C55E' };
+const ROLE_COLORS = { owner: '#C9A84C', senior: '#4F6EF7', staff: '#C9A84C' };
 
 const getInitials = (name) => {
   const parts = name.trim().split(' ');
@@ -35,7 +35,7 @@ const getInitials = (name) => {
 const ROLE_CONFIG = {
   owner:  { label: 'Owner',        icon: 'shield-checkmark', color: '#C9A84C' },
   senior: { label: 'Senior Staff', icon: 'star',             color: '#4F6EF7' },
-  staff:  { label: 'Staff',        icon: 'person',           color: '#22C55E' },
+  staff:  { label: 'Staff',        icon: 'person',           color: '#C9A84C' },
 };
 
 const KEYS = [['1','2','3'],['4','5','6'],['7','8','9'],['','0','⌫']];
@@ -70,7 +70,7 @@ export default function LoginScreen({ onLogin }) {
           name: s.name,
           role: s.role || 'staff',
           pin: s.pin || '0000',
-          color: ROLE_COLORS[s.role] || '#22C55E',
+          color: ROLE_COLORS[s.role] || '#C9A84C',
           initials: getInitials(s.name),
           phone: s.phone,
         }));
@@ -331,17 +331,17 @@ const s = StyleSheet.create({
   brandLogo: {
     width: 80, height: 80, borderRadius: 20,
     alignItems: 'center', justifyContent: 'center',
-    borderWidth: 1.5, borderColor: 'rgba(34,197,94,0.3)',
+    borderWidth: 1.5, borderColor: 'rgba(201,168,76,0.3)',
     position: 'relative',
   },
-  brandLogoText: { fontSize: 22, fontWeight: '900', color: '#22C55E', letterSpacing: 2 },
+  brandLogoText: { fontSize: 22, fontWeight: '900', color: '#C9A84C', letterSpacing: 2 },
   brandLogoDot: {
     position: 'absolute', bottom: 10, right: 10,
-    width: 8, height: 8, borderRadius: 4, backgroundColor: '#22C55E',
+    width: 8, height: 8, borderRadius: 4, backgroundColor: '#C9A84C',
   },
   brandName: { fontSize: 16, fontWeight: '700', color: '#fff', marginBottom: 4 },
   brandTagline: {
-    fontSize: 10, color: 'rgba(34,197,94,0.6)',
+    fontSize: 10, color: 'rgba(201,168,76,0.6)',
     letterSpacing: 4, fontWeight: '700',
   },
   selectSection: { flex: 1 },
@@ -410,8 +410,8 @@ const s = StyleSheet.create({
   keyBtn: {
     width: 76, height: 76, borderRadius: 38,
     backgroundColor: '#0D1A0D', alignItems: 'center', justifyContent: 'center',
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.12)',
-    shadowColor: '#22C55E', shadowOffset: { width: 0, height: 2 },
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.12)',
+    shadowColor: '#C9A84C', shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.08, shadowRadius: 4, elevation: 2,
   },
   keyBtnDelete: {
