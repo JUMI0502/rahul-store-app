@@ -8,7 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Haptics from 'expo-haptics';
 
 const API_URL = 'https://rahul-auto-spares-backend.onrender.com';
-const G = '#22C55E';
+const G = '#C9A84C';
 
 const SUPPLIERS = [
   { id: 'hero_parts',  name: 'Hero Parts Dealer',  phone: '9876543210', brand: 'Hero' },
@@ -352,7 +352,7 @@ export default function PurchaseOrdersScreen({ onBack }) {
                 </View>
                 <View style={[s.poStatus, {
                   backgroundColor: item.status === 'received'
-                    ? 'rgba(34,197,94,0.15)' : item.status === 'ordered'
+                    ? 'rgba(201,168,76,0.15)' : item.status === 'ordered'
                     ? 'rgba(79,110,247,0.15)' : 'rgba(245,158,11,0.15)',
                 }]}>
                   <Text style={[s.poStatusText, {
@@ -385,7 +385,7 @@ export default function PurchaseOrdersScreen({ onBack }) {
                 )}
                 {item.status === 'ordered' && (
                   <TouchableOpacity
-                    style={[s.poActionBtn, { backgroundColor: 'rgba(34,197,94,0.1)', borderColor: G }]}
+                    style={[s.poActionBtn, { backgroundColor: 'rgba(201,168,76,0.1)', borderColor: G }]}
                     onPress={() => updateOrderStatus(item.id, 'received')}>
                     <Text style={[s.poActionBtnText, { color: G }]}>Mark Received</Text>
                   </TouchableOpacity>
@@ -542,12 +542,12 @@ const s = StyleSheet.create({
   header: {
     backgroundColor: '#0D1A0D', paddingHorizontal: 16, paddingVertical: 14,
     flexDirection: 'row', alignItems: 'center', gap: 12, borderBottomWidth: 1,
-    borderBottomColor: 'rgba(34,197,94,0.15)',
+    borderBottomColor: 'rgba(201,168,76,0.15)',
   },
   backBtn: {
-    backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: 10,
+    backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 10,
     paddingHorizontal: 14, paddingVertical: 8, borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.2)',
+    borderColor: 'rgba(201,168,76,0.2)',
   },
   backBtnText: { color: G, fontSize: 14, fontWeight: 'bold' },
   headerTitle: { flex: 1, fontSize: 17, fontWeight: 'bold', color: '#fff' },
@@ -566,7 +566,7 @@ const s = StyleSheet.create({
   },
   errorText: { color: '#EF4444', fontSize: 12, flex: 1 },
   retryText: { color: '#EF4444', fontWeight: 'bold', fontSize: 12 },
-  tabRow: { flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: 'rgba(34,197,94,0.15)' },
+  tabRow: { flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: 'rgba(201,168,76,0.15)' },
   tabBtn: {
     flex: 1, paddingVertical: 12, alignItems: 'center',
     borderBottomWidth: 2, borderBottomColor: 'transparent',
@@ -588,7 +588,7 @@ const s = StyleSheet.create({
   alertCardOut: { borderColor: 'rgba(239,68,68,0.3)' },
   alertCardLow: { borderColor: 'rgba(245,158,11,0.3)' },
   alertName: { fontSize: 14, fontWeight: 'bold', color: '#fff', marginBottom: 2 },
-  alertSku: { fontSize: 10, color: 'rgba(34,197,94,0.5)', marginBottom: 4 },
+  alertSku: { fontSize: 10, color: 'rgba(201,168,76,0.5)', marginBottom: 4 },
   alertStock: { fontSize: 12, fontWeight: 'bold' },
   orderNowBtn: {
     backgroundColor: 'rgba(239,68,68,0.15)', borderRadius: 10,
@@ -602,14 +602,14 @@ const s = StyleSheet.create({
   emptyTitle: { fontSize: 18, fontWeight: 'bold', color: '#fff' },
   emptySub: { fontSize: 13, color: 'rgba(255,255,255,0.4)', textAlign: 'center' },
   createManualBtn: {
-    backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: 14,
+    backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 14,
     paddingHorizontal: 20, paddingVertical: 12, borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.3)', marginTop: 8,
+    borderColor: 'rgba(201,168,76,0.3)', marginTop: 8,
   },
   createManualBtnText: { color: G, fontWeight: 'bold', fontSize: 14 },
   poCard: {
     backgroundColor: '#0D1A0D', borderRadius: 16, padding: 14,
-    marginBottom: 10, borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)', gap: 6,
+    marginBottom: 10, borderWidth: 1, borderColor: 'rgba(201,168,76,0.15)', gap: 6,
   },
   poHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   poId: { fontSize: 16, fontWeight: 'bold', color: '#fff' },
@@ -620,7 +620,7 @@ const s = StyleSheet.create({
   poItems: { fontSize: 12, color: 'rgba(255,255,255,0.4)' },
   poNotes: { fontSize: 12, color: 'rgba(255,255,255,0.4)', fontStyle: 'italic' },
   poItemText: { fontSize: 12, color: 'rgba(255,255,255,0.5)' },
-  poItemMore: { fontSize: 11, color: 'rgba(34,197,94,0.5)' },
+  poItemMore: { fontSize: 11, color: 'rgba(201,168,76,0.5)' },
   poActions: { flexDirection: 'row', gap: 8, marginTop: 4 },
   poActionBtn: {
     flex: 1, backgroundColor: 'rgba(79,110,247,0.1)', borderRadius: 10,
@@ -648,43 +648,43 @@ const s = StyleSheet.create({
     backgroundColor: '#0D1A0D', borderRadius: 12, padding: 10,
     alignItems: 'center', borderWidth: 1.5, borderColor: 'rgba(255,255,255,0.08)', minWidth: 100,
   },
-  supplierBtnActive: { borderColor: G, backgroundColor: 'rgba(34,197,94,0.08)' },
-  supplierBrand: { fontSize: 11, color: 'rgba(34,197,94,0.5)', marginBottom: 2 },
+  supplierBtnActive: { borderColor: G, backgroundColor: 'rgba(201,168,76,0.08)' },
+  supplierBrand: { fontSize: 11, color: 'rgba(201,168,76,0.5)', marginBottom: 2 },
   supplierName: { fontSize: 12, fontWeight: 'bold', color: 'rgba(255,255,255,0.6)' },
   noAlertsBox: {
-    backgroundColor: 'rgba(34,197,94,0.05)', borderRadius: 12, padding: 16,
-    marginBottom: 14, borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)',
+    backgroundColor: 'rgba(201,168,76,0.05)', borderRadius: 12, padding: 16,
+    marginBottom: 14, borderWidth: 1, borderColor: 'rgba(201,168,76,0.15)',
   },
   noAlertsText: { color: 'rgba(255,255,255,0.4)', fontSize: 13, textAlign: 'center' },
   selectItem: {
     backgroundColor: '#0D1A0D', borderRadius: 12, padding: 12, marginBottom: 8,
     borderWidth: 1, borderColor: 'rgba(255,255,255,0.08)',
   },
-  selectItemActive: { borderColor: G, backgroundColor: 'rgba(34,197,94,0.05)' },
+  selectItemActive: { borderColor: G, backgroundColor: 'rgba(201,168,76,0.05)' },
   selectItemLeft: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   checkbox: {
     width: 22, height: 22, borderRadius: 6, borderWidth: 2,
-    borderColor: 'rgba(34,197,94,0.3)', alignItems: 'center', justifyContent: 'center',
+    borderColor: 'rgba(201,168,76,0.3)', alignItems: 'center', justifyContent: 'center',
   },
   checkboxChecked: { backgroundColor: G, borderColor: G },
   checkboxCheck: { color: '#fff', fontSize: 13, fontWeight: 'bold' },
   selectItemName: { fontSize: 13, fontWeight: 'bold', color: '#fff', marginBottom: 2 },
-  selectItemSku: { fontSize: 10, color: 'rgba(34,197,94,0.5)', marginBottom: 2 },
+  selectItemSku: { fontSize: 10, color: 'rgba(201,168,76,0.5)', marginBottom: 2 },
   selectItemStock: { fontSize: 11, fontWeight: 'bold' },
   qtyInput: {
     flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 8,
-    paddingTop: 8, borderTopWidth: 1, borderTopColor: 'rgba(34,197,94,0.1)',
+    paddingTop: 8, borderTopWidth: 1, borderTopColor: 'rgba(201,168,76,0.1)',
   },
   qtyInputField: {
     backgroundColor: '#060E06', borderRadius: 10, padding: 10,
     color: '#fff', fontSize: 16, borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.2)', width: 80, textAlign: 'center', fontWeight: 'bold',
+    borderColor: 'rgba(201,168,76,0.2)', width: 80, textAlign: 'center', fontWeight: 'bold',
   },
   qtyLabel: { color: 'rgba(255,255,255,0.4)', fontSize: 12 },
   notesInput: {
     backgroundColor: '#0D1A0D', borderRadius: 14, padding: 14,
     color: '#fff', fontSize: 14, borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.2)', marginBottom: 14,
+    borderColor: 'rgba(201,168,76,0.2)', marginBottom: 14,
     textAlignVertical: 'top', height: 80,
   },
   createOrderBtn: { backgroundColor: G, borderRadius: 16, padding: 16, alignItems: 'center' },

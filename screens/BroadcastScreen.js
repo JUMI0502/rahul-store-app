@@ -7,7 +7,7 @@ import {
 import * as Haptics from 'expo-haptics';
 
 const API_URL = 'https://rahul-auto-spares-backend.onrender.com';
-const G = '#22C55E';
+const G = '#C9A84C';
 
 const TEMPLATES = [
   {
@@ -333,32 +333,32 @@ const s = StyleSheet.create({
     backgroundColor: '#0D1A0D', paddingHorizontal: 16,
     paddingVertical: 12, flexDirection: 'row',
     alignItems: 'center', gap: 12, borderBottomWidth: 1,
-    borderBottomColor: 'rgba(34,197,94,0.15)',
+    borderBottomColor: 'rgba(201,168,76,0.15)',
   },
   backBtn: {
-    backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: 10,
+    backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 10,
     paddingHorizontal: 14, paddingVertical: 8, borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.2)',
+    borderColor: 'rgba(201,168,76,0.2)',
   },
   backBtnText: { color: G, fontSize: 14, fontWeight: 'bold' },
   headerTitle: {
     flex: 1, fontSize: 18, fontWeight: 'bold', color: '#fff',
   },
   customerCount: {
-    backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: 10,
+    backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 10,
     paddingHorizontal: 10, paddingVertical: 5, borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.2)',
+    borderColor: 'rgba(201,168,76,0.2)',
   },
   customerCountText: { color: G, fontWeight: 'bold', fontSize: 13 },
   tabRow: {
     flexDirection: 'row', padding: 10, gap: 8,
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(34,197,94,0.1)',
+    borderBottomColor: 'rgba(201,168,76,0.1)',
   },
   tabBtn: {
     flex: 1, paddingVertical: 8, borderRadius: 10,
     alignItems: 'center', borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.2)',
+    borderColor: 'rgba(201,168,76,0.2)',
   },
   tabBtnActive: { backgroundColor: G, borderColor: G },
   tabBtnText: {
@@ -373,7 +373,7 @@ const s = StyleSheet.create({
   statCard: {
     flex: 1, backgroundColor: '#0D1A0D', borderRadius: 14,
     padding: 16, alignItems: 'center', borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.15)',
+    borderColor: 'rgba(201,168,76,0.15)',
   },
   statValue: {
     fontSize: 28, fontWeight: 'bold', color: '#FFC107',
@@ -389,10 +389,10 @@ const s = StyleSheet.create({
   templateCard: {
     backgroundColor: '#0D1A0D', borderRadius: 14, padding: 14,
     alignItems: 'center', gap: 6, borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.15)', minWidth: 90,
+    borderColor: 'rgba(201,168,76,0.15)', minWidth: 90,
   },
   templateCardActive: {
-    borderColor: G, backgroundColor: 'rgba(34,197,94,0.1)',
+    borderColor: G, backgroundColor: 'rgba(201,168,76,0.1)',
   },
   templateIcon: { fontSize: 28 },
   templateTitle: {
@@ -402,7 +402,7 @@ const s = StyleSheet.create({
   messageInput: {
     backgroundColor: '#0D1A0D', borderRadius: 14, padding: 14,
     color: '#fff', fontSize: 14, borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.2)',
+    borderColor: 'rgba(201,168,76,0.2)',
     minHeight: 160, marginBottom: 6, lineHeight: 22,
   },
   charCount: {
@@ -415,9 +415,9 @@ const s = StyleSheet.create({
   },
   waBtnText: { color: '#fff', fontSize: 15, fontWeight: 'bold' },
   pushBtn: {
-    backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: 16,
+    backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 16,
     padding: 16, alignItems: 'center', borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.3)', marginBottom: 14,
+    borderColor: 'rgba(201,168,76,0.3)', marginBottom: 14,
   },
   pushBtnText: { color: G, fontSize: 15, fontWeight: 'bold' },
   noteBox: {
@@ -434,13 +434,13 @@ const s = StyleSheet.create({
     backgroundColor: '#0D1A0D', borderRadius: 12, padding: 14,
     flexDirection: 'row', alignItems: 'center',
     gap: 12, marginBottom: 8, borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.1)',
+    borderColor: 'rgba(201,168,76,0.1)',
   },
   customerAvatar: {
     width: 40, height: 40, borderRadius: 20,
-    backgroundColor: 'rgba(34,197,94,0.15)',
+    backgroundColor: 'rgba(201,168,76,0.15)',
     alignItems: 'center', justifyContent: 'center',
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.3)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.3)',
   },
   customerAvatarText: {
     color: G, fontSize: 16, fontWeight: 'bold',

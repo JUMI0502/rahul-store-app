@@ -102,19 +102,19 @@ export default function QRScannerScreen({ onScanned, onClose, mode = 'order' }) 
   );
 }
 
-const G = '#22C55E';
+const G = '#C9A84C';
 const s = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#060E06' },
   header: {
     backgroundColor: '#0D1A0D', padding: 16,
     flexDirection: 'row', alignItems: 'center',
     justifyContent: 'space-between', borderBottomWidth: 1,
-    borderBottomColor: 'rgba(34,197,94,0.15)',
+    borderBottomColor: 'rgba(201,168,76,0.15)',
   },
   backBtn: {
-    backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: 10,
+    backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 10,
     paddingHorizontal: 14, paddingVertical: 8, borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.2)',
+    borderColor: 'rgba(201,168,76,0.2)',
   },
   backText: { color: G, fontSize: 14, fontWeight: 'bold' },
   headerTitle: {
@@ -151,7 +151,7 @@ const s = StyleSheet.create({
     fontSize: 14, color: '#fff', textAlign: 'center',
   },
   scanHintTe: {
-    fontSize: 12, color: 'rgba(34,197,94,0.5)',
+    fontSize: 12, color: 'rgba(201,168,76,0.5)',
     textAlign: 'center',
   },
   rescanBtn: {

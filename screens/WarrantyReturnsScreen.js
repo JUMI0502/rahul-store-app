@@ -8,9 +8,9 @@ import { Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 
 const API_URL = 'https://rahul-auto-spares-backend.onrender.com';
-const G = '#22C55E';
+const G = '#C9A84C';
 
-const STATUS_COLORS = { pending: '#F59E0B', resolved: G, rejected: '#EF4444' };
+const STATUS_COLORS = { pending: '#F59E0B', resolved: 'G', rejected: '#EF4444' };
 
 export default function WarrantyReturnsScreen({ onBack, staff }) {
   const [claims, setClaims] = useState([]);
@@ -262,18 +262,18 @@ const s = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#060E06' },
   header: {
     flexDirection: 'row', alignItems: 'center', padding: 14, gap: 12,
-    borderBottomWidth: 1, borderBottomColor: 'rgba(34,197,94,0.15)',
+    borderBottomWidth: 1, borderBottomColor: 'rgba(201,168,76,0.15)',
     backgroundColor: '#0A160A',
   },
   backBtn: {
-    backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: 10,
-    padding: 8, borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)',
+    backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 10,
+    padding: 8, borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)',
   },
   headerTitle: { fontSize: 17, fontWeight: 'bold', color: '#fff' },
   headerSub: { fontSize: 11, color: 'rgba(255,255,255,0.4)' },
   newBtn: { backgroundColor: G, borderRadius: 10, padding: 8 },
-  filterRow: { flexDirection: 'row', padding: 12, gap: 8, borderBottomWidth: 1, borderBottomColor: 'rgba(34,197,94,0.1)' },
-  filterChip: { flex: 1, paddingVertical: 8, borderRadius: 10, alignItems: 'center', borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)' },
+  filterRow: { flexDirection: 'row', padding: 12, gap: 8, borderBottomWidth: 1, borderBottomColor: 'rgba(201,168,76,0.1)' },
+  filterChip: { flex: 1, paddingVertical: 8, borderRadius: 10, alignItems: 'center', borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)' },
   filterChipActive: { backgroundColor: G, borderColor: G },
   filterChipText: { fontSize: 12, color: 'rgba(255,255,255,0.4)', fontWeight: '700' },
   filterChipTextActive: { color: '#fff' },
@@ -281,7 +281,7 @@ const s = StyleSheet.create({
   emptyText: { fontSize: 14, color: 'rgba(255,255,255,0.4)' },
   card: {
     backgroundColor: '#0E1A0E', borderRadius: 14, padding: 14,
-    marginBottom: 12, borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)',
+    marginBottom: 12, borderWidth: 1, borderColor: 'rgba(201,168,76,0.15)',
   },
   cardTop: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 },
   productName: { fontSize: 15, fontWeight: 'bold', color: '#fff', flex: 1 },
@@ -291,28 +291,28 @@ const s = StyleSheet.create({
   orderLine: { fontSize: 11, color: 'rgba(255,255,255,0.35)', marginBottom: 6 },
   issueText: { fontSize: 13, color: 'rgba(255,255,255,0.7)', marginTop: 4, lineHeight: 18 },
   dateText: { fontSize: 10, color: 'rgba(255,255,255,0.3)', marginTop: 8 },
-  resolvedBox: { marginTop: 10, backgroundColor: 'rgba(34,197,94,0.08)', borderRadius: 8, padding: 8 },
+  resolvedBox: { marginTop: 10, backgroundColor: 'rgba(201,168,76,0.08)', borderRadius: 8, padding: 8 },
   resolvedText: { fontSize: 12, color: G, fontWeight: '600' },
   resolvedNotes: { fontSize: 11, color: 'rgba(255,255,255,0.5)', marginTop: 4 },
   resolveBtn: { flex: 1, backgroundColor: G, borderRadius: 10, padding: 10, alignItems: 'center' },
   resolveBtnText: { color: '#060E06', fontWeight: 'bold', fontSize: 12 },
   rejectBtn: { flex: 1, backgroundColor: 'rgba(239,68,68,0.15)', borderRadius: 10, padding: 10, alignItems: 'center', borderWidth: 1, borderColor: '#EF4444' },
   rejectBtnText: { color: '#EF4444', fontWeight: 'bold', fontSize: 12 },
-  resolveForm: { marginTop: 12, paddingTop: 12, borderTopWidth: 1, borderTopColor: 'rgba(34,197,94,0.1)' },
-  typeChip: { flex: 1, paddingVertical: 8, borderRadius: 8, alignItems: 'center', borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)' },
+  resolveForm: { marginTop: 12, paddingTop: 12, borderTopWidth: 1, borderTopColor: 'rgba(201,168,76,0.1)' },
+  typeChip: { flex: 1, paddingVertical: 8, borderRadius: 8, alignItems: 'center', borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)' },
   typeChipActive: { backgroundColor: G, borderColor: G },
   typeChipText: { fontSize: 11, color: 'rgba(255,255,255,0.5)', fontWeight: '600' },
   typeChipTextActive: { color: '#fff' },
   notesInput: {
     backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: 8, padding: 10,
-    color: '#fff', fontSize: 13, borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)', marginBottom: 10,
+    color: '#fff', fontSize: 13, borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)', marginBottom: 10,
   },
   confirmResolveBtn: { backgroundColor: G, borderRadius: 10, padding: 10, alignItems: 'center' },
   confirmResolveBtnText: { color: '#060E06', fontWeight: 'bold', fontSize: 13 },
   label: { fontSize: 12, color: 'rgba(255,255,255,0.5)', marginBottom: 6, marginTop: 12 },
   input: {
     backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: 10, padding: 12,
-    color: '#fff', fontSize: 14, borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)',
+    color: '#fff', fontSize: 14, borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)',
   },
   saveBtn: { backgroundColor: G, borderRadius: 12, padding: 16, alignItems: 'center', marginTop: 24 },
   saveBtnText: { color: '#060E06', fontWeight: 'bold', fontSize: 15 },

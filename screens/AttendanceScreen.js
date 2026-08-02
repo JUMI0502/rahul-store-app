@@ -7,7 +7,7 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Haptics from 'expo-haptics';
 
-const G = '#22C55E';
+const G = '#C9A84C';
 
 const STAFF_LIST = [
   { id: 1, name: 'Abdul Azeez Basheer', role: 'owner',  phone: '9642536653', salary: 0 },
@@ -69,7 +69,7 @@ function ClockCard({ member, record, isMe, canClock, onClock }) {
       { transform: [{ scale: canClock && isClockedIn ? pulseAnim : 1 }] }
     ]}>
       <View style={cc.left}>
-        <View style={[cc.avatar, isClockedIn && { backgroundColor: 'rgba(34,197,94,0.15)' }]}>
+        <View style={[cc.avatar, isClockedIn && { backgroundColor: 'rgba(201,168,76,0.15)' }]}>
           <Text style={cc.avatarText}>
             {member.role === 'owner' ? '' : member.role === 'senior' ? '⭐' : ''}
           </Text>
@@ -118,7 +118,7 @@ function ClockCard({ member, record, isMe, canClock, onClock }) {
         // ✅ Other staff → show status only (no details, no button)
         <View style={[cc.statusOnly,
           { backgroundColor: isClockedIn
-            ? 'rgba(34,197,94,0.1)'
+            ? 'rgba(201,168,76,0.1)'
             : 'rgba(255,255,255,0.04)' }]}>
           <View style={[cc.statusDot,
             { backgroundColor: isClockedIn ? G : 'rgba(255,255,255,0.2)' }]} />
@@ -136,10 +136,10 @@ const cc = StyleSheet.create({
   card: {
     backgroundColor: '#0D1A0D', borderRadius: 16, padding: 14,
     flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
-    marginBottom: 8, borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)',
+    marginBottom: 8, borderWidth: 1, borderColor: 'rgba(201,168,76,0.15)',
   },
   cardActive: {
-    borderColor: 'rgba(34,197,94,0.5)',
+    borderColor: 'rgba(201,168,76,0.5)',
     shadowColor: G, shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2, shadowRadius: 4, elevation: 4,
   },
@@ -148,7 +148,7 @@ const cc = StyleSheet.create({
   avatar: {
     width: 46, height: 46, borderRadius: 23, backgroundColor: '#0D1A0D',
     alignItems: 'center', justifyContent: 'center', borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.2)',
+    borderColor: 'rgba(201,168,76,0.2)',
   },
   avatarText: { fontSize: 22 },
   name: { fontSize: 15, fontWeight: 'bold', color: '#fff', marginBottom: 2 },
@@ -165,7 +165,7 @@ const cc = StyleSheet.create({
     flexDirection: 'row', alignItems: 'center', gap: 6, borderRadius: 12,
     paddingHorizontal: 12, paddingVertical: 10, borderWidth: 1,
   },
-  clockBtnIn:  { backgroundColor: 'rgba(34,197,94,0.1)', borderColor: 'rgba(34,197,94,0.3)' },
+  clockBtnIn:  { backgroundColor: 'rgba(201,168,76,0.1)', borderColor: 'rgba(201,168,76,0.3)' },
   clockBtnOut: { backgroundColor: 'rgba(239,68,68,0.1)', borderColor: 'rgba(239,68,68,0.3)' },
   clockBtnIcon: { fontSize: 16 },
   clockBtnText: { fontWeight: 'bold', fontSize: 13 },
@@ -301,7 +301,7 @@ export default function AttendanceScreen({ onBack, staff }) {
 
       {/* STATS */}
       <View style={s.statsRow}>
-        <View style={[s.statBox, { borderColor: 'rgba(34,197,94,0.3)' }]}>
+        <View style={[s.statBox, { borderColor: 'rgba(201,168,76,0.3)' }]}>
           <Text style={[s.statVal, { color: G }]}>{presentToday}</Text>
           <Text style={s.statLabel}>Present</Text>
         </View>
@@ -405,7 +405,7 @@ export default function AttendanceScreen({ onBack, staff }) {
                     </View>
                     <View style={[s.attBadge, {
                       backgroundColor: parseInt(stats.attendance) >= 90
-                        ? 'rgba(34,197,94,0.15)' : parseInt(stats.attendance) >= 75
+                        ? 'rgba(201,168,76,0.15)' : parseInt(stats.attendance) >= 75
                         ? 'rgba(255,193,7,0.15)' : 'rgba(239,68,68,0.15)',
                     }]}>
                       <Text style={[s.attPct, {
@@ -558,12 +558,12 @@ const s = StyleSheet.create({
   header: {
     backgroundColor: '#0D1A0D', paddingHorizontal: 16, paddingVertical: 14,
     flexDirection: 'row', alignItems: 'center', gap: 12, borderBottomWidth: 1,
-    borderBottomColor: 'rgba(34,197,94,0.15)',
+    borderBottomColor: 'rgba(201,168,76,0.15)',
   },
   backBtn: {
-    backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: 10,
+    backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 10,
     paddingHorizontal: 14, paddingVertical: 8, borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.2)',
+    borderColor: 'rgba(201,168,76,0.2)',
   },
   backBtnText: { color: G, fontSize: 14, fontWeight: 'bold' },
   headerTitle: { fontSize: 17, fontWeight: 'bold', color: '#fff' },
@@ -575,7 +575,7 @@ const s = StyleSheet.create({
   },
   statVal: { fontSize: 22, fontWeight: 'bold', color: G, marginBottom: 2 },
   statLabel: { fontSize: 9, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: 1 },
-  tabRow: { flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: 'rgba(34,197,94,0.15)' },
+  tabRow: { flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: 'rgba(201,168,76,0.15)' },
   tabBtn: {
     flex: 1, paddingVertical: 12, alignItems: 'center',
     borderBottomWidth: 2, borderBottomColor: 'transparent',
@@ -599,11 +599,11 @@ const s = StyleSheet.create({
   },
   monthlyCard: {
     backgroundColor: '#0D1A0D', borderRadius: 16, padding: 14,
-    marginBottom: 10, borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)', gap: 10,
+    marginBottom: 10, borderWidth: 1, borderColor: 'rgba(201,168,76,0.15)', gap: 10,
   },
   monthlyTop: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   monthlyAvatar: {
-    width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(34,197,94,0.1)',
+    width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(201,168,76,0.1)',
     alignItems: 'center', justifyContent: 'center',
   },
   monthlyName: { fontSize: 14, fontWeight: 'bold', color: '#fff', marginBottom: 2 },
@@ -614,7 +614,7 @@ const s = StyleSheet.create({
   monthlyStatItem: { flex: 1, alignItems: 'center' },
   monthlyStatVal: { fontSize: 16, fontWeight: 'bold', color: '#fff', marginBottom: 2 },
   monthlyStatLabel: { fontSize: 9, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase' },
-  attBarBg: { height: 4, backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: 2, overflow: 'hidden' },
+  attBarBg: { height: 4, backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 2, overflow: 'hidden' },
   attBarFill: { height: '100%', borderRadius: 2 },
   salaryCard: {
     backgroundColor: '#0D1A0D', borderRadius: 16, padding: 14,
@@ -624,14 +624,14 @@ const s = StyleSheet.create({
   salaryName: { fontSize: 15, fontWeight: 'bold', color: '#fff', marginBottom: 2 },
   salaryRole: { fontSize: 11, color: 'rgba(255,255,255,0.4)' },
   salaryBadge: {
-    backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: 8,
+    backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 8,
     paddingHorizontal: 10, paddingVertical: 4, borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.2)',
+    borderColor: 'rgba(201,168,76,0.2)',
   },
   salaryBadgeText: { color: G, fontSize: 12, fontWeight: 'bold' },
   salaryGrid: {
     flexDirection: 'row', flexWrap: 'wrap',
-    backgroundColor: 'rgba(34,197,94,0.04)', borderRadius: 10, padding: 10, gap: 2,
+    backgroundColor: 'rgba(201,168,76,0.04)', borderRadius: 10, padding: 10, gap: 2,
   },
   salaryItem: { width: '33.33%', padding: 8, alignItems: 'center' },
   salaryItemLabel: {

@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 
 const API_URL = 'https://rahul-auto-spares-backend.onrender.com';
-const G = '#22C55E';
+const G = '#C9A84C';
 
 function AnimatedNumber({ value, color = '#fff', size = 24 }) {
   const anim = useRef(new Animated.Value(0)).current;
@@ -153,7 +153,7 @@ export default function CustomerAnalyticsScreen({ onBack }) {
               <AnimatedNumber value={monthly.total_revenue||0} color="#FFC107" size={20} />
               <Text style={styles.statLabel}>Revenue</Text>
             </View>
-            <View style={[styles.statCard, { borderColor: 'rgba(34,197,94,0.3)' }]}>
+            <View style={[styles.statCard, { borderColor: 'rgba(201,168,76,0.3)' }]}>
               <Text style={styles.statIcon}></Text>
               <AnimatedNumber value={monthly.total_orders||0} color={G} size={20} />
               <Text style={styles.statLabel}>Orders</Text>
@@ -233,12 +233,12 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: '#0D1A0D', paddingHorizontal: 16, paddingVertical: 12,
     flexDirection: 'row', alignItems: 'center', gap: 12, borderBottomWidth: 1,
-    borderBottomColor: 'rgba(34,197,94,0.15)',
+    borderBottomColor: 'rgba(201,168,76,0.15)',
   },
   backBtn: {
-    backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: 10,
+    backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 10,
     paddingHorizontal: 14, paddingVertical: 8, borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.2)',
+    borderColor: 'rgba(201,168,76,0.2)',
   },
   backBtnText: { color: G, fontSize: 14, fontWeight: 'bold' },
   headerTitle: { flex: 1, fontSize: 16, fontWeight: 'bold', color: '#fff' },
@@ -260,7 +260,7 @@ const styles = StyleSheet.create({
   },
   avgCard: {
     backgroundColor: '#0D1A0D', borderRadius: 16, padding: 20, alignItems: 'center',
-    marginBottom: 20, borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)',
+    marginBottom: 20, borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)',
   },
   avgLabel: { fontSize: 12, color: 'rgba(255,255,255,0.4)', marginBottom: 8 },
   avgValue: { fontSize: 36, fontWeight: 'bold', color: G, marginBottom: 4 },
@@ -272,20 +272,20 @@ const styles = StyleSheet.create({
   listToggle: { flexDirection: 'row', gap: 6 },
   toggleBtn: {
     paddingHorizontal: 10, paddingVertical: 6, borderRadius: 10,
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.15)',
   },
-  toggleBtnActive: { backgroundColor: 'rgba(34,197,94,0.1)' },
+  toggleBtnActive: { backgroundColor: 'rgba(201,168,76,0.1)' },
   toggleBtnText: { fontSize: 11, color: 'rgba(255,255,255,0.4)', fontWeight: 'bold' },
   customerCard: {
     backgroundColor: '#0D1A0D', borderRadius: 14, padding: 14, flexDirection: 'row',
     alignItems: 'center', gap: 10, marginBottom: 8, borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.12)',
+    borderColor: 'rgba(201,168,76,0.12)',
   },
   medal: { fontSize: 22, width: 30 },
   customerAvatar: {
-    width: 40, height: 40, borderRadius: 20, backgroundColor: 'rgba(34,197,94,0.15)',
+    width: 40, height: 40, borderRadius: 20, backgroundColor: 'rgba(201,168,76,0.15)',
     alignItems: 'center', justifyContent: 'center', borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.3)',
+    borderColor: 'rgba(201,168,76,0.3)',
   },
   avatarText: { color: G, fontSize: 16, fontWeight: 'bold' },
   customerName: { fontSize: 13, fontWeight: 'bold', color: '#fff', marginBottom: 2 },

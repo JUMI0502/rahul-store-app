@@ -7,7 +7,7 @@ import {
 import * as Haptics from 'expo-haptics';
 
 const API_URL = 'https://rahul-auto-spares-backend.onrender.com';
-const G = '#22C55E';
+const G = '#C9A84C';
 
 function getLevel(spent) {
   if (spent >= 10000) return { label: 'Diamond', color: '#60A5FA' };
@@ -377,7 +377,7 @@ export default function CustomerManagementScreen({ onBack }) {
                       <Text style={s.orderHistoryAmt}>₹{order.total_amount}</Text>
                       <View style={[s.statusPill, {
                         backgroundColor: order.status === 'collected'
-                          ? 'rgba(34,197,94,0.15)' : 'rgba(79,110,247,0.15)',
+                          ? 'rgba(201,168,76,0.15)' : 'rgba(79,110,247,0.15)',
                       }]}>
                         <Text style={[s.statusPillText, {
                           color: order.status === 'collected' ? G : '#4F6EF7'
@@ -403,12 +403,12 @@ const s = StyleSheet.create({
   header: {
     backgroundColor: '#0D1A0D', paddingHorizontal: 16, paddingVertical: 14,
     flexDirection: 'row', alignItems: 'center', gap: 12, borderBottomWidth: 1,
-    borderBottomColor: 'rgba(34,197,94,0.15)',
+    borderBottomColor: 'rgba(201,168,76,0.15)',
   },
   backBtn: {
-    backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: 10,
+    backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 10,
     paddingHorizontal: 14, paddingVertical: 8, borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.2)',
+    borderColor: 'rgba(201,168,76,0.2)',
   },
   backBtnText: { color: G, fontSize: 14, fontWeight: 'bold' },
   headerTitle: { fontSize: 17, fontWeight: 'bold', color: '#fff' },
@@ -418,7 +418,7 @@ const s = StyleSheet.create({
     flexDirection: 'row', alignItems: 'center', backgroundColor: '#0D1A0D',
     marginHorizontal: 12, marginBottom: 8, borderRadius: 14,
     paddingHorizontal: 14, paddingVertical: 10, borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.2)', gap: 10,
+    borderColor: 'rgba(201,168,76,0.2)', gap: 10,
   },
   searchInput: { flex: 1, color: '#fff', fontSize: 14 },
   sortRow: {
@@ -428,9 +428,9 @@ const s = StyleSheet.create({
   sortLabel: { fontSize: 11, color: 'rgba(255,255,255,0.3)' },
   sortBtn: {
     paddingHorizontal: 10, paddingVertical: 4, borderRadius: 8,
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)',
   },
-  sortBtnActive: { backgroundColor: 'rgba(34,197,94,0.1)', borderColor: G },
+  sortBtnActive: { backgroundColor: 'rgba(201,168,76,0.1)', borderColor: G },
   sortBtnText: { fontSize: 11, color: 'rgba(255,255,255,0.4)', fontWeight: 'bold' },
   countText: { marginLeft: 'auto', fontSize: 11, color: 'rgba(255,255,255,0.25)' },
   centerBox: { flex: 1, alignItems: 'center', justifyContent: 'center' },
@@ -442,14 +442,14 @@ const s = StyleSheet.create({
   customerCard: {
     backgroundColor: '#0D1A0D', borderRadius: 16, padding: 14,
     flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 8,
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.15)',
   },
   customerRank: { width: 24 },
   rankNum: { fontSize: 11, color: 'rgba(255,255,255,0.3)', fontWeight: 'bold' },
   customerAvatar: {
-    width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(34,197,94,0.15)',
+    width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(201,168,76,0.15)',
     alignItems: 'center', justifyContent: 'center', borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.3)',
+    borderColor: 'rgba(201,168,76,0.3)',
   },
   customerAvatarText: { fontSize: 20, fontWeight: 'bold', color: G },
   customerNameRow: { flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 2 },
@@ -474,10 +474,10 @@ const s = StyleSheet.create({
   profileCard: {
     backgroundColor: '#0D1A0D', borderRadius: 20, padding: 24,
     alignItems: 'center', marginBottom: 14, borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.2)',
+    borderColor: 'rgba(201,168,76,0.2)',
   },
   profileAvatar: {
-    width: 80, height: 80, borderRadius: 40, backgroundColor: 'rgba(34,197,94,0.15)',
+    width: 80, height: 80, borderRadius: 40, backgroundColor: 'rgba(201,168,76,0.15)',
     alignItems: 'center', justifyContent: 'center', borderWidth: 2,
     borderColor: G, marginBottom: 12,
   },
@@ -498,7 +498,7 @@ const s = StyleSheet.create({
   orderHistoryRow: {
     flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
     backgroundColor: '#0D1A0D', borderRadius: 12, padding: 12, marginBottom: 8,
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.1)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.1)',
   },
   orderHistoryId: { fontSize: 14, fontWeight: 'bold', color: '#fff', marginBottom: 2 },
   orderHistoryDate: { fontSize: 11, color: 'rgba(255,255,255,0.35)' },

@@ -8,7 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 
 const API_URL = 'https://rahul-auto-spares-backend.onrender.com';
-const G = '#22C55E';
+const G = '#C9A84C';
 
 export default function AbandonedCartsScreen({ onBack }) {
   const [carts, setCarts] = useState([]);
@@ -120,12 +120,12 @@ const s = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#060E06' },
   header: {
     flexDirection: 'row', alignItems: 'center', padding: 14, gap: 12,
-    borderBottomWidth: 1, borderBottomColor: 'rgba(34,197,94,0.15)',
+    borderBottomWidth: 1, borderBottomColor: 'rgba(201,168,76,0.15)',
     backgroundColor: '#0A160A',
   },
   backBtn: {
-    backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: 10,
-    padding: 8, borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)',
+    backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 10,
+    padding: 8, borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)',
   },
   headerTitle: { fontSize: 17, fontWeight: 'bold', color: '#fff' },
   headerSub: { fontSize: 11, color: 'rgba(255,255,255,0.4)' },
@@ -134,7 +134,7 @@ const s = StyleSheet.create({
   countLabel: { fontSize: 12, color: 'rgba(255,255,255,0.4)', marginBottom: 12 },
   card: {
     backgroundColor: '#0E1A0E', borderRadius: 14, padding: 14,
-    marginBottom: 12, borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)',
+    marginBottom: 12, borderWidth: 1, borderColor: 'rgba(201,168,76,0.15)',
   },
   cardTop: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   name: { fontSize: 15, fontWeight: 'bold', color: '#fff' },
@@ -143,7 +143,7 @@ const s = StyleSheet.create({
   itemLine: { fontSize: 13, color: 'rgba(255,255,255,0.7)', marginBottom: 2 },
   sentBadge: {
     flexDirection: 'row', alignItems: 'center', gap: 4, marginTop: 8,
-    alignSelf: 'flex-start', backgroundColor: 'rgba(34,197,94,0.1)',
+    alignSelf: 'flex-start', backgroundColor: 'rgba(201,168,76,0.1)',
     borderRadius: 8, paddingHorizontal: 6, paddingVertical: 2,
   },
   sentBadgeText: { fontSize: 10, color: G },

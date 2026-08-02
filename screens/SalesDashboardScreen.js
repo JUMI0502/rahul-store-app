@@ -9,7 +9,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 const { width } = Dimensions.get('window');
 const API_URL = 'https://rahul-auto-spares-backend.onrender.com';
-const G = '#22C55E';
+const G = '#C9A84C';
 const HOURS = ['6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21'];
 
 function AnimatedBar({ value, maxValue, color, delay = 0, horizontal = false }) {
@@ -466,7 +466,7 @@ export default function SalesDashboardScreen({ onBack }) {
                 <Text style={{ fontSize: 12, color: 'rgba(255,255,255,0.3)' }}>No completed orders yet this month</Text>
               ) : (
                 businessHealth.staff_productivity.map((sp, i) => (
-                  <View key={i} style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 6, borderBottomWidth: 1, borderBottomColor: 'rgba(34,197,94,0.08)' }}>
+                  <View key={i} style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 6, borderBottomWidth: 1, borderBottomColor: 'rgba(201,168,76,0.08)' }}>
                     <Text style={{ fontSize: 13, color: '#fff' }}>{sp.name}</Text>
                     <Text style={{ fontSize: 13, color: G, fontWeight: 'bold' }}>{sp.orders_completed} orders</Text>
                   </View>
@@ -508,12 +508,12 @@ const s = StyleSheet.create({
   header: {
     backgroundColor: '#0D1A0D', paddingHorizontal: 16, paddingVertical: 14,
     flexDirection: 'row', alignItems: 'center', gap: 12, borderBottomWidth: 1,
-    borderBottomColor: 'rgba(34,197,94,0.15)',
+    borderBottomColor: 'rgba(201,168,76,0.15)',
   },
   backBtn: {
-    backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: 10,
+    backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 10,
     paddingHorizontal: 14, paddingVertical: 8, borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.2)',
+    borderColor: 'rgba(201,168,76,0.2)',
   },
   backBtnText: { color: G, fontSize: 14, fontWeight: 'bold' },
   headerTitle: { fontSize: 17, fontWeight: 'bold', color: '#fff' },
@@ -524,11 +524,11 @@ const s = StyleSheet.create({
   },
   periodRow: {
     flexDirection: 'row', padding: 12, gap: 8,
-    borderBottomWidth: 1, borderBottomColor: 'rgba(34,197,94,0.1)',
+    borderBottomWidth: 1, borderBottomColor: 'rgba(201,168,76,0.1)',
   },
   periodBtn: {
     flex: 1, paddingVertical: 8, borderRadius: 10, alignItems: 'center',
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)', backgroundColor: 'rgba(34,197,94,0.04)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)', backgroundColor: 'rgba(201,168,76,0.04)',
   },
   periodBtnActive: { backgroundColor: G, borderColor: G },
   periodBtnText: { fontSize: 13, color: 'rgba(255,255,255,0.5)', fontWeight: '700' },
@@ -541,7 +541,7 @@ const s = StyleSheet.create({
   noticeText: { color: 'rgba(79,110,247,0.7)', fontSize: 11, textAlign: 'center' },
   heroCard: {
     margin: 12, backgroundColor: '#0D1A0D', borderRadius: 20, padding: 20,
-    alignItems: 'center', borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)', gap: 6,
+    alignItems: 'center', borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)', gap: 6,
   },
   heroLabel: { fontSize: 10, color: 'rgba(255,255,255,0.3)', letterSpacing: 3 },
   heroValue: { fontSize: 44, fontWeight: 'bold', color: G },
@@ -552,27 +552,27 @@ const s = StyleSheet.create({
   goalLabel: { fontSize: 11, color: 'rgba(255,255,255,0.4)' },
   goalPct: { fontSize: 11, fontWeight: 'bold' },
   goalBarBg: {
-    width: '100%', height: 8, backgroundColor: 'rgba(34,197,94,0.1)',
+    width: '100%', height: 8, backgroundColor: 'rgba(201,168,76,0.1)',
     borderRadius: 4, overflow: 'hidden',
   },
   goalMet: { color: G, fontWeight: 'bold', fontSize: 13, marginTop: 4 },
   cardsRow: { flexDirection: 'row', paddingHorizontal: 12, gap: 8, marginBottom: 8 },
   statusCard: {
     marginHorizontal: 12, backgroundColor: '#0D1A0D', borderRadius: 18,
-    padding: 16, marginBottom: 12, borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)',
+    padding: 16, marginBottom: 12, borderWidth: 1, borderColor: 'rgba(201,168,76,0.15)',
   },
   cardTitle: { fontSize: 15, fontWeight: 'bold', color: '#fff', marginBottom: 14 },
   chartSubtitle: { fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 12, marginTop: -8 },
   statusRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 10 },
   statusLabel: { fontSize: 12, color: 'rgba(255,255,255,0.6)', width: 80 },
   statusBarBg: {
-    flex: 1, height: 8, backgroundColor: 'rgba(34,197,94,0.06)',
+    flex: 1, height: 8, backgroundColor: 'rgba(201,168,76,0.06)',
     borderRadius: 4, overflow: 'hidden',
   },
   statusCount: { fontSize: 14, fontWeight: 'bold', width: 28, textAlign: 'right' },
   chartCard: {
     marginHorizontal: 12, backgroundColor: '#0D1A0D', borderRadius: 18,
-    padding: 16, marginBottom: 12, borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)',
+    padding: 16, marginBottom: 12, borderWidth: 1, borderColor: 'rgba(201,168,76,0.15)',
   },
   chartEmpty: { alignItems: 'center', padding: 20 },
   chartEmptyText: { color: 'rgba(255,255,255,0.3)', fontSize: 12 },
@@ -581,7 +581,7 @@ const s = StyleSheet.create({
   hourBarValue: { fontSize: 7, color: 'rgba(255,255,255,0.3)', height: 12 },
   hourBarWrapper: {
     width: '100%', flex: 1, justifyContent: 'flex-end',
-    backgroundColor: 'rgba(34,197,94,0.06)', borderRadius: 3, overflow: 'hidden',
+    backgroundColor: 'rgba(201,168,76,0.06)', borderRadius: 3, overflow: 'hidden',
   },
   hourLabel: { fontSize: 8, color: 'rgba(255,255,255,0.3)' },
   weekChart: { flexDirection: 'row', alignItems: 'flex-end', height: 120, gap: 6 },
@@ -589,29 +589,29 @@ const s = StyleSheet.create({
   weekBarValue: { fontSize: 9, color: 'rgba(255,255,255,0.3)' },
   weekBarWrapper: {
     width: '100%', flex: 1, justifyContent: 'flex-end',
-    backgroundColor: 'rgba(34,197,94,0.06)', borderRadius: 4, overflow: 'hidden',
+    backgroundColor: 'rgba(201,168,76,0.06)', borderRadius: 4, overflow: 'hidden',
   },
   weekLabel: { fontSize: 9, color: 'rgba(255,255,255,0.35)' },
   topCard: {
     marginHorizontal: 12, backgroundColor: '#0D1A0D', borderRadius: 18,
-    padding: 16, marginBottom: 12, borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)',
+    padding: 16, marginBottom: 12, borderWidth: 1, borderColor: 'rgba(201,168,76,0.15)',
   },
   topRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 14 },
   topRank: { fontSize: 20, width: 30 },
   topNameRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 },
   topName: { fontSize: 13, fontWeight: 'bold', color: '#fff', flex: 1 },
   topQty: { fontSize: 12, fontWeight: 'bold' },
-  topBarBg: { height: 4, backgroundColor: 'rgba(34,197,94,0.06)', borderRadius: 2, overflow: 'hidden' },
+  topBarBg: { height: 4, backgroundColor: 'rgba(201,168,76,0.06)', borderRadius: 2, overflow: 'hidden' },
   payCard: {
     marginHorizontal: 12, backgroundColor: '#0D1A0D', borderRadius: 18,
-    padding: 16, marginBottom: 12, borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)',
+    padding: 16, marginBottom: 12, borderWidth: 1, borderColor: 'rgba(201,168,76,0.15)',
   },
   payRow: { flexDirection: 'row', gap: 8 },
   payItem: { flex: 1, alignItems: 'center', gap: 4 },
   payLabel: { fontSize: 12, color: 'rgba(255,255,255,0.5)' },
   payValue: { fontSize: 14, fontWeight: 'bold' },
   payBarBg: {
-    width: '100%', height: 4, backgroundColor: 'rgba(34,197,94,0.06)',
+    width: '100%', height: 4, backgroundColor: 'rgba(201,168,76,0.06)',
     borderRadius: 2, overflow: 'hidden',
   },
   payPct: { fontSize: 10, color: 'rgba(255,255,255,0.3)' },

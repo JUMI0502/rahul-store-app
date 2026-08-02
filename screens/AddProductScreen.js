@@ -9,7 +9,7 @@ import * as Haptics from 'expo-haptics';
 import QRScannerScreen from './QRScannerScreen';
 
 const API_URL = 'https://rahul-auto-spares-backend.onrender.com';
-const G = '#22C55E';
+const G = '#C9A84C';
 
 // ── SKU BUILDER DATA ──
 const BIKE_MODELS = [
@@ -478,7 +478,7 @@ export default function AddProductScreen({ onBack, onProductAdded }) {
           {margin !== null && (
             <View style={[s.marginBox, {
               backgroundColor: margin > 0
-                ? 'rgba(34,197,94,0.08)' : margin === 0
+                ? 'rgba(201,168,76,0.08)' : margin === 0
                 ? 'rgba(255,193,7,0.08)' : 'rgba(239,68,68,0.08)'
             }]}>
               <Text style={[s.marginText, {
@@ -518,13 +518,13 @@ const s = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#060E06' },
   header: {
     flexDirection: 'row', alignItems: 'center', padding: 14, gap: 12,
-    borderBottomWidth: 1, borderBottomColor: 'rgba(34,197,94,0.15)',
+    borderBottomWidth: 1, borderBottomColor: 'rgba(201,168,76,0.15)',
     backgroundColor: '#0A160A',
   },
   backBtn: {
-    backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: 10,
+    backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 10,
     paddingHorizontal: 12, paddingVertical: 8,
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)',
   },
   backBtnText: { color: G, fontSize: 14, fontWeight: 'bold' },
   headerTitle: { fontSize: 17, fontWeight: 'bold', color: '#fff' },
@@ -537,30 +537,30 @@ const s = StyleSheet.create({
   oemToggleBtn: {
     flex: 1, paddingVertical: 12, borderRadius: 10,
     alignItems: 'center', borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.2)',
-    backgroundColor: 'rgba(34,197,94,0.05)',
+    borderColor: 'rgba(201,168,76,0.2)',
+    backgroundColor: 'rgba(201,168,76,0.05)',
   },
   oemToggleBtnActive: { backgroundColor: G, borderColor: G },
   oemToggleText: { fontSize: 12, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)' },
   oemToggleTextActive: { color: '#fff' },
   card: {
     backgroundColor: '#0E1A0E', borderRadius: 16, padding: 16,
-    marginBottom: 14, borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)',
+    marginBottom: 14, borderWidth: 1, borderColor: 'rgba(201,168,76,0.15)',
   },
   cardTitle: { fontSize: 15, fontWeight: 'bold', color: '#fff', marginBottom: 12 },
   label: { fontSize: 12, color: 'rgba(255,255,255,0.5)', marginBottom: 6, marginTop: 10 },
   input: {
     backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: 10,
     padding: 12, color: '#fff', fontSize: 14,
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)',
   },
 
   // SKU Builder
   skuModeRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 },
   modeToggle: {
-    backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: 8,
+    backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 8,
     paddingHorizontal: 10, paddingVertical: 5,
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)',
   },
   modeToggleText: { color: G, fontSize: 11, fontWeight: 'bold' },
   stepLabel: {
@@ -569,8 +569,8 @@ const s = StyleSheet.create({
   },
   bikeChip: {
     paddingHorizontal: 14, paddingVertical: 8, borderRadius: 20,
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)',
-    backgroundColor: 'rgba(34,197,94,0.05)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)',
+    backgroundColor: 'rgba(201,168,76,0.05)',
   },
   bikeChipActive: { backgroundColor: G, borderColor: G },
   bikeChipText: { color: 'rgba(255,255,255,0.6)', fontSize: 12, fontWeight: '600' },
@@ -585,9 +585,9 @@ const s = StyleSheet.create({
   partChipText: { color: 'rgba(255,255,255,0.5)', fontSize: 11, fontWeight: '600' },
   partChipTextActive: { color: '#06060E' },
   skuPreview: {
-    backgroundColor: 'rgba(34,197,94,0.08)', borderRadius: 10,
+    backgroundColor: 'rgba(201,168,76,0.08)', borderRadius: 10,
     padding: 12, marginBottom: 10, borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.2)', alignItems: 'center',
+    borderColor: 'rgba(201,168,76,0.2)', alignItems: 'center',
   },
   skuPreviewLabel: { fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 4 },
   skuPreviewValue: { fontSize: 22, fontWeight: 'bold', color: G, letterSpacing: 2 },
@@ -609,9 +609,9 @@ const s = StyleSheet.create({
   imagePreview: { width: 120, height: 120, borderRadius: 12 },
   imageActions: { flexDirection: 'row', gap: 10 },
   changeImageBtn: {
-    backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: 8,
+    backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 8,
     paddingHorizontal: 14, paddingVertical: 8,
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)',
   },
   changeImageBtnText: { color: G, fontSize: 12, fontWeight: 'bold' },
   removeImageBtn: {
@@ -622,9 +622,9 @@ const s = StyleSheet.create({
   removeImageBtnText: { color: '#EF4444', fontSize: 12, fontWeight: 'bold' },
   imagePickerRow: { flexDirection: 'row', gap: 12, justifyContent: 'center' },
   imagePickBtn: {
-    flex: 1, backgroundColor: 'rgba(34,197,94,0.08)', borderRadius: 12,
+    flex: 1, backgroundColor: 'rgba(201,168,76,0.08)', borderRadius: 12,
     padding: 16, alignItems: 'center', gap: 6,
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)',
   },
   imagePickBtnIcon: { fontSize: 28 },
   imagePickBtnText: { color: 'rgba(255,255,255,0.6)', fontSize: 12, fontWeight: 'bold' },
