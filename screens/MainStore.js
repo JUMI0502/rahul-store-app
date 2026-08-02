@@ -26,7 +26,7 @@ const API_URL = 'https://rahul-auto-spares-backend.onrender.com';
 const WHATSAPP = '916300281504';
 const STORE_UPI = 'rahulautospares@paytm';
 const ORDERS_CACHE = 'store_orders_cache';
-const G = '#22C55E';
+const G = '#C9A84C';
 
 const STATUS_COLORS = {
   new: '#4F6EF7', packing: '#F59E0B',
@@ -134,8 +134,8 @@ const sc = StyleSheet.create({
   oemToggleBtn: {
     flex: 1, paddingVertical: 12, borderRadius: 10,
     alignItems: 'center', borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.2)',
-    backgroundColor: 'rgba(34,197,94,0.05)',
+    borderColor: 'rgba(201,168,76,0.2)',
+    backgroundColor: 'rgba(201,168,76,0.05)',
   },
   oemToggleBtnActive: { backgroundColor: G, borderColor: G },
   oemToggleText: { fontSize: 12, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)' },
@@ -177,7 +177,7 @@ function AvatarRing({ avatar, profileImage, size = 90, onPress }) {
 }
 const avr = StyleSheet.create({
   ring: {
-    backgroundColor: 'rgba(34,197,94,0.1)', borderWidth: 2, borderColor: G,
+    backgroundColor: 'rgba(201,168,76,0.1)', borderWidth: 2, borderColor: G,
     alignItems: 'center', justifyContent: 'center', marginBottom: 6,
     position: 'relative', overflow: 'visible',
   },
@@ -253,7 +253,7 @@ function AvatarPickerModal({ visible, currentAvatar, currentImage, onSelectEmoji
 
             <TouchableOpacity style={ap.photoBtn} onPress={takePhoto}
               activeOpacity={0.8}>
-              <View style={[ap.photoBtnIcon, { backgroundColor: 'rgba(34,197,94,0.15)' }]}>
+              <View style={[ap.photoBtnIcon, { backgroundColor: 'rgba(201,168,76,0.15)' }]}>
                 <Text style={{ fontSize: 30 }}></Text>
               </View>
               <Text style={ap.photoBtnLabel}>Camera</Text>
@@ -320,7 +320,7 @@ const ap = StyleSheet.create({
   overlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.75)', justifyContent: 'flex-end' },
   sheet: {
     backgroundColor: '#0D1A0D', borderTopLeftRadius: 28, borderTopRightRadius: 28,
-    padding: 20, paddingBottom: 34, borderTopWidth: 1, borderColor: 'rgba(34,197,94,0.2)',
+    padding: 20, paddingBottom: 34, borderTopWidth: 1, borderColor: 'rgba(201,168,76,0.2)',
   },
   handle: { width: 40, height: 4, borderRadius: 2, backgroundColor: 'rgba(255,255,255,0.2)', alignSelf: 'center', marginBottom: 16 },
   title: { fontSize: 18, fontWeight: 'bold', color: '#fff', textAlign: 'center', marginBottom: 4 },
@@ -328,21 +328,21 @@ const ap = StyleSheet.create({
   photoRow: { flexDirection: 'row', gap: 10, marginBottom: 18 },
   photoBtn: {
     flex: 1, backgroundColor: '#060E06', borderRadius: 16, padding: 12,
-    alignItems: 'center', gap: 6, borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)',
+    alignItems: 'center', gap: 6, borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)',
   },
   photoBtnIcon: { width: 56, height: 56, borderRadius: 14, alignItems: 'center', justifyContent: 'center', marginBottom: 2 },
   photoBtnLabel: { fontSize: 13, fontWeight: 'bold', color: '#fff' },
   photoBtnSub: { fontSize: 9, color: 'rgba(255,255,255,0.4)', textAlign: 'center', lineHeight: 13 },
   divider: { flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 14 },
-  dividerLine: { flex: 1, height: 1, backgroundColor: 'rgba(34,197,94,0.15)' },
+  dividerLine: { flex: 1, height: 1, backgroundColor: 'rgba(201,168,76,0.15)' },
   dividerText: { fontSize: 10, color: 'rgba(255,255,255,0.3)' },
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, justifyContent: 'center', paddingBottom: 8 },
   option: {
     width: 70, backgroundColor: '#060E06', borderRadius: 14, padding: 8,
     alignItems: 'center', gap: 3, borderWidth: 1.5,
-    borderColor: 'rgba(34,197,94,0.15)', position: 'relative',
+    borderColor: 'rgba(201,168,76,0.15)', position: 'relative',
   },
-  optionSelected: { backgroundColor: 'rgba(34,197,94,0.1)', borderColor: G },
+  optionSelected: { backgroundColor: 'rgba(201,168,76,0.1)', borderColor: G },
   optionEmoji: { fontSize: 26 },
   optionLabel: { fontSize: 8, color: 'rgba(255,255,255,0.4)', fontWeight: 'bold', textTransform: 'uppercase' },
   checkBadge: { position: 'absolute', top: -6, right: -6, width: 18, height: 18, borderRadius: 9, backgroundColor: G, alignItems: 'center', justifyContent: 'center' },
@@ -2200,11 +2200,11 @@ export default function MainStore({ staff, onLogout }) {
                         <View style={[s.staffRolePill, {
                           backgroundColor: member.role === 'owner' ? 'rgba(201,168,76,0.15)'
                             : member.role === 'senior' ? 'rgba(79,110,247,0.15)'
-                            : 'rgba(34,197,94,0.15)'
+                            : 'rgba(201,168,76,0.15)'
                         }]}>
                           <Text style={[s.staffRolePillText, {
                             color: member.role === 'owner' ? '#C9A84C'
-                              : member.role === 'senior' ? '#4F6EF7' : '#22C55E'
+                              : member.role === 'senior' ? '#4F6EF7' : '#C9A84C'
                           }]}>
                             {member.role?.toUpperCase()}
                           </Text>
@@ -2280,7 +2280,7 @@ export default function MainStore({ staff, onLogout }) {
                 const isOrder = log.action.includes('Pack') || log.action.includes('Ready') || log.action.includes('Collect');
                 const isClock = log.action.includes('Clock');
                 const iconName = isOrder ? 'receipt-outline' : isClock ? 'time-outline' : 'ellipse-outline';
-                const iconColor = isOrder ? '#22C55E' : isClock ? '#4F6EF7' : 'rgba(255,255,255,0.3)';
+                const iconColor = isOrder ? '#C9A84C' : isClock ? '#4F6EF7' : 'rgba(255,255,255,0.3)';
 
                 return (
                   <View key={log.id} style={s.activityRow}>
@@ -2338,7 +2338,7 @@ export default function MainStore({ staff, onLogout }) {
                 const isOrder = log.action.includes('Pack') || log.action.includes('Ready') || log.action.includes('Collect');
                 const isClock = log.action.includes('Clock');
                 const iconName = isOrder ? 'receipt-outline' : isClock ? 'time-outline' : 'ellipse-outline';
-                const iconColor = isOrder ? '#22C55E' : isClock ? '#4F6EF7' : 'rgba(255,255,255,0.3)';
+                const iconColor = isOrder ? '#C9A84C' : isClock ? '#4F6EF7' : 'rgba(255,255,255,0.3)';
 
                 return (
                   <View key={log.id} style={s.activityRow}>
@@ -2566,7 +2566,7 @@ export default function MainStore({ staff, onLogout }) {
             </View>
             <Text style={s.scannerTitle}>QR Order Pickup</Text>
             <Text style={s.scannerSub}>Scan customer's QR code to mark order as collected</Text>
-            <Text style={[s.scannerSub, { color: 'rgba(34,197,94,0.4)', fontSize: 12 }]}>
+            <Text style={[s.scannerSub, { color: 'rgba(201,168,76,0.4)', fontSize: 12 }]}>
               ఆర్డర్ పికప్ కోసం QR స్కాన్ చేయండి
             </Text>
             <TouchableOpacity style={s.scanBtn} onPress={() => setShowScanner(true)}>
@@ -2637,7 +2637,7 @@ export default function MainStore({ staff, onLogout }) {
                         setStockAdjustQty(p.stock_qty.toString());
                         setShowStockAdjust(true);
                       }}>
-                      <Ionicons name="create-outline" size={14} color="#22C55E" />
+                      <Ionicons name="create-outline" size={14} color="#C9A84C" />
                     </TouchableOpacity>
                   </View>
                 ))}
@@ -2648,7 +2648,7 @@ export default function MainStore({ staff, onLogout }) {
               onPress={() => setShowAddProduct(true)} activeOpacity={0.8}>
               <View style={s.addProductBannerLeft}>
                 <View style={s.addProductBannerIcon}>
-                  <Ionicons name="add-circle" size={24} color="#22C55E" />
+                  <Ionicons name="add-circle" size={24} color="#C9A84C" />
                 </View>
                 <View>
                   <Text style={s.addProductBannerTitle}>Add New Product</Text>
@@ -2720,7 +2720,7 @@ export default function MainStore({ staff, onLogout }) {
                   <View style={{ flex: 1 }}>
                     <Text style={s.stockName}>{item.name_en}</Text>
                     {item.name_te ? (
-                      <Text style={{ fontSize: 10, color: 'rgba(34,197,94,0.4)', marginBottom: 2 }}>
+                      <Text style={{ fontSize: 10, color: 'rgba(201,168,76,0.4)', marginBottom: 2 }}>
                         {item.name_te}
                       </Text>
                     ) : null}
@@ -2764,7 +2764,7 @@ export default function MainStore({ staff, onLogout }) {
               <Text style={s.vendorHeaderTitle}>Suppliers & Vendors</Text>
               <TouchableOpacity style={s.addVendorBtn}
                 onPress={() => setShowAddVendor(!showAddVendor)}>
-                <Ionicons name="add" size={20} color="#22C55E" />
+                <Ionicons name="add" size={20} color="#C9A84C" />
                 <Text style={s.addVendorBtnText}>Add</Text>
               </TouchableOpacity>
             </View>
@@ -2817,7 +2817,7 @@ export default function MainStore({ staff, onLogout }) {
                     <TouchableOpacity style={s.vendorCardTop}
                       onPress={() => setExpandedVendor(isExpanded ? null : vendor.id)}>
                       <View style={s.vendorAvatar}>
-                        <Ionicons name="business" size={20} color="#22C55E" />
+                        <Ionicons name="business" size={20} color="#C9A84C" />
                       </View>
                       <View style={{ flex: 1 }}>
                         <Text style={s.vendorName}>{vendor.name}</Text>
@@ -2833,7 +2833,7 @@ export default function MainStore({ staff, onLogout }) {
                     <View style={s.vendorQuickBtns}>
                       <TouchableOpacity style={s.vendorQuickBtn}
                         onPress={() => Linking.openURL(`tel:${vendor.phone}`)}>
-                        <Ionicons name="call" size={14} color="#22C55E" />
+                        <Ionicons name="call" size={14} color="#C9A84C" />
                         <Text style={s.vendorQuickBtnText}>Call</Text>
                       </TouchableOpacity>
                       <TouchableOpacity style={[s.vendorQuickBtn, { borderColor: 'rgba(37,211,102,0.3)' }]}
@@ -2887,7 +2887,7 @@ export default function MainStore({ staff, onLogout }) {
 
                           <TouchableOpacity style={s.vendorCallOrderBtn}
                             onPress={() => Linking.openURL(`tel:${vendor.phone}`)}>
-                            <Ionicons name="call" size={16} color="#22C55E" />
+                            <Ionicons name="call" size={16} color="#C9A84C" />
                           </TouchableOpacity>
                         </View>
 
@@ -2928,7 +2928,7 @@ export default function MainStore({ staff, onLogout }) {
               <TouchableOpacity style={s.customerHistoryBtn}
                 onPress={() => { fetchAllStaff(); setShowStaffManager(true); }}>
                 <View style={s.customerHistoryBtnLeft}>
-                  <Ionicons name="people-circle" size={22} color="#22C55E" />
+                  <Ionicons name="people-circle" size={22} color="#C9A84C" />
                   <View>
                     <Text style={s.customerHistoryBtnTitle}>Staff Manager</Text>
                     <Text style={s.customerHistoryBtnSub}>Add, view and manage staff profiles</Text>
@@ -3149,7 +3149,7 @@ export default function MainStore({ staff, onLogout }) {
               <Text style={s.zohoChartTitle}>Revenue Breakdown</Text>
               <View style={s.zohoChartBars}>
                 {[
-                  { label: 'Cash', value: summary?.payment_breakdown?.cash||0, color: '#22C55E' },
+                  { label: 'Cash', value: summary?.payment_breakdown?.cash||0, color: '#C9A84C' },
                   { label: 'UPI', value: summary?.payment_breakdown?.upi||0, color: '#4F6EF7' },
                   { label: 'Pending', value: summary?.payment_breakdown?.pending||0, color: '#F59E0B' },
                 ].map((bar, i) => {
@@ -3226,7 +3226,7 @@ export default function MainStore({ staff, onLogout }) {
                 </View>
                 <Text style={{ color: '#4F6EF7', fontSize: 16 }}>→</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={[s.actionCard, { borderColor: 'rgba(34,197,94,0.3)' }]}
+              <TouchableOpacity style={[s.actionCard, { borderColor: 'rgba(201,168,76,0.3)' }]}
                 onPress={() => setShowCustomers(true)}>
                 <Text style={{ fontSize: 26 }}></Text>
                 <View style={{ flex: 1 }}>
@@ -3259,7 +3259,7 @@ export default function MainStore({ staff, onLogout }) {
             </View>
 
             <View style={{ flexDirection: 'row', gap: 10, marginBottom: 12 }}>
-              <TouchableOpacity style={[s.actionCard, { borderColor: 'rgba(34,197,94,0.5)' }]}
+              <TouchableOpacity style={[s.actionCard, { borderColor: 'rgba(201,168,76,0.5)' }]}
                 onPress={() => setShowAddProduct(true)}>
                 <Text style={{ fontSize: 26 }}></Text>
                 <View style={{ flex: 1 }}>
@@ -3268,7 +3268,7 @@ export default function MainStore({ staff, onLogout }) {
                 </View>
                 <Text style={{ color: G, fontSize: 16 }}>→</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={[s.actionCard, { borderColor: 'rgba(34,197,94,0.3)' }]}
+              <TouchableOpacity style={[s.actionCard, { borderColor: 'rgba(201,168,76,0.3)' }]}
                 onPress={() => setShowAnalytics(true)}>
                 <Text style={{ fontSize: 26 }}></Text>
                 <View style={{ flex: 1 }}>
@@ -3592,7 +3592,7 @@ export default function MainStore({ staff, onLogout }) {
                     { k:'pending', l:'⏳ Pending' },
                   ].map(p => (
                     <TouchableOpacity key={p.k}
-                      style={[s.payBtn, selectedOrder.payment_type===p.k && { backgroundColor: 'rgba(34,197,94,0.15)', borderColor: G }]}
+                      style={[s.payBtn, selectedOrder.payment_type===p.k && { backgroundColor: 'rgba(201,168,76,0.15)', borderColor: G }]}
                       onPress={() => updatePayment(selectedOrder.id, p.k)}>
                       <Text style={[s.payBtnText, selectedOrder.payment_type===p.k && { color: G }]}>{p.l}</Text>
                     </TouchableOpacity>
@@ -3791,14 +3791,14 @@ export default function MainStore({ staff, onLogout }) {
             <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#fff', marginBottom: 4 }}>
               {pinStep==='current'?'Enter Current PIN':pinStep==='new'?'Enter New PIN':'Confirm New PIN'}
             </Text>
-            <Text style={{ fontSize: 12, color: 'rgba(34,197,94,0.4)', marginBottom: 24 }}>
+            <Text style={{ fontSize: 12, color: 'rgba(201,168,76,0.4)', marginBottom: 24 }}>
               {pinStep==='current'?'ప్రస్తుత PIN నమోదు చేయండి':'కొత్త PIN నమోదు చేయండి'}
             </Text>
             <View style={{ flexDirection: 'row', gap: 18, marginBottom: 12 }}>
               {[0,1,2,3].map(i => (
                 <View key={i} style={[{
                   width: 18, height: 18, borderRadius: 9,
-                  backgroundColor: 'rgba(34,197,94,0.1)', borderWidth: 2, borderColor: 'rgba(34,197,94,0.3)',
+                  backgroundColor: 'rgba(201,168,76,0.1)', borderWidth: 2, borderColor: 'rgba(201,168,76,0.3)',
                 }, i<pinInput.length && { backgroundColor: G, borderColor: G }]} />
               ))}
             </View>
@@ -3815,7 +3815,7 @@ export default function MainStore({ staff, onLogout }) {
                       style={[{
                         width: 76, height: 76, borderRadius: 38, backgroundColor: '#0D1A0D',
                         alignItems: 'center', justifyContent: 'center', borderWidth: 1,
-                        borderColor: 'rgba(34,197,94,0.2)',
+                        borderColor: 'rgba(201,168,76,0.2)',
                       }, key==='' && { backgroundColor: 'transparent', borderColor: 'transparent' }]}
                       onPress={() => {
                         if (key==='⌫') { Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); setPinInput(p => p.slice(0,-1)); setPinError(''); }
@@ -3852,8 +3852,8 @@ export default function MainStore({ staff, onLogout }) {
                   style={[{
                     backgroundColor: '#0D1A0D', borderRadius: 12, padding: 12,
                     alignItems: 'center', justifyContent: 'center', borderWidth: 1,
-                    borderColor: 'rgba(34,197,94,0.15)', width: 50, height: 50,
-                  }, offerEmoji===e && { backgroundColor: 'rgba(34,197,94,0.2)', borderColor: G }]}
+                    borderColor: 'rgba(201,168,76,0.15)', width: 50, height: 50,
+                  }, offerEmoji===e && { backgroundColor: 'rgba(201,168,76,0.2)', borderColor: G }]}
                   onPress={() => setOfferEmoji(e)}>
                   <Text style={{ fontSize: 26 }}>{e}</Text>
                 </TouchableOpacity>
@@ -3902,38 +3902,38 @@ const s = StyleSheet.create({
   dashBanner: { backgroundColor: '#0D1A0D', borderBottomWidth: 1, borderBottomColor: 'rgba(201,168,76,0.15)', padding: 12 },
   dashCard: { flexDirection: 'row', alignItems: 'center', backgroundColor: 'rgba(201,168,76,0.05)', borderRadius: 12, padding: 12, marginBottom: 8, borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)' },
   dashItem: { flex: 1, alignItems: 'center' },
-  dashValue: { fontSize: 20, fontWeight: '900', color: '#22C55E', marginBottom: 2 },
+  dashValue: { fontSize: 20, fontWeight: '900', color: '#C9A84C', marginBottom: 2 },
   dashLabel: { fontSize: 10, color: 'rgba(255,255,255,0.4)', fontWeight: '600' },
   dashDivider: { width: 1, height: 36, backgroundColor: 'rgba(255,255,255,0.06)' },
   dashActions: { flexDirection: 'row', gap: 8 },
   cashRegBtn: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 10, padding: 10, borderWidth: 1, borderColor: 'rgba(201,168,76,0.3)' },
-  cashRegBtnText: { color: '#22C55E', fontWeight: '700', fontSize: 13 },
+  cashRegBtnText: { color: '#C9A84C', fontWeight: '700', fontSize: 13 },
   reportBtn: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, backgroundColor: 'rgba(37,211,102,0.1)', borderRadius: 10, padding: 10, borderWidth: 1, borderColor: 'rgba(37,211,102,0.3)' },
   reportBtnText: { color: '#25D366', fontWeight: '700', fontSize: 13 },
 
   // Cash Register
-  cashTotal: { fontSize: 18, fontWeight: '900', color: '#22C55E' },
+  cashTotal: { fontSize: 18, fontWeight: '900', color: '#C9A84C' },
   cashCustomerRow: { flexDirection: 'row', gap: 8, padding: 12, paddingBottom: 0 },
   cashCartSection: { padding: 12, borderBottomWidth: 1, borderBottomColor: 'rgba(255,255,255,0.06)' },
   cashCartItem: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 8, borderBottomWidth: 1, borderBottomColor: 'rgba(255,255,255,0.04)' },
   cashCartItemName: { fontSize: 13, fontWeight: '600', color: '#fff', marginBottom: 2 },
   cashCartItemPrice: { fontSize: 11, color: 'rgba(255,255,255,0.4)' },
   cashQty: { fontSize: 16, fontWeight: '700', color: '#fff', minWidth: 24, textAlign: 'center' },
-  cashItemTotal: { fontSize: 14, fontWeight: '700', color: '#22C55E', minWidth: 60, textAlign: 'right' },
-  saveCashBtn: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, backgroundColor: '#22C55E', borderRadius: 12, padding: 14, marginTop: 12 },
+  cashItemTotal: { fontSize: 14, fontWeight: '700', color: '#C9A84C', minWidth: 60, textAlign: 'right' },
+  saveCashBtn: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, backgroundColor: '#C9A84C', borderRadius: 12, padding: 14, marginTop: 12 },
   saveCashBtnText: { color: '#060E06', fontWeight: '800', fontSize: 15 },
   cashProductRow: { flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: '#0D1A0D', borderRadius: 10, padding: 12, marginBottom: 6, borderWidth: 1, borderColor: 'rgba(255,255,255,0.06)' },
   cashProductName: { fontSize: 13, fontWeight: '600', color: '#fff', marginBottom: 2 },
   cashProductSku: { fontSize: 10, color: 'rgba(255,255,255,0.3)' },
-  cashProductPrice: { fontSize: 14, fontWeight: '700', color: '#22C55E' },
-  cashAddBtn: { width: 32, height: 32, borderRadius: 8, backgroundColor: '#22C55E', alignItems: 'center', justifyContent: 'center' },
+  cashProductPrice: { fontSize: 14, fontWeight: '700', color: '#C9A84C' },
+  cashAddBtn: { width: 32, height: 32, borderRadius: 8, backgroundColor: '#C9A84C', alignItems: 'center', justifyContent: 'center' },
 
   orderSearchBox: {
     flexDirection: 'row', alignItems: 'center', gap: 10,
     backgroundColor: '#0D1A0D', marginHorizontal: 12, marginTop: 10,
     marginBottom: 4, borderRadius: 10, paddingHorizontal: 12,
     paddingVertical: 10, borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.15)',
+    borderColor: 'rgba(201,168,76,0.15)',
   },
   orderSearchInput: { flex: 1, color: '#fff', fontSize: 13 },
   // Quick status button on order card
@@ -3949,25 +3949,25 @@ const s = StyleSheet.create({
   vendorHeader: {
     flexDirection: 'row', justifyContent: 'space-between',
     alignItems: 'center', padding: 14, paddingBottom: 10,
-    borderBottomWidth: 1, borderBottomColor: 'rgba(34,197,94,0.1)',
+    borderBottomWidth: 1, borderBottomColor: 'rgba(201,168,76,0.1)',
   },
   vendorHeaderTitle: { fontSize: 15, fontWeight: '700', color: '#fff' },
   addVendorBtn: {
     flexDirection: 'row', alignItems: 'center', gap: 4,
-    backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: 10,
+    backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 10,
     paddingHorizontal: 12, paddingVertical: 7,
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.3)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.3)',
   },
-  addVendorBtnText: { color: '#22C55E', fontWeight: '700', fontSize: 13 },
+  addVendorBtnText: { color: '#C9A84C', fontWeight: '700', fontSize: 13 },
   addVendorForm: {
     backgroundColor: '#0D1A0D', margin: 12, borderRadius: 14,
-    padding: 14, borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)', gap: 10,
+    padding: 14, borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)', gap: 10,
   },
   addVendorFormTitle: { fontSize: 14, fontWeight: '700', color: '#fff', marginBottom: 4 },
   vendorInput: {
     backgroundColor: 'rgba(255,255,255,0.04)', borderRadius: 10,
     padding: 12, color: '#fff', fontSize: 14,
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)',
   },
   saveVendorBtn: {
     backgroundColor: '#C9A84C', borderRadius: 10,
@@ -3977,7 +3977,7 @@ const s = StyleSheet.create({
   vendorCard: {
     backgroundColor: '#0D1A0D', borderRadius: 14,
     marginBottom: 10, borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.15)', overflow: 'hidden',
+    borderColor: 'rgba(201,168,76,0.15)', overflow: 'hidden',
   },
   vendorCardTop: {
     flexDirection: 'row', alignItems: 'center',
@@ -3991,13 +3991,13 @@ const s = StyleSheet.create({
   vendorQuickBtn: {
     flex: 1, flexDirection: 'row', alignItems: 'center',
     justifyContent: 'center', gap: 5,
-    backgroundColor: 'rgba(34,197,94,0.08)', borderRadius: 8,
+    backgroundColor: 'rgba(201,168,76,0.08)', borderRadius: 8,
     paddingVertical: 8, borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.25)',
+    borderColor: 'rgba(201,168,76,0.25)',
   },
-  vendorQuickBtnText: { fontSize: 12, fontWeight: '700', color: '#22C55E' },
+  vendorQuickBtnText: { fontSize: 12, fontWeight: '700', color: '#C9A84C' },
   vendorOrderSection: {
-    borderTopWidth: 1, borderTopColor: 'rgba(34,197,94,0.1)',
+    borderTopWidth: 1, borderTopColor: 'rgba(201,168,76,0.1)',
     padding: 14, backgroundColor: 'rgba(0,0,0,0.2)',
   },
   vendorOrderTitle: { fontSize: 13, fontWeight: '700', color: '#fff', marginBottom: 12 },
@@ -4005,7 +4005,7 @@ const s = StyleSheet.create({
   vendorOrderInput: {
     backgroundColor: 'rgba(255,255,255,0.04)', borderRadius: 10,
     padding: 12, color: '#fff', fontSize: 13,
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)',
     minHeight: 90, marginBottom: 12,
   },
   vendorOrderBtns: { flexDirection: 'row', gap: 8, marginBottom: 10 },
@@ -4016,9 +4016,9 @@ const s = StyleSheet.create({
   },
   vendorSendWaBtnText: { color: '#fff', fontWeight: '800', fontSize: 14 },
   vendorCallOrderBtn: {
-    width: 44, backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: 10,
+    width: 44, backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 10,
     alignItems: 'center', justifyContent: 'center',
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.3)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.3)',
   },
   vendorDeleteFullBtn: {
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
@@ -4027,19 +4027,19 @@ const s = StyleSheet.create({
   vendorDeleteFullBtnText: { fontSize: 12, color: 'rgba(239,68,68,0.6)' },
   vendorAvatar: {
     width: 44, height: 44, borderRadius: 12,
-    backgroundColor: 'rgba(34,197,94,0.1)',
+    backgroundColor: 'rgba(201,168,76,0.1)',
     alignItems: 'center', justifyContent: 'center',
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)',
   },
   vendorName: { fontSize: 14, fontWeight: '700', color: '#fff', marginBottom: 2 },
-  vendorParts: { fontSize: 12, color: '#22C55E', marginBottom: 2 },
+  vendorParts: { fontSize: 12, color: '#C9A84C', marginBottom: 2 },
   vendorArea: { fontSize: 11, color: 'rgba(255,255,255,0.4)' },
   vendorActions: { flexDirection: 'row', gap: 8 },
   vendorCallBtn: {
     width: 36, height: 36, borderRadius: 10,
-    backgroundColor: 'rgba(34,197,94,0.1)',
+    backgroundColor: 'rgba(201,168,76,0.1)',
     alignItems: 'center', justifyContent: 'center',
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.3)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.3)',
   },
   vendorWaBtn: {
     width: 36, height: 36, borderRadius: 10,
@@ -4049,12 +4049,12 @@ const s = StyleSheet.create({
   },
   orderInventoryBtn: {
     flexDirection: 'row', alignItems: 'center', gap: 6,
-    backgroundColor: 'rgba(34,197,94,0.08)', borderRadius: 8,
+    backgroundColor: 'rgba(201,168,76,0.08)', borderRadius: 8,
     paddingHorizontal: 12, paddingVertical: 7, marginTop: 10,
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.25)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.25)',
     alignSelf: 'flex-start',
   },
-  orderInventoryBtnText: { color: '#22C55E', fontSize: 12, fontWeight: '700' },
+  orderInventoryBtnText: { color: '#C9A84C', fontSize: 12, fontWeight: '700' },
   vendorDeleteBtn: {
     width: 36, height: 36, borderRadius: 10,
     backgroundColor: 'rgba(239,68,68,0.08)',
@@ -4102,24 +4102,24 @@ const s = StyleSheet.create({
   roleSelector: { flexDirection: 'row', gap: 8, marginBottom: 4 },
   roleBtn: {
     flex: 1, paddingVertical: 10, borderRadius: 10,
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)',
-    alignItems: 'center', backgroundColor: 'rgba(34,197,94,0.05)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)',
+    alignItems: 'center', backgroundColor: 'rgba(201,168,76,0.05)',
   },
-  roleBtnActive: { backgroundColor: '#22C55E', borderColor: '#22C55E' },
+  roleBtnActive: { backgroundColor: '#C9A84C', borderColor: '#C9A84C' },
   roleBtnText: { fontSize: 13, fontWeight: '700', color: 'rgba(255,255,255,0.4)' },
   roleBtnTextActive: { color: '#060E06' },
   staffCard: {
     flexDirection: 'row', alignItems: 'center', gap: 12,
     backgroundColor: '#0D1A0D', borderRadius: 14, padding: 14,
-    marginBottom: 8, borderWidth: 1, borderColor: 'rgba(34,197,94,0.12)',
+    marginBottom: 8, borderWidth: 1, borderColor: 'rgba(201,168,76,0.12)',
   },
   staffCardAvatar: {
     width: 44, height: 44, borderRadius: 22,
-    backgroundColor: 'rgba(34,197,94,0.15)',
+    backgroundColor: 'rgba(201,168,76,0.15)',
     alignItems: 'center', justifyContent: 'center',
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.3)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.3)',
   },
-  staffCardInitials: { fontSize: 16, fontWeight: '900', color: '#22C55E' },
+  staffCardInitials: { fontSize: 16, fontWeight: '900', color: '#C9A84C' },
   staffCardName: { fontSize: 14, fontWeight: '700', color: '#fff', marginBottom: 4 },
   staffCardRow: { flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 2 },
   staffRolePill: { borderRadius: 6, paddingHorizontal: 8, paddingVertical: 2 },
@@ -4189,7 +4189,7 @@ const s = StyleSheet.create({
     flexDirection: 'row', alignItems: 'center', gap: 10,
     backgroundColor: '#0D1A0D', margin: 14, borderRadius: 10,
     paddingHorizontal: 12, paddingVertical: 10,
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.15)',
   },
   customerSearchInput: { flex: 1, color: '#fff', fontSize: 14 },
   customerRow: {
@@ -4199,31 +4199,31 @@ const s = StyleSheet.create({
   },
   customerAvatar: {
     width: 42, height: 42, borderRadius: 21,
-    backgroundColor: 'rgba(34,197,94,0.15)',
+    backgroundColor: 'rgba(201,168,76,0.15)',
     alignItems: 'center', justifyContent: 'center',
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.3)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.3)',
   },
-  customerAvatarText: { fontSize: 18, fontWeight: 'bold', color: '#22C55E' },
+  customerAvatarText: { fontSize: 18, fontWeight: 'bold', color: '#C9A84C' },
   customerRowName: { fontSize: 14, fontWeight: '700', color: '#fff', marginBottom: 2 },
   customerRowPhone: { fontSize: 12, color: 'rgba(255,255,255,0.4)' },
   customerSummaryCard: {
     backgroundColor: '#0D1A0D', borderRadius: 16, padding: 20,
     alignItems: 'center', marginBottom: 16, borderWidth: 1,
-    borderColor: 'rgba(34,197,94,0.2)',
+    borderColor: 'rgba(201,168,76,0.2)',
   },
   customerSummaryAvatar: {
     width: 64, height: 64, borderRadius: 32,
-    backgroundColor: 'rgba(34,197,94,0.15)',
+    backgroundColor: 'rgba(201,168,76,0.15)',
     alignItems: 'center', justifyContent: 'center',
-    borderWidth: 2, borderColor: 'rgba(34,197,94,0.4)',
+    borderWidth: 2, borderColor: 'rgba(201,168,76,0.4)',
     marginBottom: 10,
   },
-  customerSummaryAvatarText: { fontSize: 28, fontWeight: 'bold', color: '#22C55E' },
+  customerSummaryAvatarText: { fontSize: 28, fontWeight: 'bold', color: '#C9A84C' },
   customerSummaryName: { fontSize: 18, fontWeight: '800', color: '#fff', marginBottom: 4 },
   customerSummaryPhone: { fontSize: 13, color: 'rgba(255,255,255,0.4)', marginBottom: 16 },
   customerSummaryStats: { flexDirection: 'row', gap: 0, width: '100%', marginBottom: 16 },
   customerSummaryStat: { flex: 1, alignItems: 'center' },
-  customerSummaryStatValue: { fontSize: 20, fontWeight: '800', color: '#22C55E', marginBottom: 2 },
+  customerSummaryStatValue: { fontSize: 20, fontWeight: '800', color: '#C9A84C', marginBottom: 2 },
   customerSummaryStatLabel: { fontSize: 11, color: 'rgba(255,255,255,0.4)' },
   customerCallBtn: {
     flexDirection: 'row', alignItems: 'center', gap: 8,
@@ -4232,7 +4232,7 @@ const s = StyleSheet.create({
   },
   customerCallBtnText: { color: '#fff', fontWeight: '700', fontSize: 14 },
   historyTitle: {
-    fontSize: 11, color: 'rgba(34,197,94,0.7)',
+    fontSize: 11, color: 'rgba(201,168,76,0.7)',
     letterSpacing: 2, fontWeight: '700', marginBottom: 10,
   },
   historyOrderCard: {
@@ -4248,10 +4248,10 @@ const s = StyleSheet.create({
   historyOrderDate: { fontSize: 11, color: 'rgba(255,255,255,0.3)' },
   historyPickup: { fontSize: 11, color: 'rgba(255,255,255,0.3)', marginTop: 6 },
 
-  statsRow: { flexDirection: 'row', padding: 12, gap: 8, borderBottomWidth: 1, borderBottomColor: 'rgba(34,197,94,0.08)' },
-  filterScroll: { height: 56, flexGrow: 0, flexShrink: 0, borderBottomWidth: 1, borderBottomColor: 'rgba(34,197,94,0.15)' },
+  statsRow: { flexDirection: 'row', padding: 12, gap: 8, borderBottomWidth: 1, borderBottomColor: 'rgba(201,168,76,0.08)' },
+  filterScroll: { height: 56, flexGrow: 0, flexShrink: 0, borderBottomWidth: 1, borderBottomColor: 'rgba(201,168,76,0.15)' },
   filterRow: { paddingHorizontal: 12, paddingVertical: 8, gap: 8 },
-  filterChip: { paddingHorizontal: 16, paddingVertical: 10, borderRadius: 20, borderWidth: 1, borderColor: 'rgba(34,197,94,0.3)', backgroundColor: 'rgba(34,197,94,0.08)', justifyContent: 'center' },
+  filterChip: { paddingHorizontal: 16, paddingVertical: 10, borderRadius: 20, borderWidth: 1, borderColor: 'rgba(201,168,76,0.3)', backgroundColor: 'rgba(201,168,76,0.08)', justifyContent: 'center' },
   filterChipActive: { backgroundColor: G, borderColor: G },
   filterChipText: { fontSize: 12, color: 'rgba(255,255,255,0.4)', fontWeight: '700' },
   filterChipTextActive: { color: '#fff' },
@@ -4271,7 +4271,7 @@ const s = StyleSheet.create({
   zohoCardContent: { flex: 1, padding: 14 },
   zohoCardTop: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 },
   zohoCardTopLeft: { flexDirection: 'row', alignItems: 'center', gap: 8 },
-  zohoOrderId: { fontSize: 13, fontWeight: '800', color: '#22C55E', letterSpacing: 1 },
+  zohoOrderId: { fontSize: 13, fontWeight: '800', color: '#C9A84C', letterSpacing: 1 },
   zohoNewBadge: { backgroundColor: '#4F6EF7', borderRadius: 4, paddingHorizontal: 6, paddingVertical: 2 },
   zohoNewBadgeText: { fontSize: 9, fontWeight: '800', color: '#fff', letterSpacing: 1 },
   zohoOrderAmt: { fontSize: 18, fontWeight: '900', color: '#fff' },
@@ -4280,18 +4280,18 @@ const s = StyleSheet.create({
   zohoCustomerLeft: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   zohoAvatar: {
     width: 36, height: 36, borderRadius: 18,
-    backgroundColor: 'rgba(34,197,94,0.12)',
+    backgroundColor: 'rgba(201,168,76,0.12)',
     alignItems: 'center', justifyContent: 'center',
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)',
   },
-  zohoAvatarText: { fontSize: 15, fontWeight: '800', color: '#22C55E' },
+  zohoAvatarText: { fontSize: 15, fontWeight: '800', color: '#C9A84C' },
   zohoCustomerName: { fontSize: 14, fontWeight: '700', color: '#fff', marginBottom: 1 },
   zohoCustomerPhone: { fontSize: 11, color: 'rgba(255,255,255,0.4)' },
   zohoCallBtn: {
     width: 32, height: 32, borderRadius: 8,
-    backgroundColor: 'rgba(34,197,94,0.1)',
+    backgroundColor: 'rgba(201,168,76,0.1)',
     alignItems: 'center', justifyContent: 'center',
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.25)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.25)',
   },
   zohoDetailsRow: { flexDirection: 'row', gap: 14, marginBottom: 4 },
   zohoDetailItem: { flexDirection: 'row', alignItems: 'center', gap: 4 },
@@ -4314,14 +4314,14 @@ const s = StyleSheet.create({
     backgroundColor: '#0D1A0D', borderRadius: 16, padding: 20,
     flexDirection: 'row', justifyContent: 'space-between',
     alignItems: 'flex-start', marginBottom: 12,
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.15)',
   },
   zohoDashLabel: { fontSize: 10, color: 'rgba(255,255,255,0.4)', letterSpacing: 3, fontWeight: '700', marginBottom: 6 },
   zohoDashValue: { fontSize: 32, fontWeight: '900', color: '#fff', marginBottom: 4 },
-  zohoDashPeriod: { fontSize: 12, color: '#22C55E', fontWeight: '600' },
+  zohoDashPeriod: { fontSize: 12, color: '#C9A84C', fontWeight: '600' },
   zohoDashRight: { gap: 12 },
   zohoDashStatBox: { alignItems: 'flex-end' },
-  zohoDashStatValue: { fontSize: 22, fontWeight: '900', color: '#22C55E' },
+  zohoDashStatValue: { fontSize: 22, fontWeight: '900', color: '#C9A84C' },
   zohoDashStatLabel: { fontSize: 10, color: 'rgba(255,255,255,0.4)', fontWeight: '600' },
 
   // CHART CARD
@@ -4356,13 +4356,13 @@ const s = StyleSheet.create({
     marginBottom: 12, borderWidth: 1, borderColor: 'rgba(255,255,255,0.07)',
   },
   zohoTargetHeader: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 },
-  zohoTargetPct: { fontSize: 18, fontWeight: '900', color: '#22C55E' },
+  zohoTargetPct: { fontSize: 18, fontWeight: '900', color: '#C9A84C' },
   zohoTargetTrack: { height: 10, backgroundColor: 'rgba(255,255,255,0.06)', borderRadius: 5, overflow: 'hidden', marginBottom: 8 },
-  zohoTargetFill: { height: '100%', backgroundColor: '#22C55E', borderRadius: 5 },
+  zohoTargetFill: { height: '100%', backgroundColor: '#C9A84C', borderRadius: 5 },
   zohoTargetFooter: { flexDirection: 'row', justifyContent: 'space-between' },
   zohoTargetSub: { fontSize: 11, color: 'rgba(255,255,255,0.4)' },
 
-  orderCard: { backgroundColor: '#0D1A0D', borderRadius: 14, padding: 14, marginBottom: 10, borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)' },
+  orderCard: { backgroundColor: '#0D1A0D', borderRadius: 14, padding: 14, marginBottom: 10, borderWidth: 1, borderColor: 'rgba(201,168,76,0.15)' },
   orderCardNew: { borderColor: 'rgba(79,110,247,0.4)' },
   orderTop: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 },
   orderIdRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
@@ -4373,9 +4373,9 @@ const s = StyleSheet.create({
   orderCustomerRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 },
   orderCallBtn: {
     flexDirection: 'row', alignItems: 'center', gap: 4,
-    backgroundColor: 'rgba(34,197,94,0.08)', borderRadius: 6,
+    backgroundColor: 'rgba(201,168,76,0.08)', borderRadius: 6,
     paddingHorizontal: 8, paddingVertical: 3,
-    borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)',
+    borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)',
   },
   orderCustomer: { fontSize: 13, color: '#fff', fontWeight: '600', marginBottom: 2 },
   orderPhone: { fontSize: 12, color: G, marginBottom: 2 },
@@ -4383,8 +4383,8 @@ const s = StyleSheet.create({
   orderBottom: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   statusPill: { borderRadius: 20, paddingHorizontal: 10, paddingVertical: 4, borderWidth: 1 },
   statusPillText: { fontSize: 11, fontWeight: 'bold' },
-  tapHint: { fontSize: 10, color: 'rgba(34,197,94,0.4)', marginLeft: 'auto' },
-  scannerBox: { width: 140, height: 140, borderRadius: 20, backgroundColor: 'rgba(34,197,94,0.06)', alignItems: 'center', justifyContent: 'center', borderWidth: 2, borderColor: 'rgba(34,197,94,0.2)', marginBottom: 20 },
+  tapHint: { fontSize: 10, color: 'rgba(201,168,76,0.4)', marginLeft: 'auto' },
+  scannerBox: { width: 140, height: 140, borderRadius: 20, backgroundColor: 'rgba(201,168,76,0.06)', alignItems: 'center', justifyContent: 'center', borderWidth: 2, borderColor: 'rgba(201,168,76,0.2)', marginBottom: 20 },
   scannerTitle: { fontSize: 22, fontWeight: 'bold', color: '#fff', marginBottom: 8 },
   scannerSub: { fontSize: 14, color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginBottom: 4 },
   scanBtn: { backgroundColor: G, borderRadius: 20, paddingHorizontal: 32, paddingVertical: 16, marginBottom: 20 },
@@ -4396,36 +4396,36 @@ const s = StyleSheet.create({
   addProductBannerSub: { fontSize: 12, color: 'rgba(255,255,255,0.7)', marginTop: 2 },
   addProductBannerArrow: { width: 36, height: 36, borderRadius: 18, backgroundColor: 'rgba(255,255,255,0.2)', alignItems: 'center', justifyContent: 'center' },
   stockStatsRow: { flexDirection: 'row', paddingHorizontal: 12, gap: 8, marginBottom: 8 },
-  stockStatCard: { flex: 1, backgroundColor: '#0D1A0D', borderRadius: 12, padding: 12, alignItems: 'center', borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)' },
+  stockStatCard: { flex: 1, backgroundColor: '#0D1A0D', borderRadius: 12, padding: 12, alignItems: 'center', borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)' },
   stockStatValue: { fontSize: 22, fontWeight: 'bold', color: G, marginBottom: 2 },
   stockStatLabel: { fontSize: 9, color: 'rgba(255,255,255,0.4)', letterSpacing: 1, textTransform: 'uppercase' },
-  stockSearchBox: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#0D1A0D', marginHorizontal: 12, marginBottom: 8, borderRadius: 14, paddingHorizontal: 14, paddingVertical: 10, borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)', gap: 10 },
+  stockSearchBox: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#0D1A0D', marginHorizontal: 12, marginBottom: 8, borderRadius: 14, paddingHorizontal: 14, paddingVertical: 10, borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)', gap: 10 },
   stockSearchInput: { flex: 1, color: '#fff', fontSize: 14 },
-  stockCard: { backgroundColor: '#0D1A0D', borderRadius: 14, padding: 14, flexDirection: 'row', alignItems: 'center', marginBottom: 8, borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)', gap: 10 },
+  stockCard: { backgroundColor: '#0D1A0D', borderRadius: 14, padding: 14, flexDirection: 'row', alignItems: 'center', marginBottom: 8, borderWidth: 1, borderColor: 'rgba(201,168,76,0.15)', gap: 10 },
   stockCardLow: { borderColor: 'rgba(245,158,11,0.4)' },
   stockCardOut: { borderColor: 'rgba(239,68,68,0.3)' },
   stockName: { fontSize: 13, fontWeight: 'bold', color: '#fff', marginBottom: 2 },
-  stockSku: { fontSize: 10, color: 'rgba(34,197,94,0.5)', letterSpacing: 1, marginBottom: 4 },
+  stockSku: { fontSize: 10, color: 'rgba(201,168,76,0.5)', letterSpacing: 1, marginBottom: 4 },
   stockQty: { fontSize: 12, fontWeight: 'bold' },
-  stockBtn: { backgroundColor: 'rgba(34,197,94,0.15)', borderRadius: 10, paddingHorizontal: 12, paddingVertical: 8, borderWidth: 1, borderColor: 'rgba(34,197,94,0.3)' },
+  stockBtn: { backgroundColor: 'rgba(201,168,76,0.15)', borderRadius: 10, paddingHorizontal: 12, paddingVertical: 8, borderWidth: 1, borderColor: 'rgba(201,168,76,0.3)' },
   stockBtnText: { color: G, fontWeight: 'bold', fontSize: 13 },
-  emptyAddBtn: { backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: 14, paddingHorizontal: 20, paddingVertical: 12, borderWidth: 1, borderColor: 'rgba(34,197,94,0.3)' },
+  emptyAddBtn: { backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 14, paddingHorizontal: 20, paddingVertical: 12, borderWidth: 1, borderColor: 'rgba(201,168,76,0.3)' },
   emptyAddBtnText: { color: G, fontWeight: 'bold', fontSize: 14 },
   periodRow: { flexDirection: 'row', gap: 8, marginBottom: 14 },
-  periodBtn: { flex: 1, paddingVertical: 8, borderRadius: 10, alignItems: 'center', borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)', backgroundColor: 'rgba(34,197,94,0.05)' },
+  periodBtn: { flex: 1, paddingVertical: 8, borderRadius: 10, alignItems: 'center', borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)', backgroundColor: 'rgba(201,168,76,0.05)' },
   periodBtnActive: { backgroundColor: G, borderColor: G },
   periodText: { fontSize: 12, color: 'rgba(255,255,255,0.4)', fontWeight: '700' },
   periodTextActive: { color: '#fff' },
-  heroCard: { backgroundColor: '#0D1A0D', borderRadius: 20, padding: 24, alignItems: 'center', marginBottom: 12, borderWidth: 1, borderColor: 'rgba(34,197,94,0.25)' },
+  heroCard: { backgroundColor: '#0D1A0D', borderRadius: 20, padding: 24, alignItems: 'center', marginBottom: 12, borderWidth: 1, borderColor: 'rgba(201,168,76,0.25)' },
   heroLabel: { fontSize: 11, color: 'rgba(255,255,255,0.3)', letterSpacing: 3, marginBottom: 10 },
   heroValue: { fontSize: 40, fontWeight: 'bold', color: G, letterSpacing: 1, marginBottom: 6 },
   heroPeriod: { fontSize: 13, color: 'rgba(255,255,255,0.3)' },
   actionCard: { flex: 1, backgroundColor: '#0D1A0D', borderRadius: 14, padding: 12, flexDirection: 'row', alignItems: 'center', gap: 8, borderWidth: 1 },
   actionCardTitle: { fontSize: 13, fontWeight: 'bold', marginBottom: 2 },
   actionCardSub: { fontSize: 10, color: 'rgba(255,255,255,0.4)' },
-  reportCard: { backgroundColor: '#0D1A0D', borderRadius: 16, padding: 16, marginBottom: 12, borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)' },
+  reportCard: { backgroundColor: '#0D1A0D', borderRadius: 16, padding: 16, marginBottom: 12, borderWidth: 1, borderColor: 'rgba(201,168,76,0.15)' },
   reportCardTitle: { fontSize: 13, color: 'rgba(255,255,255,0.4)', letterSpacing: 1, marginBottom: 14, textTransform: 'uppercase', fontWeight: 'bold' },
-  reportRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 10, borderBottomWidth: 1, borderBottomColor: 'rgba(34,197,94,0.08)' },
+  reportRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 10, borderBottomWidth: 1, borderBottomColor: 'rgba(201,168,76,0.08)' },
   reportLabel: { fontSize: 13, color: 'rgba(255,255,255,0.6)' },
   reportPill: { borderRadius: 20, paddingHorizontal: 14, paddingVertical: 5 },
   reportPillText: { fontSize: 14, fontWeight: 'bold' },
@@ -4436,86 +4436,86 @@ const s = StyleSheet.create({
   bestQty: { fontSize: 12, color: 'rgba(255,255,255,0.4)', minWidth: 50, textAlign: 'right' },
   offerHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 },
   addOfferText: { color: G, fontWeight: 'bold', fontSize: 14 },
-  offerRow: { flexDirection: 'row', alignItems: 'center', paddingVertical: 10, borderBottomWidth: 1, borderBottomColor: 'rgba(34,197,94,0.08)', gap: 10 },
+  offerRow: { flexDirection: 'row', alignItems: 'center', paddingVertical: 10, borderBottomWidth: 1, borderBottomColor: 'rgba(201,168,76,0.08)', gap: 10 },
   offerTitle: { fontSize: 13, fontWeight: 'bold', color: '#FFC107' },
   offerPct: { fontSize: 11, color: 'rgba(255,184,0,0.5)' },
   toggleBtn: { borderRadius: 8, paddingHorizontal: 10, paddingVertical: 6, borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)', backgroundColor: 'rgba(255,255,255,0.05)' },
-  toggleBtnOn: { backgroundColor: 'rgba(34,197,94,0.1)', borderColor: 'rgba(34,197,94,0.3)' },
+  toggleBtnOn: { backgroundColor: 'rgba(201,168,76,0.1)', borderColor: 'rgba(201,168,76,0.3)' },
   toggleBtnText: { fontSize: 11, color: 'rgba(255,255,255,0.4)', fontWeight: 'bold' },
-  profileCard: { backgroundColor: '#0D1A0D', borderRadius: 20, padding: 24, alignItems: 'center', marginBottom: 14, borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)' },
-  changeHint: { fontSize: 10, color: 'rgba(34,197,94,0.5)', marginBottom: 10, fontWeight: 'bold' },
+  profileCard: { backgroundColor: '#0D1A0D', borderRadius: 20, padding: 24, alignItems: 'center', marginBottom: 14, borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)' },
+  changeHint: { fontSize: 10, color: 'rgba(201,168,76,0.5)', marginBottom: 10, fontWeight: 'bold' },
   profileName: { fontSize: 20, fontWeight: 'bold', color: '#fff', marginBottom: 4 },
   profileRole: { fontSize: 12, color: G, letterSpacing: 2, marginBottom: 4 },
   profileId: { fontSize: 12, color: 'rgba(255,255,255,0.3)' },
   profilePhone: { fontSize: 12, color: 'rgba(255,255,255,0.3)', marginTop: 2 },
-  changePicBtn: { backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: 20, paddingHorizontal: 16, paddingVertical: 8, marginTop: 8, borderWidth: 1, borderColor: 'rgba(34,197,94,0.3)' },
+  changePicBtn: { backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 20, paddingHorizontal: 16, paddingVertical: 8, marginTop: 8, borderWidth: 1, borderColor: 'rgba(201,168,76,0.3)' },
   changePicBtnText: { color: G, fontWeight: 'bold', fontSize: 13 },
-  settingCard: { backgroundColor: '#0D1A0D', borderRadius: 16, padding: 16, flexDirection: 'row', alignItems: 'center', gap: 14, marginBottom: 12, borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)' },
+  settingCard: { backgroundColor: '#0D1A0D', borderRadius: 16, padding: 16, flexDirection: 'row', alignItems: 'center', gap: 14, marginBottom: 12, borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)' },
   settingIcon: { fontSize: 28 },
   settingTitle: { fontSize: 16, fontWeight: 'bold', color: '#fff', marginBottom: 2 },
   settingSub: { fontSize: 12, color: 'rgba(255,255,255,0.4)' },
   settingArrow: { fontSize: 20, color: G, fontWeight: 'bold' },
-  statsCardProfile: { backgroundColor: '#0D1A0D', borderRadius: 16, padding: 16, marginBottom: 12, borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)' },
+  statsCardProfile: { backgroundColor: '#0D1A0D', borderRadius: 16, padding: 16, marginBottom: 12, borderWidth: 1, borderColor: 'rgba(201,168,76,0.15)' },
   statsCardTitle: { fontSize: 14, fontWeight: 'bold', color: '#fff', marginBottom: 14 },
   statsGridProfile: { flexDirection: 'row', gap: 8, marginBottom: 12 },
   statItemProfile: { flex: 1, backgroundColor: '#0D1A0D', borderRadius: 10, padding: 10, alignItems: 'center', gap: 3, borderWidth: 1 },
   statItemValue: { fontSize: 16, fontWeight: '800', color: G },
   statItemLabel: { fontSize: 9, color: 'rgba(255,255,255,0.4)', textAlign: 'center', fontWeight: 'bold', textTransform: 'uppercase' },
-  refreshStatsBtn: { backgroundColor: 'rgba(34,197,94,0.08)', borderRadius: 10, padding: 10, alignItems: 'center', borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)' },
+  refreshStatsBtn: { backgroundColor: 'rgba(201,168,76,0.08)', borderRadius: 10, padding: 10, alignItems: 'center', borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)' },
   refreshStatsBtnText: { color: G, fontSize: 13, fontWeight: 'bold' },
-  clockCard: { backgroundColor: '#0D1A0D', borderRadius: 16, padding: 16, flexDirection: 'row', alignItems: 'center', gap: 14, marginBottom: 12, borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)' },
+  clockCard: { backgroundColor: '#0D1A0D', borderRadius: 16, padding: 16, flexDirection: 'row', alignItems: 'center', gap: 14, marginBottom: 12, borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)' },
   clockCardIn: { borderColor: 'rgba(239,68,68,0.3)' },
   clockTitle: { fontSize: 16, fontWeight: 'bold' },
   clockSub: { fontSize: 12, color: 'rgba(255,255,255,0.4)' },
   clockDot: { width: 10, height: 10, borderRadius: 5 },
-  pinCard: { backgroundColor: '#0D1A0D', borderRadius: 16, padding: 16, flexDirection: 'row', alignItems: 'center', gap: 14, marginBottom: 12, borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)' },
+  pinCard: { backgroundColor: '#0D1A0D', borderRadius: 16, padding: 16, flexDirection: 'row', alignItems: 'center', gap: 14, marginBottom: 12, borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)' },
   pinCardTitle: { fontSize: 16, fontWeight: 'bold', color: '#fff' },
   pinCardSub: { fontSize: 12, color: 'rgba(255,255,255,0.4)' },
   logoutBtn: { backgroundColor: 'rgba(239,68,68,0.08)', borderRadius: 16, padding: 14, alignItems: 'center', borderWidth: 1, borderColor: 'rgba(239,68,68,0.2)' },
   logoutText: { color: '#EF4444', fontWeight: 'bold', fontSize: 15 },
-  modalHeader: { backgroundColor: '#0D1A0D', padding: 16, flexDirection: 'row', alignItems: 'center', gap: 12, borderBottomWidth: 1, borderBottomColor: 'rgba(34,197,94,0.15)' },
-  modalBack: { backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: 10, paddingHorizontal: 14, paddingVertical: 8, borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)' },
+  modalHeader: { backgroundColor: '#0D1A0D', padding: 16, flexDirection: 'row', alignItems: 'center', gap: 12, borderBottomWidth: 1, borderBottomColor: 'rgba(201,168,76,0.15)' },
+  modalBack: { backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 10, paddingHorizontal: 14, paddingVertical: 8, borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)' },
   modalBackText: { color: G, fontSize: 14, fontWeight: 'bold' },
   modalTitle: { flex: 1, fontSize: 16, fontWeight: 'bold', color: '#fff' },
-  detailCard: { backgroundColor: '#0D1A0D', borderRadius: 14, padding: 16, marginBottom: 12, borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)' },
+  detailCard: { backgroundColor: '#0D1A0D', borderRadius: 14, padding: 16, marginBottom: 12, borderWidth: 1, borderColor: 'rgba(201,168,76,0.15)' },
   detailCardTitle: { fontSize: 14, fontWeight: 'bold', color: '#fff', marginBottom: 12 },
-  detailRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 8, borderBottomWidth: 1, borderBottomColor: 'rgba(34,197,94,0.08)' },
+  detailRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 8, borderBottomWidth: 1, borderBottomColor: 'rgba(201,168,76,0.08)' },
   detailLabel: { fontSize: 13, color: 'rgba(255,255,255,0.4)' },
   detailValue: { fontSize: 13, color: '#fff', fontWeight: '600' },
-  itemRow: { flexDirection: 'row', alignItems: 'center', paddingVertical: 10, borderBottomWidth: 1, borderBottomColor: 'rgba(34,197,94,0.08)', gap: 8 },
+  itemRow: { flexDirection: 'row', alignItems: 'center', paddingVertical: 10, borderBottomWidth: 1, borderBottomColor: 'rgba(201,168,76,0.08)', gap: 8 },
   itemName: { fontSize: 13, fontWeight: 'bold', color: '#fff', marginBottom: 2 },
-  itemSku: { fontSize: 10, color: 'rgba(34,197,94,0.4)', letterSpacing: 1 },
+  itemSku: { fontSize: 10, color: 'rgba(201,168,76,0.4)', letterSpacing: 1 },
   itemQty: { fontSize: 12, color: 'rgba(255,255,255,0.4)' },
   itemPrice: { fontSize: 14, fontWeight: 'bold', color: '#FFC107' },
   statusGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
-  statusBtn: { width: '47%', backgroundColor: 'rgba(34,197,94,0.05)', borderRadius: 12, padding: 12, borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)', alignItems: 'center', gap: 4 },
+  statusBtn: { width: '47%', backgroundColor: 'rgba(201,168,76,0.05)', borderRadius: 12, padding: 12, borderWidth: 1, borderColor: 'rgba(201,168,76,0.15)', alignItems: 'center', gap: 4 },
   statusBtnText: { fontSize: 13, fontWeight: 'bold', color: 'rgba(255,255,255,0.4)' },
   currentTag: { fontSize: 8, letterSpacing: 1 },
   paymentRow: { flexDirection: 'row', gap: 8 },
-  payBtn: { flex: 1, backgroundColor: 'rgba(34,197,94,0.05)', borderRadius: 10, padding: 10, borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)', alignItems: 'center' },
+  payBtn: { flex: 1, backgroundColor: 'rgba(201,168,76,0.05)', borderRadius: 10, padding: 10, borderWidth: 1, borderColor: 'rgba(201,168,76,0.15)', alignItems: 'center' },
   payBtnText: { fontSize: 12, fontWeight: 'bold', color: 'rgba(255,255,255,0.4)' },
   waBtn: { backgroundColor: 'rgba(37,211,102,0.1)', borderRadius: 14, padding: 14, alignItems: 'center', borderWidth: 1, borderColor: 'rgba(37,211,102,0.3)', marginBottom: 10 },
   waBtnText: { color: '#25D366', fontSize: 15, fontWeight: 'bold' },
   editLabel: { fontSize: 11, color: 'rgba(255,255,255,0.4)', letterSpacing: 1, marginBottom: 8, textTransform: 'uppercase' },
-  editInput: { backgroundColor: '#0D1A0D', borderRadius: 14, padding: 14, color: '#fff', fontSize: 16, borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)', marginBottom: 14 },
-  editPhoneBox: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#0D1A0D', borderRadius: 14, padding: 14, borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)', marginBottom: 14, gap: 8 },
+  editInput: { backgroundColor: '#0D1A0D', borderRadius: 14, padding: 14, color: '#fff', fontSize: 16, borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)', marginBottom: 14 },
+  editPhoneBox: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#0D1A0D', borderRadius: 14, padding: 14, borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)', marginBottom: 14, gap: 8 },
   editPhonePrefix: { fontSize: 16, color: 'rgba(255,255,255,0.4)', fontWeight: 'bold' },
   editPhoneInput: { flex: 1, color: '#fff', fontSize: 16 },
   saveProfileBtn: { backgroundColor: G, borderRadius: 16, padding: 16, alignItems: 'center', marginBottom: 16 },
   saveProfileBtnText: { color: '#fff', fontSize: 16, fontWeight: 'bold' },
-  priceCard: { backgroundColor: '#0D1A0D', borderRadius: 14, padding: 14, marginBottom: 10, borderWidth: 1, borderColor: 'rgba(34,197,94,0.15)' },
+  priceCard: { backgroundColor: '#0D1A0D', borderRadius: 14, padding: 14, marginBottom: 10, borderWidth: 1, borderColor: 'rgba(201,168,76,0.15)' },
   priceCardTop: { flexDirection: 'row', alignItems: 'center', marginBottom: 12, gap: 10 },
   priceProductName: { fontSize: 13, fontWeight: 'bold', color: '#fff', marginBottom: 2 },
-  priceProductSku: { fontSize: 10, color: 'rgba(34,197,94,0.5)', letterSpacing: 1 },
-  editPriceBtn: { backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: 10, paddingHorizontal: 12, paddingVertical: 6, borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)' },
+  priceProductSku: { fontSize: 10, color: 'rgba(201,168,76,0.5)', letterSpacing: 1 },
+  editPriceBtn: { backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 10, paddingHorizontal: 12, paddingVertical: 6, borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)' },
   editPriceBtnText: { color: G, fontSize: 12, fontWeight: 'bold' },
-  priceDisplay: { flexDirection: 'row', alignItems: 'center', backgroundColor: 'rgba(34,197,94,0.04)', borderRadius: 10, padding: 12 },
+  priceDisplay: { flexDirection: 'row', alignItems: 'center', backgroundColor: 'rgba(201,168,76,0.04)', borderRadius: 10, padding: 12 },
   priceItem: { flex: 1, alignItems: 'center' },
   priceItemLabel: { fontSize: 10, color: 'rgba(255,255,255,0.35)', marginBottom: 4, textTransform: 'uppercase' },
   priceItemValue: { fontSize: 16, fontWeight: 'bold', color: '#fff' },
   priceEditForm: { gap: 10 },
   priceEditLabel: { fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 6 },
-  priceEditInput: { backgroundColor: 'rgba(34,197,94,0.05)', borderRadius: 10, padding: 12, color: '#fff', fontSize: 16, borderWidth: 1, borderColor: 'rgba(34,197,94,0.2)' },
+  priceEditInput: { backgroundColor: 'rgba(201,168,76,0.05)', borderRadius: 10, padding: 12, color: '#fff', fontSize: 16, borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)' },
   savePriceBtn: { backgroundColor: G, borderRadius: 12, padding: 12, alignItems: 'center' },
   savePriceBtnText: { color: '#fff', fontWeight: 'bold', fontSize: 14 },
 });
