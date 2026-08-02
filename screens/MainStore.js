@@ -4180,7 +4180,7 @@ const s = StyleSheet.create({
   customerHistoryBtn: {
     flexDirection: 'row', alignItems: 'center',
     backgroundColor: '#0D1A0D', borderRadius: 14, padding: 16,
-    marginBottom: 14, borderWidth: 1, borderColor: 'rgba(79,110,247,0.2)',
+    marginBottom: 14, borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)',
   },
   customerHistoryBtnLeft: { flexDirection: 'row', alignItems: 'center', gap: 14, flex: 1 },
   customerHistoryBtnTitle: { fontSize: 15, fontWeight: '700', color: '#fff', marginBottom: 2 },
