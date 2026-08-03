@@ -137,11 +137,9 @@ export default function LoginScreen({ onLogin }) {
   };
 
   const checkPin = async (entered) => {
-    if (selectedStaff.pin === entered) {
-      await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-      onLogin(selectedStaff);
-      return;
-    }
+    // SECURITY: PIN verification always goes through the backend now -
+    // never check locally, since the app no longer receives real PINs
+    // and this is what makes the account lockout protection effective.
     try {
       const r = await fetch(`${API_URL}/staff/verify-pin`, {
         method: 'POST',
@@ -150,9 +148,17 @@ export default function LoginScreen({ onLogin }) {
       });
       const d = await r.json();
       if (d.staff) { await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success); onLogin(d.staff); return; }
-    } catch {}
-    await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
-    setError('Incorrect PIN. Try again.');
+      await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+      if (d.locked) {
+        const mins = Math.ceil(d.retry_after_seconds / 60);
+        setError(`Too many attempts. Try again in ${mins} minute${mins === 1 ? '' : 's'}.`);
+      } else {
+        setError('Incorrect PIN. Try again.');
+      }
+    } catch {
+      await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+      setError('Could not connect. Check your internet.');
+    }
     shake();
     setTimeout(() => setPin(''), 500);
   };
