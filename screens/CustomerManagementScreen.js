@@ -2,9 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import {
   StyleSheet, Text, View, TouchableOpacity,
   SafeAreaView, StatusBar, FlatList, TextInput,
-  Linking, Modal, ScrollView, RefreshControl, Animated
+  Linking, Modal, ScrollView, RefreshControl, Animated, Alert
 } from 'react-native';
 import * as Haptics from 'expo-haptics';
+import { Ionicons } from '@expo/vector-icons';
 
 const API_URL = 'https://rahul-auto-spares-backend.onrender.com';
 const G = '#C9A84C';
@@ -122,7 +123,7 @@ export default function CustomerManagementScreen({ onBack }) {
     setLoadingOrders(true);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     try {
-      const r = await fetch(`${API_URL}/orders/customer/${customer.phone}`);
+      const r = await fetch(`${API_URL}/staff/customers/${customer.phone}/orders`);
       if (r.ok) {
         const d = await r.json();
         setCustomerOrders(d.orders || []);
@@ -131,6 +132,34 @@ export default function CustomerManagementScreen({ onBack }) {
       }
     } catch { setCustomerOrders([]); }
     setLoadingOrders(false);
+  };
+
+  const resetCustomerPin = (customer) => {
+    Alert.alert(
+      'Reset Customer PIN?',
+      `Only do this after verifying you're speaking with ${customer.name || 'the customer'} directly.\n\nThey'll be asked to create a new PIN next time they log in.`,
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Reset PIN',
+          style: 'destructive',
+          onPress: async () => {
+            try {
+              const r = await fetch(`${API_URL}/customers/${customer.phone}/reset-pin`, { method: 'POST' });
+              const d = await r.json();
+              if (d.success) {
+                await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+                Alert.alert('PIN Reset', 'Customer can now create a new PIN when they next log in.');
+              } else {
+                Alert.alert('Error', d.error || 'Could not reset PIN.');
+              }
+            } catch {
+              Alert.alert('Error', 'Check your internet connection and try again.');
+            }
+          }
+        }
+      ]
+    );
   };
 
   const totalRevenue = customers.reduce((s, c) => s + (c.total_spent || 0), 0);
@@ -352,6 +381,12 @@ export default function CustomerManagementScreen({ onBack }) {
                 </TouchableOpacity>
               </View>
 
+              <TouchableOpacity style={s.resetPinBtn}
+                onPress={() => resetCustomerPin(selectedCustomer)}>
+                <Ionicons name="key-outline" size={16} color="#F59E0B" />
+                <Text style={s.resetPinBtnText}>Reset Forgotten PIN</Text>
+              </TouchableOpacity>
+
               {/* ORDER HISTORY */}
               <Text style={s.sectionTitle}>Order History</Text>
               {loadingOrders ? (
@@ -493,6 +528,12 @@ const s = StyleSheet.create({
   },
   callBigBtnText: { color: '#FFC107', fontWeight: 'bold', fontSize: 14 },
   waBigBtn: { flex: 1, backgroundColor: '#25D366', borderRadius: 14, padding: 14, alignItems: 'center' },
+  resetPinBtn: {
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6,
+    backgroundColor: 'rgba(245,158,11,0.1)', borderRadius: 14, padding: 12,
+    marginTop: 10, borderWidth: 1, borderColor: 'rgba(245,158,11,0.3)',
+  },
+  resetPinBtnText: { color: '#F59E0B', fontWeight: '700', fontSize: 13 },
   waBigBtnText: { color: '#fff', fontWeight: 'bold', fontSize: 14 },
   sectionTitle: { fontSize: 15, fontWeight: 'bold', color: '#fff', marginBottom: 12 },
   orderHistoryRow: {
