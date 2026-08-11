@@ -597,7 +597,7 @@ export default function MainStore({ staff, onLogout }) {
             try {
               const r = await fetch(`${API_URL}/staff/${staffId}/reset-pin`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', 'x-staff-session-token': staff?.sessionToken || '' },
                 body: JSON.stringify({ pin: newPin })
               });
               const d = await r.json();
@@ -1067,7 +1067,7 @@ export default function MainStore({ staff, onLogout }) {
       if (entered === newPin) {
         try {
           await fetch(`${API_URL}/staff/${staff?.id}/pin`, {
-            method: 'PUT', headers: { 'Content-Type': 'application/json' },
+            method: 'PUT', headers: { 'Content-Type': 'application/json', 'x-staff-session-token': staff?.sessionToken || '' },
             body: JSON.stringify({ pin: newPin })
           });
           staff.pin = newPin;

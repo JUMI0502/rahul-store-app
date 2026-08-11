@@ -147,7 +147,11 @@ export default function LoginScreen({ onLogin }) {
         body: JSON.stringify({ pin: entered, staff_id: selectedStaff.id })
       });
       const d = await r.json();
-      if (d.staff) { await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success); onLogin(d.staff); return; }
+      if (d.staff) {
+        await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+        onLogin({ ...d.staff, sessionToken: d.session_token });
+        return;
+      }
       await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
       if (d.locked) {
         const mins = Math.ceil(d.retry_after_seconds / 60);
