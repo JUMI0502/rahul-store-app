@@ -378,7 +378,7 @@ export default function MainStore({ staff, onLogout }) {
     try {
       const r = await fetch(`${API_URL}/staff`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'x-staff-session-token': staff?.sessionToken || '' },
         body: JSON.stringify({
           name: newStaffName.trim(),
           phone: newStaffPhone.trim(),
