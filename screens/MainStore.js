@@ -707,7 +707,7 @@ export default function MainStore({ staff, onLogout }) {
     try {
       await fetch(`${API_URL}/orders/${orderId}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'x-staff-session-token': staff?.sessionToken || '' },
         body: JSON.stringify({ status: newStatus })
       });
       setOrders(prev => prev.map(o => o.id === orderId ? { ...o, status: newStatus } : o));
@@ -815,7 +815,7 @@ export default function MainStore({ staff, onLogout }) {
     try {
       const r = await fetch(`${API_URL}/orders/${orderId}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'x-staff-session-token': staff?.sessionToken || '' },
         body: JSON.stringify({ payment_type: type })
       });
       if (!r.ok) throw new Error('failed');
