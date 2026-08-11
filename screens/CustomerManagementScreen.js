@@ -37,7 +37,7 @@ const sb = StyleSheet.create({
   label: { fontSize: 9, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: 1, textAlign: 'center' },
 });
 
-export default function CustomerManagementScreen({ onBack }) {
+export default function CustomerManagementScreen({ onBack, staff }) {
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -145,7 +145,10 @@ export default function CustomerManagementScreen({ onBack }) {
           style: 'destructive',
           onPress: async () => {
             try {
-              const r = await fetch(`${API_URL}/customers/${customer.phone}/reset-pin`, { method: 'POST' });
+              const r = await fetch(`${API_URL}/customers/${customer.phone}/reset-pin`, {
+                method: 'POST',
+                headers: { 'x-staff-session-token': staff?.sessionToken || '' },
+              });
               const d = await r.json();
               if (d.success) {
                 await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);

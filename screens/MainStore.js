@@ -1108,7 +1108,7 @@ export default function MainStore({ staff, onLogout }) {
     />
   );
   if (showCustomers) return (
-    <CustomerManagementScreen onBack={() => setShowCustomers(false)} />
+    <CustomerManagementScreen onBack={() => setShowCustomers(false)} staff={staff} />
   );
   if (showPurchaseOrders) return (
     <PurchaseOrdersScreen onBack={() => setShowPurchaseOrders(false)} />
