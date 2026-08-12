@@ -64,7 +64,7 @@ const PART_TYPES = [
   { label: '️ Other',          code: 'OTH' },
 ];
 
-export default function AddProductScreen({ onBack, onProductAdded }) {
+export default function AddProductScreen({ onBack, onProductAdded, staff }) {
   // ── FORM STATE ──
   const [nameEn, setNameEn]           = useState('');
   const [nameTe, setNameTe]           = useState('');
@@ -204,7 +204,7 @@ export default function AddProductScreen({ onBack, onProductAdded }) {
 
       const r = await fetch(`${API_URL}/products`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'x-staff-session-token': staff?.sessionToken || '' },
         body: JSON.stringify(payload),
       });
       const d = await r.json();
@@ -219,7 +219,7 @@ export default function AddProductScreen({ onBack, onProductAdded }) {
         try {
           await fetch(`${API_URL}/products/${productId}/upload-image`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'x-staff-session-token': staff?.sessionToken || '' },
             body: JSON.stringify({ image_base64: imageBase64 }),
           });
         } catch {}

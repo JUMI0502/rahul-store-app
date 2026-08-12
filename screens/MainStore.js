@@ -1105,6 +1105,7 @@ export default function MainStore({ staff, onLogout }) {
     <AddProductScreen
       onBack={() => setShowAddProduct(false)}
       onProductAdded={() => { fetchProducts(); setShowAddProduct(false); }}
+      staff={staff}
     />
   );
   if (showCustomers) return (
@@ -1508,7 +1509,7 @@ export default function MainStore({ staff, onLogout }) {
                   try {
                     await fetch(`${API_URL}/products/${stockAdjustProduct.id}/oem`, {
                       method: 'PUT',
-                      headers: { 'Content-Type': 'application/json' },
+                      headers: { 'Content-Type': 'application/json', 'x-staff-session-token': staff?.sessionToken || '' },
                       body: JSON.stringify({ is_oem: stockAdjustIsOem })
                     });
                   } catch {}
