@@ -890,7 +890,7 @@ export default function MainStore({ staff, onLogout }) {
     try {
       await fetch(`${API_URL}/offers`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'x-staff-session-token': staff?.sessionToken || '' },
         body: JSON.stringify({
           title: offerTitle.trim(), description: offerDesc.trim(),
           discount_percent: parseInt(offerDiscount) || 0, emoji: offerEmoji
@@ -905,7 +905,7 @@ export default function MainStore({ staff, onLogout }) {
 
   const toggleOffer = async (id) => {
     try {
-      const r = await fetch(`${API_URL}/offers/${id}/toggle`, { method: 'PUT' });
+      const r = await fetch(`${API_URL}/offers/${id}/toggle`, { method: 'PUT', headers: { 'x-staff-session-token': staff?.sessionToken || '' } });
       if (!r.ok) throw new Error('failed');
       await fetchOffers();
     } catch {
@@ -918,7 +918,7 @@ export default function MainStore({ staff, onLogout }) {
       { text: 'Cancel', style: 'cancel' },
       { text: 'Delete', style: 'destructive', onPress: async () => {
         try {
-          const r = await fetch(`${API_URL}/offers/${id}`, { method: 'DELETE' });
+          const r = await fetch(`${API_URL}/offers/${id}`, { method: 'DELETE', headers: { 'x-staff-session-token': staff?.sessionToken || '' } });
           if (!r.ok) throw new Error('failed');
           await fetchOffers();
         } catch {
