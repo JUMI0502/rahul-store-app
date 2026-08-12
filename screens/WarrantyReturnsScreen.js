@@ -82,7 +82,7 @@ export default function WarrantyReturnsScreen({ onBack, staff }) {
     try {
       const r = await fetch(`${API_URL}/warranty-claims/${claimId}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'x-staff-session-token': staff?.sessionToken || '' },
         body: JSON.stringify({
           status: 'resolved',
           resolution_type: resolutionType,
@@ -107,7 +107,7 @@ export default function WarrantyReturnsScreen({ onBack, staff }) {
         try {
           await fetch(`${API_URL}/warranty-claims/${claimId}`, {
             method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'x-staff-session-token': staff?.sessionToken || '' },
             body: JSON.stringify({ status: 'rejected', resolved_by: staff?.name || 'Staff' })
           });
           fetchClaims();
