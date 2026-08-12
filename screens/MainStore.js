@@ -641,7 +641,7 @@ export default function MainStore({ staff, onLogout }) {
           text: 'Remove', style: 'destructive',
           onPress: async () => {
             try {
-              await fetch(`${API_URL}/staff/${staffId}`, { method: 'DELETE' });
+              await fetch(`${API_URL}/staff/${staffId}`, { method: 'DELETE', headers: { 'x-staff-session-token': staff?.sessionToken || '' } });
               fetchAllStaff();
               Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
             } catch {
