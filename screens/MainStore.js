@@ -355,7 +355,7 @@ export default function MainStore({ staff, onLogout }) {
     try {
       const r = await fetch(`${API_URL}/mechanics/${id}/approve`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'x-staff-session-token': staff?.sessionToken || '' },
         body: JSON.stringify({ status, approved_by: staff?.name })
       });
       if (!r.ok) throw new Error('failed');
@@ -403,7 +403,7 @@ export default function MainStore({ staff, onLogout }) {
     try {
       const r = await fetch(`${API_URL}/products/${stockAdjustProduct.id}/stock`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'x-staff-session-token': staff?.sessionToken || '' },
         body: JSON.stringify({ stock_qty: parseInt(stockAdjustQty) })
       });
       if (!r.ok) throw new Error('failed');
@@ -854,7 +854,7 @@ export default function MainStore({ staff, onLogout }) {
     try {
       await fetch(`${API_URL}/products/${productId}/stock`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'x-staff-session-token': staff?.sessionToken || '' },
         body: JSON.stringify({ stock_qty: newQty })
       });
       setProducts(prev => prev.map(p =>
@@ -1004,7 +1004,7 @@ export default function MainStore({ staff, onLogout }) {
     try {
       await fetch(`${API_URL}/products/${productId}/price`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'x-staff-session-token': staff?.sessionToken || '' },
         body: JSON.stringify({ mrp, selling_price: selling })
       });
       setProducts(prev => prev.map(p =>
