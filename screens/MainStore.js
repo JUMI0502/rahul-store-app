@@ -567,7 +567,7 @@ export default function MainStore({ staff, onLogout }) {
     try {
       const r = await fetch(`${API_URL}/staff/${staffId}/profile`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'x-staff-session-token': staff?.sessionToken || '' },
         body: JSON.stringify({
           name: editStaffName.trim(),
           phone: editStaffPhone.trim(),
@@ -946,7 +946,7 @@ export default function MainStore({ staff, onLogout }) {
         { text: 'Cancel', style: 'cancel' },
         { text: 'Clock Out', onPress: async () => {
           try {
-            const r = await fetch(`${API_URL}/staff/${staff?.id}/clockout`, { method: 'POST' });
+            const r = await fetch(`${API_URL}/staff/${staff?.id}/clockout`, { method: 'POST', headers: { 'x-staff-session-token': staff?.sessionToken || '' } });
             if (!r.ok) throw new Error('failed');
             setIsClockedIn(false); setClockTime(null);
             await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
@@ -957,7 +957,7 @@ export default function MainStore({ staff, onLogout }) {
       ]);
     } else {
       try {
-        const r = await fetch(`${API_URL}/staff/${staff?.id}/clockin`, { method: 'POST' });
+        const r = await fetch(`${API_URL}/staff/${staff?.id}/clockin`, { method: 'POST', headers: { 'x-staff-session-token': staff?.sessionToken || '' } });
         if (!r.ok) throw new Error('failed');
         setIsClockedIn(true); setClockTime(new Date().toISOString());
         await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
@@ -982,7 +982,7 @@ export default function MainStore({ staff, onLogout }) {
     try {
       await fetch(`${API_URL}/staff/${staff?.id}/profile`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'x-staff-session-token': staff?.sessionToken || '' },
         body: JSON.stringify({ name: editName.trim(), phone: editPhone.trim() })
       });
       staff.name = editName.trim();
