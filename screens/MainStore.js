@@ -669,7 +669,7 @@ export default function MainStore({ staff, onLogout }) {
     try {
       const r = await fetch(`${API_URL}/rewards`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'x-staff-session-token': staff?.sessionToken || '' },
         body: JSON.stringify({
           name: newRewardName,
           description: newRewardDesc,
@@ -687,7 +687,7 @@ export default function MainStore({ staff, onLogout }) {
 
   const deleteReward = async (id) => {
     try {
-      const r = await fetch(`${API_URL}/rewards/${id}`, { method: 'DELETE' });
+      const r = await fetch(`${API_URL}/rewards/${id}`, { method: 'DELETE', headers: { 'x-staff-session-token': staff?.sessionToken || '' } });
       if (!r.ok) throw new Error('failed');
       fetchStoreRewards();
     } catch {
