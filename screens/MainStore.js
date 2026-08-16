@@ -1158,27 +1158,14 @@ export default function MainStore({ staff, onLogout }) {
             {/* OWNER DASHBOARD BANNER */}
             {isOwner && (
               <View style={s.dashBanner}>
-                <TouchableOpacity style={s.dashCard} onPress={() => setShowDashboard(true)}>
-                  <View style={s.dashItem}>
-                    <Text style={s.dashValue}>₹{(todayRevenue/1000).toFixed(1)}k</Text>
-                    <Text style={s.dashLabel}>Today</Text>
+                <TouchableOpacity activeOpacity={0.85} onPress={() => setShowDashboard(true)}>
+                  <View style={s.dashStatsRow}>
+                    <StatCard icon="cash-outline" label="Today" value={`₹${(todayRevenue/1000).toFixed(1)}k`} color="#C9A84C" />
+                    <StatCard icon="receipt-outline" label="Orders" value={todayOrders} color="#4ADE80" />
                   </View>
-                  <View style={s.dashDivider}/>
-                  <View style={s.dashItem}>
-                    <Text style={s.dashValue}>{todayOrders}</Text>
-                    <Text style={s.dashLabel}>Orders</Text>
-                  </View>
-                  <View style={s.dashDivider}/>
-                  <View style={s.dashItem}>
-                    <Text style={[s.dashValue, { color: '#EF4444' }]}>{lowStockProducts.length}</Text>
-                    <Text style={s.dashLabel}>Low Stock</Text>
-                  </View>
-                  <View style={s.dashDivider}/>
-                  <View style={s.dashItem}>
-                    <Text style={[s.dashValue, { color: '#F59E0B' }]}>
-                      {orders.filter(o => o.status !== 'collected').length}
-                    </Text>
-                    <Text style={s.dashLabel}>Pending</Text>
+                  <View style={s.dashStatsRow}>
+                    <StatCard icon="alert-circle-outline" label="Low Stock" value={lowStockProducts.length} color="#EF4444" />
+                    <StatCard icon="time-outline" label="Pending" value={orders.filter(o => o.status !== 'collected').length} color="#F59E0B" />
                   </View>
                 </TouchableOpacity>
                 <View style={s.dashActions}>
@@ -3598,6 +3585,7 @@ const s = StyleSheet.create({
   refreshBtn: { backgroundColor: 'rgba(201,168,76,0.1)', borderRadius: 10, padding: 8, borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)' },
   // Dashboard
   dashBanner: { backgroundColor: '#0D1A0D', borderBottomWidth: 1, borderBottomColor: 'rgba(201,168,76,0.15)', padding: 12 },
+  dashStatsRow: { flexDirection: 'row', gap: 10, marginBottom: 10 },
   dashCard: { flexDirection: 'row', alignItems: 'center', backgroundColor: 'rgba(201,168,76,0.05)', borderRadius: 12, padding: 12, marginBottom: 8, borderWidth: 1, borderColor: 'rgba(201,168,76,0.2)' },
   dashItem: { flex: 1, alignItems: 'center' },
   dashValue: { fontSize: 20, fontWeight: '900', color: '#C9A84C', marginBottom: 2 },
