@@ -2346,33 +2346,20 @@ export default function MainStore({ staff, onLogout }) {
             </TouchableOpacity>
 
             <View style={s.stockStatsRow}>
-              <View style={s.stockStatCard}>
-                <Text style={s.stockStatValue}>{products.length}</Text>
-                <Text style={s.stockStatLabel}>Total Parts</Text>
-              </View>
-              <View style={[s.stockStatCard, { borderColor: 'rgba(239,68,68,0.3)' }]}>
-                <Text style={[s.stockStatValue, { color: '#EF4444' }]}>
-                  {products.filter(p => p.stock_qty === 0).length}
-                </Text>
-                <Text style={s.stockStatLabel}>Out of Stock</Text>
-              </View>
-              <View style={[s.stockStatCard, { borderColor: 'rgba(245,158,11,0.3)' }]}>
-                <Text style={[s.stockStatValue, { color: '#F59E0B' }]}>
-                  {products.filter(p => p.stock_qty > 0 && p.stock_qty <= 5).length}
-                </Text>
-                <Text style={s.stockStatLabel}>Low Stock</Text>
-              </View>
+              <StatCard icon="cube-outline" label="Total Parts" value={products.length} color={G} />
+              <StatCard icon="close-circle-outline" label="Out of Stock" value={products.filter(p => p.stock_qty === 0).length} color="#EF4444" />
+              <StatCard icon="alert-circle-outline" label="Low Stock" value={products.filter(p => p.stock_qty > 0 && p.stock_qty <= 5).length} color="#F59E0B" />
             </View>
 
             <View style={s.stockSearchBox}>
-              <Text style={{ fontSize: 16 }}></Text>
+              <Ionicons name="search-outline" size={16} color="rgba(255,255,255,0.3)" />
               <TextInput style={s.stockSearchInput}
                 placeholder="Search products..."
                 placeholderTextColor="rgba(255,255,255,0.25)"
                 value={stockSearch} onChangeText={setStockSearch} />
               {stockSearch.length > 0 && (
                 <TouchableOpacity onPress={() => setStockSearch('')}>
-                  <Text style={{ color: 'rgba(255,255,255,0.3)', fontSize: 16 }}></Text>
+                  <Ionicons name="close-circle" size={16} color="rgba(255,255,255,0.3)" />
                 </TouchableOpacity>
               )}
             </View>
@@ -2388,7 +2375,7 @@ export default function MainStore({ staff, onLogout }) {
               }
               ListEmptyComponent={() => (
                 <View style={{ alignItems: 'center', padding: 40 }}>
-                  <Text style={{ fontSize: 48, marginBottom: 12 }}></Text>
+                  <Ionicons name="cube-outline" size={48} color="rgba(255,255,255,0.15)" style={{ marginBottom: 12 }} />
                   <Text style={{ color: 'rgba(255,255,255,0.4)', fontSize: 15, marginBottom: 16 }}>
                     {stockSearch ? `No products matching "${stockSearch}"` : 'No products yet!'}
                   </Text>
