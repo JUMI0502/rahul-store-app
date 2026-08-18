@@ -44,7 +44,8 @@
           "project": "react-native",
           "organization": "rahul-auto-spares"
         }
-      ]
+      ],
+      "@sentry/react-native"
     ],
     "ios": {
       "bundleIdentifier": "com.rahulautospares.store"
